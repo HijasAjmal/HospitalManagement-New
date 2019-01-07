@@ -1,0 +1,244 @@
+<div class="container border rounded shadow p-4 mb-4 border-secondary w-50" style="margin-top:5%;">
+
+<div class="row panel panel-success" style="margin-top:2%;">
+            <div class="panel-heading lead">
+                <div class="row">
+                    <!-- <div class="col-lg-8 col-md-8"><i class="fa fa-users"></i> View Patient Details</div>
+                    <div class="col-lg-4 col-md-4 text-right">
+                        <div class="btn-group text-center">
+                            <a href="student-view.php?sid=1&amp;id=68" class="btn btn-success btn-sm btn-default"><i class="fa fa-eye fa-1x"></i></a>
+                            <a href="student-modify.php?sid=1&amp;id=68" class="btn btn-success btn-sm btn-default"><i class="fa fa-edit fa-1x"></i></a>
+                            <a href="student-print.php?sid=1&amp;id=68" class="btn btn-success btn-sm btn-default"><i class="fa fa-print fa-1x"></i></a>
+                            <a href="student-delete.php?sid=1&amp;id=68" class="btn btn-success btn-sm btn-default"><i class="fa fa-trash-o fa-1x"></i></a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="panel-body">
+            <!-- <button class="apbutton"><span><p class="txtbtn">Hover me!</p></span></button> -->
+
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3">
+                                    <center>
+                                        <span class="text-left">
+                                        <img src="https://lh5.googleusercontent.com/proxy/EkYugv9KzLUfAIpv-P4g6b0_mKxhcsfTvNmVueDn6XDHQp_SA0_hG2YFVAwB0Lbj_S-LrT-OtYsvxXMCrkZZMCmBfwelTQaAZW6GZwMQ8bRLwEvZonc0k0NxUpkhLBDuApx25K735rZfyHCIqA1RVpSdU84HF7U-j3xAwt3XLevAJtr5pwaVnRUC=w120-h120" class="img-responsive img-thumbnail">
+
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="PhotoOption" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog" style="width:30%;height:30%;">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                            <h4 class="modal-title text-success" id="myModalLabel"><i class="fa fa-gear"></i> <span class="text-right">Viddhyut Mall</span></h4>
+                                                        </div>
+                                                        <div class="modal-body">
+    <center><img src="upload/profile_pic/701b4263f7d38604699b7c1f89a3e6a6.jpg" class="img-responsive img-thumbnail"></center>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a href="upload/upload-view.php?id=68" class="btn btn-success"><i class="fa fa-photo"></i> Upload</a>
+                                                            <a href="details_view_admin?id=1&amp;action="details_view_admin"" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.modal-content -->
+                                                </div>
+                                                <!-- /.modal-dialog -->
+                                            </div>
+                                            <!-- /.modal -->
+                                    </span></center>
+
+                                    <div class="panel">
+                                        <table class="table">
+                                            <tbody>
+                                                        <tr>
+                                                        <td class="text-center">
+                                                            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#PhotoOption"><i class="fa fa-photo"></i> Change</a>
+                                                        </td>
+                                                    </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-lg-9 col-md-9">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#Details" class="text-success"><i class="fa fa-indent"></i> Details</a></li>
+                                        <li><a data-toggle="tab" href="#appointment_history" class="text-success"><i class="fa fa-bookmark-o"></i>Appointment History</a></li>
+                                        <li><a data-toggle="tab" href="#Records" class="text-success"><i class="fa fa-home"></i> Records</a></li>
+                                        <li><a data-toggle="tab" href="#General" class="text-success"><i class="fa fa-info"></i> General Info</a></li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="Details" class="tab-pane  active">
+
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-user"></i> Name</td>
+                                                                <td><%=@patients.first_name+" "+@patients.middle_name+" "+@patients.last_name%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Contact Number</td>
+                                                                <td><%=@patients.contact_number %></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Email</td>
+                                                                <td><%=@patients.email %></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Date Of Birth</td>
+                                                                <td><%=@patients.date_of_birth %></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-book"></i> Blood Group</td>
+                                                                <td><%=@patients.blood_group %></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-group"></i> Gender</td>
+                                                                <td><%=@patients.gender %></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Address</td>
+                                                                <td><%=@patients.address %></td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div id="appointment_history" class="tab-pane fade">
+                                            <div class="table-responsive panel">
+                                                        <% @index = 0%>
+                                                            <% @appointments.each do |a| %>
+                                                            <p>
+                                                              <div class="container border rounded shadow mb-4 border-secondary w-100 fontsize" style="text-decoration: none;" data-toggle="collapse" href="#collapseExample<%=@index%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                                <%= label_tag "Dept:" %>
+                                                                <%=h depFind(a) %> &nbsp &nbsp
+                                                                <%= label_tag "Dr:" %>
+                                                                <%=h docFind(a) %> &nbsp &nbsp
+                                                                <%= label_tag "Date:" %>
+                                                                <%=h dateFind(a) %> &nbsp &nbsp</br>
+                                                                <%= label_tag "Time:" %>
+                                                                <%=h timeFind(a) %> &nbsp &nbsp
+                                                                <% if dateFind(a) < DateTime.now.strftime('%m/%d/%Y')%>
+                                                                    <% @status = "Diognised"%>
+                                                                <% else%>
+                                                                    <% @status = "Not Diognised"%>
+                                                                <% end %>
+                                                                <%= label_tag "Status: "+@status %>
+                                                              </div>
+                                                            </p>
+                                                           
+                                                            <% @index = @index+1%>
+                                                            <% end %>
+                                            </div>
+                                        </div>
+                                        <div id="Records" class="tab-pane fade">
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-home"></i> Address</td>
+                                                                <td>
+                                                                    <address>
+                                                                        <strong>
+                                                                            C-***, Amahiya </strong><br>
+                                                                            Kharobar, ****** <br>
+                                                                            Gorakhpur, Utter Pradesh, India<br>
+                                                                    </address>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id="General" class="tab-pane fade">
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+                                                                <tr>
+                                                                <td class="text-success"><i class="fa fa-university"></i> Last School</td>
+                                                                <td>Pawan Mall's School</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Date of Admission</td>
+                                                                <td>March 4, 2009</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-home"></i> Birth Place</td>
+                                                                <td>Delhi</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Academic Year</td>
+                                                                <td>2015-2016</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-medkit"></i> Medical Condition</td>
+                                                                <td>Normal</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-thumbs-up"></i> Active/Inactive</td>
+                                                                <td>Student is Active</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="glyphicon glyphicon-time"></i> Last Editing</td>
+                                                                <td>2015-08-20 09:41:56</td>
+                                                            </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                <!-- /.table-responsive -->
+                <button type="button" class="apbutton" data-toggle="modal" data-target="#exampleModalCenter">
+                  <span><p>Take Appointment</p></span>
+                </button>
+                <!-- <button class="apbutton"><%= link_to '<span><p>Take Appointment</p></span>', :controller => :timeslots, :action => "index", :style => "text-decoration: none;"%></button> -->
+
+            </div>
+        </div>
+      </div>
+
+
+
+
+      <!-- Modal1 -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content" height="34px">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Confirm</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- <%= link_to 'confirm', :controller => :timeslots%> -->
+             	 <% form_tag :controller => :patients, :action => 'searchslots' do -%>
+              	<%= date_select('event', 'date', :required => true, :include_blank => true)%></br></br></br>
+                <%= collection_select(:department, :id, Department.all, :id, :department_name)%>
+              </br></br><%= submit_tag "Find", :name => nil, :class => "btn btn-primary" %>
+          	<% end %>
+      	</div>
+      	<div class="modal-footer">
+            </div>
+          </div>
+        </div>
+      </div>

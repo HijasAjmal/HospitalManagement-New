@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  drepartment_id: 1
+  no_of_beds: 1
+
+two:
+  drepartment_id: 1
+  no_of_beds: 1

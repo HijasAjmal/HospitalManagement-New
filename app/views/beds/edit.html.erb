@@ -1,0 +1,28 @@
+<div class="container border w-50" style="height: 40%; margin-top: 6%;">
+  	<% form_for(@bed) do |f| %>
+   	<div class="text-center">
+    	<h3>Update Bed</h3>
+  	</div></hr></br>
+  	<div class="form-row">
+    	<div class="form-group col-md-6">
+      		<label >Department Name</label>
+      		<%= text_field_tag :department_name, params[:department_name], :value => @department.department_name, :disabled => true, :class => "form-control"%>
+    	</div>
+    	<div class="form-group col-md-6">
+      		<label >Room Id</label>
+      		<%= text_field_tag :room_id, params[:room_id], :value => @room.id, :disabled => true, :class => "form-control"%>
+    	</div>
+  </div></br>
+  
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label >Bed Status</label>
+      <%= f.text_field :is_engaged, :class => "form-control" %>
+    </div>
+  </div>
+	<div>
+      <p>O - Available</p>&nbsp <p>1 - Not Available</p>
+    </div></br>
+  </br></br><%= f.submit 'Update', :name => nil, :class => "btn btn-primary upbedbtn" %>
+<% end %>
+</div>

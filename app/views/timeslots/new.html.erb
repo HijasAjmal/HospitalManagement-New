@@ -1,0 +1,28 @@
+
+<h1>New timeslot</h1>
+
+<% form_for(@timeslot) do |f| %>
+  <%= f.error_messages %>
+    <%= collection_select(:doctor, :id, Doctor.all, :id, :first_name)%>
+  <p>
+    <%= f.label :date %><br />
+    <%= f.date_select :date %>
+  </p>
+  <p>
+    <%= f.label :start_time %><br />
+    <%= f.time_select :start_time %>
+  </p>
+  <p>
+    <%= f.label :end_time %><br />
+    <%= f.time_select :end_time %>
+  </p>
+  <p>
+    <%= f.label :slot_count_constant %><br />
+    <%= f.time_select :slot_count_constant %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', timeslots_path %>

@@ -1,0 +1,85 @@
+
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Sign In</h5></br></br>
+            <% if flash[:notice] %>
+              <p class="alert"><%= flash[:notice]%></p>
+            <% end %>
+
+            <% form_tag({:action => 'signin'}, {:class => 'form-signin'}) do-%>
+              <div class="form-label-group">
+                <%= text_field_tag :user_name, params[:user_name], :placeholder => "User Name", :class => "form-control"%></br></br>
+              </div>
+              <div class="form-label-group">
+                <%= password_field_tag :password, params[:password], :placeholder => "Password", :required => true, :class => "form-control"%></br></br></br></br>
+              </div>
+
+              <div class="custom-control mb-3">
+                <a href="#" data-toggle="modal" data-target="#exampleModal" style="text-decoration: none;">Forget Password?</a>
+              </div>
+              <%= submit_tag "Sign In", :name => nil, :class => "btn btn-lg btn-primary btn-block text-uppercase"%>
+            <% end %>
+            <hr class="my-4">
+            <div class="p-r-b">
+              <button type="button" class="btn btn-primary p-r-button" data-toggle="modal" data-target="#exampleModalCenter">
+                Patient Registration
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- Modal1 -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" height="34px">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Open Registration</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       	 <% form_tag({:controller => :users, :action => 'signup', :id => "3" }, {:class => 'user_r'}) do -%>
+        	<%= text_field_tag :first_name, params[:first_name], :placeholder => "First Name", :minlength => 3, :required => true, :class => "form-control" %>  </br></br>
+        	<%= text_field_tag :middle_name, params[:middle_name], :placeholder => "Middle Name", :class => "form-control"%>  </br></br>
+        	<%= text_field_tag :last_name, params[:last_name], :placeholder => "Last Name", :class => "form-control", :required => true%>  </br></br>
+        	<%= text_field_tag :email, params[:email], :placeholder => "Email", :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}', :class => "form-control"%>  </br></br>
+      		</br></br><%= submit_tag "Sign Up", :name => nil, :class => "btn btn-primary" %>
+    	<% end %>
+	</div>
+	<div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal2 -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Password Request</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% form_tag :action => 'forget' do -%>
+            <h4>Email</h4>
+              <%= text_field_tag :email, params[:email], :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}', :class => "form-control"%>
+            </br></br>
+            <%= submit_tag "Send the link to email", :name => nil, :class => "btn btn-primary"%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

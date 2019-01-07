@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  start_date_time: 2019-01-02 10:45:16
+  end_date_time: 2019-01-02 10:45:16
+  slot_count_constant: 2019-01-02 10:45:16
+
+two:
+  start_date_time: 2019-01-02 10:45:16
+  end_date_time: 2019-01-02 10:45:16
+  slot_count_constant: 2019-01-02 10:45:16

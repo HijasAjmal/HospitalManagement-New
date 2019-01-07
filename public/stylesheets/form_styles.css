@@ -1,0 +1,93 @@
+.signin_form {
+    margin-top: 10%;
+    margin-left: 7%;
+    border-radius: 8px;
+    width: 85%;
+    text-align: -webkit-center;
+    height: 58%;
+}
+.inp {
+    margin-left: 20%;
+    border-radius: 7px;
+    height: 7%;
+    width: 63%;
+}
+.inb {
+    margin-left: 37%;
+    border-radius: 7px;
+    height: 9%;
+    width: 31%;
+}
+.signinhead{
+  height: 30%;
+}
+.p-r-b{
+  margin-right: 3%;
+}
+.signinhead > h2 {
+  margin-left: 37%;
+border-radius: 13%;
+height: 48%;
+margin-top: -2px;
+}
+.user_r {
+    margin-top: 10%;
+    margin-left: 12%;
+    border-radius: 8px;
+    /*border: 1px solid black;*/
+    width: 75%;
+    text-align: -webkit-center;
+    height: 84%;
+}
+.doctors_signup {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 68%;
+    height: 83%;
+    overflow: auto;
+    background-color: darkgrey;
+    padding-top: 50px;
+    margin-left: 17%;
+    margin-top: 10%;
+}
+.admin_signup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 68%;
+    height: 83%;
+    overflow: auto;
+    background-color: darkgrey;
+    padding-top: 50px;
+    margin-left: 17%;
+    margin-top: 10%;
+}
+.close_b {
+    width: 3%;
+    float: right;
+    position: fixed;
+    margin-left: 64%;
+    margin-top: -3%;
+}
+.adding_header {
+    height: 9%;
+    width: 86%;
+    float: left;
+    margin-left: 7%;
+    margin-top: 3%;
+    font-size: 81%;
+}
+.webtitle>h1 {
+    font-size: 27px;
+    padding-top: 3%;
+    font-weight: bold;
+}
+.user_r_f {
+    margin-top: 11%;
+    width: 85%;
+    height: 89%;
+}

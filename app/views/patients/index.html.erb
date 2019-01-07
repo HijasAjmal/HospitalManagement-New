@@ -1,0 +1,27 @@
+<%= stylesheet_link_tag 'form_styles' %>
+
+<div class="container">
+  <h2><b>Listing All Patients</b></h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Contact</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @patients.each do |p| %>
+      <tr>
+        <td><%=p.first_name %></td>
+        <td><%=p.last_name %></td>
+        <td><%=p.contact_number %></td>
+        <td><%=p.email %></td>
+        <td><%=link_to 'Delete', :action => "delete", :id => p.id%></td>
+        <td><%=link_to 'Details', :action => "details_view_admin", :id => p.id%></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

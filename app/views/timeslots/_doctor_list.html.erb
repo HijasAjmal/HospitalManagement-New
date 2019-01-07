@@ -1,0 +1,1 @@
+<%= collection_select(:doctor, :id, @doctors, :id, :first_name, {:action => "create"}, { :onchange => "load_timeslotform(this.value);"})%>

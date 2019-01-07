@@ -1,0 +1,38 @@
+<% if @flag == 1%>
+  <% @index = 0%>
+  <% @timeslots.each do |timeslot| %>
+  <p>
+    <div class="container border rounded shadow mb-4 border-secondary w-100 timeslotdvi" style="text-decoration: none;" data-toggle="collapse" href="#collapseExample<%=@index%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+      <%= label_tag "Department:" %>
+      <%=h department(timeslot) %> &nbsp &nbsp &nbsp &nbsp
+      <%=h timeslot.date %> &nbsp &nbsp
+      <%=h timeslot.start_time %> &nbsp &nbsp
+      <%=h timeslot.end_time %> &nbsp &nbsp</br>
+      <%= label_tag "Doctor:" %>
+      <%=h doctor(timeslot) %> &nbsp &nbsp
+    </div>
+  </p>
+  <div class="collapse" id="collapseExample<%=@index%>">
+    <div class="container card-body w-100">
+      <% @slots = timeslot.slots%>
+      <% @slots.each do |i|%>
+        <% if i.status == 0%>
+          <% @color = "btn-success"%>
+          <% @button_status = "enabled"%>
+        <% else%>
+          <% @color = "btn-secondary"%>
+          <% @button_status = "disabled"%>
+        <% end %>
+        <button type="button" <%= @button_status%> class="btn <%= @color%>"><%=link_to_if @button_status == "enabled", i.time.strftime("%H:%M"), :controller => :appointments, :action => "new", :id => i.id %>&nbsp &nbsp</button>
+      <% end%>
+    </div>
+  </div>
+  <% @index = @index+1%>
+  <% end %>
+<% else %>
+  <div class="container border border-0 " style="width: 50%;margin-top: 8%; background-color: lightgoldenrodyellow;">
+    <div class=" container zoom sorrymsg">
+      <h3 class="zoom">No Available Timeslots.........Sorry........</h3>
+    </div>
+  </div>
+<% end %>

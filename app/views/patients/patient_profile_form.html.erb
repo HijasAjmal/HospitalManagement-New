@@ -1,0 +1,250 @@
+
+
+
+
+
+
+<div class="container border rounded shadow p-4 mb-4 border-secondary w-50" style="margin-top:5%;">
+
+<div class="row panel panel-success" style="margin-top:2%;">
+            <div class="panel-heading lead">
+                <div class="row">
+                    <!-- <div class="col-lg-8 col-md-8"><i class="fa fa-users"></i> View Patient Details</div>
+                    <div class="col-lg-4 col-md-4 text-right">
+                        <div class="btn-group text-center">
+                            <a href="student-view.php?sid=1&amp;id=68" class="btn btn-success btn-sm btn-default"><i class="fa fa-eye fa-1x"></i></a>
+                            <a href="student-modify.php?sid=1&amp;id=68" class="btn btn-success btn-sm btn-default"><i class="fa fa-edit fa-1x"></i></a>
+                            <a href="student-print.php?sid=1&amp;id=68" class="btn btn-success btn-sm btn-default"><i class="fa fa-print fa-1x"></i></a>
+                            <a href="student-delete.php?sid=1&amp;id=68" class="btn btn-success btn-sm btn-default"><i class="fa fa-trash-o fa-1x"></i></a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <div class="panel-body">
+
+
+
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3">
+                                    <center>
+                                        <span class="text-left">
+                                        <img src="https://lh5.googleusercontent.com/proxy/EkYugv9KzLUfAIpv-P4g6b0_mKxhcsfTvNmVueDn6XDHQp_SA0_hG2YFVAwB0Lbj_S-LrT-OtYsvxXMCrkZZMCmBfwelTQaAZW6GZwMQ8bRLwEvZonc0k0NxUpkhLBDuApx25K735rZfyHCIqA1RVpSdU84HF7U-j3xAwt3XLevAJtr5pwaVnRUC=w120-h120" class="img-responsive img-thumbnail">
+
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="PhotoOption" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog" style="width:30%;height:30%;">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                            <h4 class="modal-title text-success" id="myModalLabel"><i class="fa fa-gear"></i> <span class="text-right">Viddhyut Mall</span></h4>
+                                                        </div>
+                                                        <div class="modal-body">
+    <center><img src="upload/profile_pic/701b4263f7d38604699b7c1f89a3e6a6.jpg" class="img-responsive img-thumbnail"></center>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a href="upload/upload-view.php?id=68" class="btn btn-success"><i class="fa fa-photo"></i> Upload</a>
+                                                            <a href="details_view_admin?id=1&amp;action="details_view_admin"" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.modal-content -->
+                                                </div>
+                                                <!-- /.modal-dialog -->
+                                            </div>
+                                            <!-- /.modal -->
+                                    </span></center>
+
+                                    <div class="panel">
+                                        <table class="table">
+                                            <tbody>
+                                                        <tr>
+                                                        <td class="text-center">
+                                                            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#PhotoOption"><i class="fa fa-photo"></i> Change</a>
+                                                        </td>
+                                                    </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-lg-9 col-md-9">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#Details" class="text-success"><i class="fa fa-indent"></i> Details</a></li>
+                                        <li><a data-toggle="tab" href="#Contact" class="text-success"><i class="fa fa-bookmark-o"></i> Contact Info</a></li>
+                                        <li><a data-toggle="tab" href="#Address" class="text-success"><i class="fa fa-home"></i> Address</a></li>
+                                        <li><a data-toggle="tab" href="#General" class="text-success"><i class="fa fa-info"></i> General Info</a></li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="Details" class="tab-pane  active">
+
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+                                                      <% form_tag({:action => "updateprofile"}, {:class => 'signin_form'}) do -%>
+                                                        <%= hidden_field_tag :patient,  @patient.id  %>
+                                                        <tr>
+                                                                <td class="text-success"><i class="fa fa-user"></i> First Name</td>
+                                                                <td><%= text_field_tag :first_name, params[:first_name], :value => @patient.first_name, :disabled => true%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Middle Name</td>
+                                                                <td><%= text_field_tag :middle_name, params[:middle_name], :value => @patient.middle_name, :disabled => true%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Last Name</td>
+                                                                <td><%= text_field_tag :last_name, params[:last_name], :value => @patient.last_name, :disabled => true%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Contact Number</td>
+                                                                <td><%= text_field_tag :contact_number, params[:contact_number], :placeholder => "Contact Number",
+                                                                :required => true, :minlength => 8, :maxlength => 14%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Email</td>
+                                                                <td><%= text_field_tag :email, params[:email], :value => @patient.email, :disabled => true%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Date Of Birth</td>
+                                                                <td><%= date_select('event', 'date', :required => true, :include_blank => true)%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-book"></i> Blood Group</td>
+                                                                <td><%= collection_select :blood, :id, Bloodgroup.all, :id, :name, :include_blank => true, :required => true%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-group"></i> Gender</td>
+                                                                <td><%= collection_select :gender, :id, Gender.all, :id, :name, :include_blank => true, :required => true%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Address</td>
+                                                                <td><%= text_field_tag :address, params[:address], :placeholder => "Address", :required => true%></td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                                <%= submit_tag "Create Profile", :name => nil%>
+                                                <% end %>
+                                            </div>
+                                        </div>
+
+                                        <div id="Address" class="tab-pane fade">
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-home"></i> Address</td>
+                                                                <td>
+                                                                    <address>
+                                                                        <strong>
+        C-***, Amahiya </strong><br>
+        Kharobar, ****** <br>
+        Gorakhpur, Utter Pradesh, India<br>
+                                                                    </address>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id="Contact" class="tab-pane fade">
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-envelope-o"></i> Email ID</td>
+                                                                <td><a href="mailto:****@pawanmall.net?subject=Email from &amp;body=Hello, Viddhyut Mall">****@pawanmall.net</a></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Mobile Number</td>
+                                                                <td>88********</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-flag"></i> Nationality</td>
+                                                                <td>Indian</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-user"></i> Father's Name</td>
+                                                                <td>Ajay Mall</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Father's Mobile</td>
+                                                                <td>+91 99********</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-user"></i> Mother's Name</td>
+                                                                <td>Hemlata Mall</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Mother's Mobile</td>
+                                                                <td>+91 90********</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-user"></i> Emergency Contact Person</td>
+                                                                <td>Pawan Mall</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Emergency Contact Person's Mobile</td>
+                                                                <td>+91 88********</td>
+                                                            </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id="General" class="tab-pane fade">
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+                                                                <tr>
+                                                                <td class="text-success"><i class="fa fa-university"></i> Last School</td>
+                                                                <td>Pawan Mall's School</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Date of Admission</td>
+                                                                <td>March 4, 2009</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-home"></i> Birth Place</td>
+                                                                <td>Delhi</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Academic Year</td>
+                                                                <td>2015-2016</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-medkit"></i> Medical Condition</td>
+                                                                <td>Normal</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-thumbs-up"></i> Active/Inactive</td>
+                                                                <td>Student is Active</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="glyphicon glyphicon-time"></i> Last Editing</td>
+                                                                <td>2015-08-20 09:41:56</td>
+                                                            </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                <!-- /.table-responsive -->
+
+            </div>
+        </div>
+      </div>
