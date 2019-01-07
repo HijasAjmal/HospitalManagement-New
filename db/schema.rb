@@ -9,11 +9,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20190106173833) do
+ActiveRecord::Schema.define(:version => 20190107114643) do
+
+  create_table "admitted_records", :force => true do |t|
+    t.integer  "bed_id"
+    t.datetime "date"
+    t.datetime "time"
+    t.integer  "is_discharged"
+    t.datetime "discharged_date"
+    t.datetime "discharged_time"
+    t.integer  "patient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "appointments", :force => true do |t|
     t.string   "case"
     t.integer  "patient_id"
+    t.integer  "is_diogonised", :default => 0
+    t.integer  "is_expired",    :default => 0
     t.integer  "slot_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -35,6 +49,8 @@ ActiveRecord::Schema.define(:version => 20190106173833) do
   create_table "comments", :force => true do |t|
     t.integer  "patient_condition"
     t.string   "medication"
+    t.integer  "is_recommended",        :default => 0
+    t.integer  "recommendation_status", :default => 2
     t.integer  "appointment_id"
     t.datetime "created_at"
     t.datetime "updated_at"

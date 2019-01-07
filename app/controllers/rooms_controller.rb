@@ -4,23 +4,28 @@ class RoomsController < ApplicationController
   # GET /rooms.xml
   def index
     @rooms = Room.all
+      respond_to do |format|
+        format.html
+        format.csv {send_data Room.to_csv, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=Bed_availability_in_rooms.csv"}
+      end
 
-    respond_to do |format|
-      format.html
-      format.csv { send_data Room.to_csv}
-     end
+  end
+
+  def reports
+
+    redirect_to :controller => :rooms
   end
 
   # GET /rooms/1
   # GET /rooms/1.xml
-  def show
-    @room = Room.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @room }
-    end
-  end
+  # def show
+  #   @room = Room.find(params[:id])
+  #
+  #   respond_to do |format|
+  #     format.html # show.html.erb
+  #     format.xml  { render :xml => @room }
+  #   end
+  # end
 
   # GET /rooms/new
   # GET /rooms/new.xml

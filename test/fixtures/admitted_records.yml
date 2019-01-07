@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  bed_id: 1
+  date: 2019-01-07 17:16:43
+  time: 2019-01-07 17:16:43
+  is_discharged: 1
+  discharged_date: 2019-01-07 17:16:43
+  discharged_time: 2019-01-07 17:16:43
+
+two:
+  bed_id: 1
+  date: 2019-01-07 17:16:43
+  time: 2019-01-07 17:16:43
+  is_discharged: 1
+  discharged_date: 2019-01-07 17:16:43
+  discharged_time: 2019-01-07 17:16:43

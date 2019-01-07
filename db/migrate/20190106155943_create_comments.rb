@@ -3,6 +3,8 @@ class CreateComments < ActiveRecord::Migration
     create_table :comments do |t|
       t.integer :patient_condition
       t.string :medication
+      t.integer :is_recommended, :default => 0
+      t.integer :recommendation_status, :default => 2
       t.belongs_to :appointment, :index => true
       t.timestamps
     end

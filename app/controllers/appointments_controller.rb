@@ -1,12 +1,12 @@
 class AppointmentsController < ApplicationController
-  
+
   def index
     @appointments = Appointment.all
 
-    
+
   end
 
-  
+
   def show
     @appointment = Appointment.find(params[:id])
   end
@@ -17,7 +17,7 @@ class AppointmentsController < ApplicationController
     @slot_id = params[:id]
   end
 
-  
+
   def edit
     @appointment = Appointment.find(params[:id])
   end

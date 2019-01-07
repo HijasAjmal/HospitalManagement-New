@@ -1,0 +1,2 @@
+module AdmittedRecordHelper
+end

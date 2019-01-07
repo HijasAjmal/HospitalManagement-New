@@ -2,11 +2,11 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.xml
   def index
-    @comments = Comment.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @comments }
+    if params[:id] == "1"
+      @admin = 1
+      @recommendations = Comment.find(:all, :conditions => {:is_recommended => 1})
+    else
+      @comments = Comment.all
     end
   end
 

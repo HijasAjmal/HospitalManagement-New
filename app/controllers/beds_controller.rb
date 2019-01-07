@@ -60,16 +60,13 @@ class BedsController < ApplicationController
   # PUT /beds/1.xml
   def update
     @bed = Bed.find(params[:id])
-
-    respond_to do |format|
       if @bed.update_attributes(params[:bed])
-        format.html { redirect_to(@bed, :notice => 'Bed was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @bed.errors, :status => :unprocessable_entity }
+        redirect_to :controller => :beds
+      # else
+      #   format.html { render :action => "edit" }
+      #   format.xml  { render :xml => @bed.errors, :status => :unprocessable_entity }
       end
-    end
+  
   end
 
   # DELETE /beds/1
