@@ -6,7 +6,6 @@ class Room < ActiveRecord::Base
 
 
   def self.to_csv
-    print "Hijas"
     @rooms = Room.all
     FasterCSV.generate do |csv|
       csv << ["id", "total_no_of_beds", "department_id", "Engaged", "Available"]

@@ -15,8 +15,8 @@
         <td><%=h r.id %></td>
         <td><%=h findPatientCondition(r.patient_condition) %></td>
         <td><%=h r.medication %></td>
-        <td><%=h optionStatus(r.recommendation_status) %></td>
-        <td><%= link_to 'Alot the Room', :controller => :admitted_record, :action => "new_record", :id => r.appointment_id%></td>
+        <td><%=h optionStatus(r.is_recommended) %></td>
+        <td><%= link_to 'Alot the Room', :controller => :admitted_records, :action => "new_record", :id => r.id%></td>
         <td></td>
       </tr>
       <% end %>

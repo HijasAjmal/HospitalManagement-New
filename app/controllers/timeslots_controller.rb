@@ -25,11 +25,17 @@ class TimeslotsController < ApplicationController
   # GET /timeslots/new.xml
   def new
     @timeslot = Timeslot.new
+    puts request.xhr?
+    if params[:department_id]
+      print params[:department_id]
+      @flag = 1
+      @doctors = Doctor.find(:all, :conditions => {:department_id => params[:department_id]})
+      render :update do |page|
+      page.replace_html 'doctor' ,:partial =>'doctor_list'
+      end
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @timeslot }
     end
+
   end
 
   # GET /timeslots/1/edit

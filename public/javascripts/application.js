@@ -1,16 +1,16 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
-function load_doctors(msg){
-  $.ajax({
-         url: "/timeslots/new",
-         asynchronous: true,
-         evalScripts: true,
-         method: 'post',
-         data: {
-             department_id: msg,
-         }
-     });
-}
+// function load_doctors(msg){
+//   $.ajax({
+//          url: "/timeslots/new",
+//          asynchronous: true,
+//          evalScripts: true,
+//          method: 'post',
+//          data: {
+//              department_id: msg,
+//          }
+//      });
+// }
 function load_timeslotform(msg){
   window.location = "/timeslots/new?doctor_id="+msg
 }
@@ -22,11 +22,18 @@ function show_group_popup() {
   win.show();
 }
 
-// function load_doctors(msg){
-//   new Ajax.Request("/timeslots/new", {
-//              parameters: {'department_id': msg},
-//              asynchronous: true,
-//              evalScripts: true,
-//              method: 'post',
-//            });
-// }
+
+
+  var j = jQuery.noConflict()
+function list_doctors(msg){
+  j.ajax({
+           type: 'get',
+           url: "/timeslots/new",
+           data: {
+               department_id: msg,
+           },
+           async: true,
+           // success: function(msg){}
+
+       })
+  }

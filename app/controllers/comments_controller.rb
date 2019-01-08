@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   def index
     if params[:id] == "1"
       @admin = 1
-      @recommendations = Comment.find(:all, :conditions => {:is_recommended => 1})
+      @recommendations = Comment.find(:all, :conditions => {:is_recommended => 1, :recommendation_status => 2})
     else
       @comments = Comment.all
     end

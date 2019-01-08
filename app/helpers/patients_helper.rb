@@ -1,12 +1,12 @@
 module PatientsHelper
-	def department(timeslot)
+	def patientFindDepartment(timeslot)
     @doctor = Doctor.find(34)
     @department = Department.find(@doctor.department_id)
     return @department.department_name
   end
 
 
-  def doctor(timeslot)
+  def patienFindDoctor(timeslot)
     @doctor = Doctor.find(34)
     return @doctor.first_name+" "+@doctor.middle_name+" "+@doctor.last_name
   end

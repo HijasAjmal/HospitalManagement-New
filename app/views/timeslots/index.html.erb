@@ -6,12 +6,13 @@
     <%=h department(timeslot) %> &nbsp &nbsp &nbsp &nbsp
 
     <%=h timeslot.date %> &nbsp &nbsp
-    <%=h timeslot.start_time %> &nbsp &nbsp
-    <%=h timeslot.end_time %> &nbsp &nbsp
+    <%=h timeslot.start_time.strftime("%H:%M%p") %> &nbsp &nbsp
+    <%=h timeslot.end_time.strftime("%H:%M%p") %> &nbsp &nbsp
     <% if @user.user_record_type == "Admin"%>
-      <%= link_to 'Show', timeslot %> &nbsp &nbsp
+    <div class="adminctrl">
       <%= link_to 'Edit', edit_timeslot_path(timeslot) %> &nbsp &nbsp
       <%= link_to 'Destroy', timeslot, :confirm => 'Are you sure?', :method => :delete %>
+    </div>
     <% end %></br>
     <%= label_tag "Doctor:" %>
     <%=h doctor(timeslot) %> &nbsp &nbsp

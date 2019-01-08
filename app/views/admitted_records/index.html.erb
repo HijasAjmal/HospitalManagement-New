@@ -1,0 +1,31 @@
+<div class="container">
+  <h2><b>Listing All Records</b></h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>SI:No</th>
+        <th>Patient Name</th>
+        <th>Admitted date</th>
+        <th>Admitted Time</th>
+        <th>Is_Discharged</th>
+        <th>Discharged Date</th>
+        <th>Discharged Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @admitted_records.each do |records| %>
+      <tr>
+        <td><%=h records.id %></td>
+        <td><%=h findPatient(records.patient_id)%></td>
+        <td><%=h records.date%></td>
+        <td><%=h records.time%></td>
+        <td><%=h records.is_discharged%></td>
+        <td><%=h records.discharged_date%></td>
+        <td><%=h records.discharged_time%></td>
+        <td><%= link_to 'Delete', :controller => :admitted_records, :action => "delete", :id => records.id%></td> 
+        <td></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

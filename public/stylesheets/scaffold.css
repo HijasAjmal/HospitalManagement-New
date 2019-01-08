@@ -225,7 +225,7 @@ a:hover { color: #fff; background-color:#000; }
   text-decoration: none;
 }
 .timeslotdvi {
-    height: 67px;
+    height: 75px;
     padding-top: 11px;
     padding-left: 34px;
 }
@@ -320,5 +320,16 @@ a:hover { color: #fff; background-color:#000; }
     height: 50px;
 }
 .expmsg{
+  width: 10%;
+}
+.adminctrl {
+    width: 17%;
+    height: 38%;
+    float: right;
+}
+.recbtn{
+  margin-left: 39%;
+}
+.dropdownmenu{
   width: 10%;
 }
