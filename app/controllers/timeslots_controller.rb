@@ -30,6 +30,7 @@ class TimeslotsController < ApplicationController
       print params[:department_id]
       @flag = 1
       @doctors = Doctor.find(:all, :conditions => {:department_id => params[:department_id]})
+      @timeslot = Timeslot.new
       render :update do |page|
       page.replace_html 'doctor' ,:partial =>'doctor_list'
       end

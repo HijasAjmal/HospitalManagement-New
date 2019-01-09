@@ -19,10 +19,10 @@
         <td><%=h findPatient(records.patient_id)%></td>
         <td><%=h records.date%></td>
         <td><%=h records.time%></td>
-        <td><%=h records.is_discharged%></td>
+        <td><%=h findOption(records.is_discharged)%></td>
         <td><%=h records.discharged_date%></td>
         <td><%=h records.discharged_time%></td>
-        <td><%= link_to 'Delete', :controller => :admitted_records, :action => "delete", :id => records.id%></td> 
+        <td><%= link_to 'Delete', :controller => :admitted_records, :action => "delete", :id => records.id%></td>
         <td></td>
       </tr>
       <% end %>

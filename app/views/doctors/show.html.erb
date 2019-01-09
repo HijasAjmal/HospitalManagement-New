@@ -1,59 +1,239 @@
-<p>
-  <b>Id:</b>
-  <%=@doctors.id %>
-</p>
+<div class="container border rounded shadow p-4 mb-4 border-secondary w-50" style="margin-top:5%;">
 
-<p>
-  <b>First Name:</b>
-  <%=@doctors.first_name %>
-</p>
+<div class="row panel panel-success" style="margin-top:2%;">
+            <div class="panel-heading lead">
+                <div class="row">
 
-<p>
-  <b>Middle Name:</b>
-  <%=@doctors.middle_name %>
-</p>
+            </div>
+            <div class="panel-body">
 
-<p>
-  <b>Last Name:</b>
-  <%=@doctors.last_name %>
-</p>
 
-<p>
-  <b>Contact Number:</b>
-  <%=@doctors.contact_number %>
-</p>
 
-<p>
-  <b>Email:</b>
-  <%=@doctors.email %>
-</p>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
 
-<p>
-  <b>Date Of Birth:</b>
-  <%=@doctors.date_of_birth %>
-</p>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3">
+                                    <center>
+                                        <span class="text-left">
+                                        <img src="https://lh5.googleusercontent.com/proxy/EkYugv9KzLUfAIpv-P4g6b0_mKxhcsfTvNmVueDn6XDHQp_SA0_hG2YFVAwB0Lbj_S-LrT-OtYsvxXMCrkZZMCmBfwelTQaAZW6GZwMQ8bRLwEvZonc0k0NxUpkhLBDuApx25K735rZfyHCIqA1RVpSdU84HF7U-j3xAwt3XLevAJtr5pwaVnRUC=w120-h120" class="img-responsive img-thumbnail">
 
-<p>
-  <b>Nationality:</b>
-  <%=@doctors.nationality %>
-</p>
 
-<p>
-  <b>Gender:</b>
-  <%=@doctors.gender %>
-</p>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="PhotoOption" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                                <div class="modal-dialog" style="width:30%;height:30%;">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                            <h4 class="modal-title text-success" id="myModalLabel"><i class="fa fa-gear"></i> <span class="text-right">Viddhyut Mall</span></h4>
+                                                        </div>
+                                                        <div class="modal-body">
+    <center><img src="upload/profile_pic/701b4263f7d38604699b7c1f89a3e6a6.jpg" class="img-responsive img-thumbnail"></center>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a href="upload/upload-view.php?id=68" class="btn btn-success"><i class="fa fa-photo"></i> Upload</a>
+                                                            <a href="details_view_admin?id=1&amp;action="details_view_admin"" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.modal-content -->
+                                                </div>
+                                                <!-- /.modal-dialog -->
+                                            </div>
+                                            <!-- /.modal -->
+                                    </span></center>
 
-<p>
-  <b>Qualification:</b>
-  <%=@doctors.qualifications %>
-</p>
+                                    <div class="panel">
+                                        <table class="table">
+                                            <tbody>
+                                                        <tr>
+                                                        <td class="text-center">
+                                                            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#PhotoOption"><i class="fa fa-photo"></i> Change</a>
+                                                        </td>
+                                                    </tr>
 
-<p>
-  <b>Experience:</b>
-  <%=@doctors.experience %>
-</p>
+                                            </tbody>
+                                        </table>
+                                    </div>
 
-<p>
-  <b>Department:</b>
-  <%=@doctors.department_id %>
-</p>
+
+                                </div>
+                                <div class="col-lg-9 col-md-9">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#Details" class="text-success"><i class="fa fa-indent"></i> Details</a></li>
+                                        <li><a data-toggle="tab" href="#Contact" class="text-success"><i class="fa fa-bookmark-o"></i> Contact Info</a></li>
+                                        <li><a data-toggle="tab" href="#Address" class="text-success"><i class="fa fa-home"></i> Address</a></li>
+                                        <li><a data-toggle="tab" href="#General" class="text-success"><i class="fa fa-info"></i> General Info</a></li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="Details" class="tab-pane  active">
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+
+                                                        <tr>
+                                                                <td class="text-success"><i class="fa fa-user"></i> First Name</td>
+                                                                <td><%= text_field_tag :first_name, params[:first_name], :value => @doctors.first_name, :disabled => true%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Middle Name</td>
+                                                                <td><%= text_field_tag :middle_name, params[:middle_name], :value => @doctors.middle_name, :disabled => true%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Last Name</td>
+                                                                <td><%= text_field_tag :last_name, params[:last_name], :value => @doctors.last_name, :disabled => true%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Contact Number</td>
+                                                                <td><%= text_field_tag :contact_number, params[:contact_number], :value => @doctors.contact_number, :disabled => true%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Email</td>
+                                                                <td><%= text_field_tag :email, params[:email], :value => @doctors.email, :disabled => true%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Date Of Birth</td>
+                                                                <td><%= text_field_tag :date_of_birth, params[:date_of_birth], :value => @doctors.date_of_birth, :disabled => true%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-book"></i>Nationality</td>
+                                                                <td><%= text_field_tag :nationality, params[:nationality], :value => @doctors.nationality, :disabled => true%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-group"></i> Gender</td>
+                                                                <td><%= text_field_tag :gender, params[:gender], :value => @doctors.gender, :disabled => true%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Qualifications</td>
+                                                                <td><%= text_field_tag :qualifications, params[:qualifications], :value => @doctors.qualifications, :disabled => true%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Experience</td>
+                                                                <td><%= text_field_tag :experience, params[:experience], :value => @doctors.experience, :disabled => true%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Department Name</td>
+                                                                <td><%= text_field_tag :department_id, params[:department_id], :value => findDepartment(@doctors.id), :disabled => true%></td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+
+                                        <div id="Address" class="tab-pane fade">
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-home"></i> Address</td>
+                                                                <td>
+                                                                    <address>
+                                                                        <strong>
+        C-***, Amahiya </strong><br>
+        Kharobar, ****** <br>
+        Gorakhpur, Utter Pradesh, India<br>
+                                                                    </address>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id="Contact" class="tab-pane fade">
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-envelope-o"></i> Email ID</td>
+                                                                <td><a href="mailto:****@pawanmall.net?subject=Email from &amp;body=Hello, Viddhyut Mall">****@pawanmall.net</a></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Mobile Number</td>
+                                                                <td>88********</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-flag"></i> Nationality</td>
+                                                                <td>Indian</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-user"></i> Father's Name</td>
+                                                                <td>Ajay Mall</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Father's Mobile</td>
+                                                                <td>+91 99********</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-user"></i> Mother's Name</td>
+                                                                <td>Hemlata Mall</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Mother's Mobile</td>
+                                                                <td>+91 90********</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-user"></i> Emergency Contact Person</td>
+                                                                <td>Pawan Mall</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Emergency Contact Person's Mobile</td>
+                                                                <td>+91 88********</td>
+                                                            </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id="General" class="tab-pane fade">
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+                                                                <tr>
+                                                                <td class="text-success"><i class="fa fa-university"></i> Last School</td>
+                                                                <td>Pawan Mall's School</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Date of Admission</td>
+                                                                <td>March 4, 2009</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-home"></i> Birth Place</td>
+                                                                <td>Delhi</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Academic Year</td>
+                                                                <td>2015-2016</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-medkit"></i> Medical Condition</td>
+                                                                <td>Normal</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-thumbs-up"></i> Active/Inactive</td>
+                                                                <td>Student is Active</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="glyphicon glyphicon-time"></i> Last Editing</td>
+                                                                <td>2015-08-20 09:41:56</td>
+                                                            </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                <!-- /.table-responsive -->
+
+            </div>
+        </div>
+      </div>

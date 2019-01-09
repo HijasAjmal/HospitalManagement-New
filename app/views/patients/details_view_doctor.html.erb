@@ -53,7 +53,7 @@
                                 <div class="col-lg-9 col-md-9">
                                     <ul class="nav nav-tabs">
                                         <li class="active"><a data-toggle="tab" href="#Details" class="text-success"><i class="fa fa-indent"></i> Details</a></li>
-                                        <li><a data-toggle="tab" href="#appointmentdetails" class="text-success"><i class="fa fa-bookmark-o"></i> Appointment Details</a></li>
+                                        <li><a data-toggle="tab" href="#Appointmentdetails" class="text-success"><i class="fa fa-bookmark-o"></i> Appointment Details</a></li>
                                         <li><a data-toggle="tab" href="#Address" class="text-success"><i class="fa fa-home"></i> Address</a></li>
                                         <li><a data-toggle="tab" href="#General" class="text-success"><i class="fa fa-info"></i> General Info</a></li>
                                     </ul>
@@ -105,7 +105,27 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        <div id="appointmentdetails" class="tab-pane fade">
+                                        <div id="Address" class="tab-pane fade">
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-home"></i> Address</td>
+                                                                <td>
+                                                                    <address>
+                                                                        <strong>
+                                                                            C-***, Amahiya </strong><br>
+                                                                            Kharobar, ****** <br>
+                                                                            Gorakhpur, Utter Pradesh, India<br>
+                                                                    </address>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div id="Appointmentdetails" class="tab-pane fade">
                                             <div class="table-responsive panel">
                                                 <% if @flag == 1 %>
                                                         <p class="control-form" style="color: red; margin-left: 30%; font-size: 19px; margin-top: 13px;">This Token is Expired...</p>
@@ -144,7 +164,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Recommendation To Admin</td>
-                                                                <td><%= collection_select :opt, :id, Options.all, :id, :opt, :class => "control-form"%></td>
+                                                                <td><%= collection_select :opt, :id, Option.all, :id, :opt, :class => "control-form"%></td>
                                                             </tr>
 
 
@@ -156,26 +176,7 @@
                                                 <% end %>
                                             </div>
                                         </div>
-                                        <div id="Address" class="tab-pane fade">
-                                            <div class="table-responsive panel">
-                                                <table class="table">
-                                                    <tbody>
 
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-home"></i> Address</td>
-                                                                <td>
-                                                                    <address>
-                                                                        <strong>
-                                                                            C-***, Amahiya </strong><br>
-                                                                            Kharobar, ****** <br>
-                                                                            Gorakhpur, Utter Pradesh, India<br>
-                                                                    </address>
-                                                                </td>
-                                                            </tr>
-                                                            </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
                                         <div id="General" class="tab-pane fade">
                                             <div class="table-responsive panel">
                                                 <table class="table">

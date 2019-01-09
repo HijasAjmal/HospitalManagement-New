@@ -5,7 +5,7 @@ module CommentsHelper
   end
 
   def optionStatus(data)
-    @option = Options.find(data)
+    @option = Option.find(data)
     return @option.opt
   end
 end

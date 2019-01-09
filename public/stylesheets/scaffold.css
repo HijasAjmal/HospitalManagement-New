@@ -3,7 +3,7 @@
   margin: auto;
 }
 body {
-  background-color: #fff;
+  background-color: beige;
   color: #333;
   margin:auto;
   padding: 0;
@@ -332,4 +332,7 @@ a:hover { color: #fff; background-color:#000; }
 }
 .dropdownmenu{
   width: 10%;
+}
+.datepick{
+  margin-top: 1px;
 }

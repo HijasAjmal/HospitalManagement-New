@@ -12,7 +12,7 @@
 //      });
 // }
 function load_timeslotform(msg){
-  window.location = "/timeslots/new?doctor_id="+msg
+  alert(msg);
 }
 
 function show_group_popup() {
@@ -37,3 +37,15 @@ function list_doctors(msg){
 
        })
   }
+  function list_bed(msg){
+    j.ajax({
+             type: 'get',
+             url: "/admitted_records/new_record",
+             data: {
+                 room_id: msg,
+             },
+             async: true,
+             // success: function(msg){}
+
+         })
+    }

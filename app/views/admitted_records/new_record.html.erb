@@ -1,4 +1,4 @@
-<div class="container border w-50" style="height: 40%; margin-top: 6%;">
+<div class="container border w-50" style="height: 50%; margin-top: 6%;">
   	<% form_tag({:action => 'create_record', :id => params[:id]}, {:class => 'user_r'}) do -%>
    	<div class="text-center">
     	<h3>Create Record</h3>
@@ -17,24 +17,13 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label >Room Id</label>
-      <%= collection_select :room, :id, @rooms, :id, :id%>
+      <%= collection_select(:room, :id, @rooms, :id, :id, {:include_blank => 'SELECT ROOM'}, {:onchange => "list_bed(this.value);"})%>
     </div>
-    <div class="form-group col-md-6">
-      <label >Bed No:</label>
-    	<%= collection_select :bed_id, :id, @beds, :id, :id, :class => "dropdownmenu"%>
-    </div>
-  </div></br></br>
+  </div>
+  <div id="bedlistform">
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label >Date</label>
-      <%= text_field_tag :date, params[:date], :value => Time.now.strftime("%d:%m:%y"), :disabled => true, :class => "form-control" %>
-    </div>
-    <div class="form-group col-md-6">
-      <label >Time</label>
-    	<%= text_field_tag :time, params[:time], :value => Time.now.strftime("%H:%M%p"), :disabled => true, :class => "form-control" %>
-    </div>
+
+
   </div></br></br>
-</br></br><%= submit_tag "Create Record", :name => nil, :class => "btn btn-primary recbtn" %>
 <% end %>
 </div>

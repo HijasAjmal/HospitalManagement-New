@@ -16,7 +16,7 @@
       <% @beds.each do |bed| %>
       <tr>
         <td><%=h bed.id %></td>
-        <td><%=h bed.is_engaged %></td>
+        <td><%=h findBedOption(bed.is_engaged)%></td>
         <td><%=h bed.room_id %></td>
     	<td><%= link_to 'Edit', edit_bed_path(bed) %></td>
     	<td><%= link_to 'Destroy', bed, :confirm => 'Are you sure?', :method => :delete %></td>
