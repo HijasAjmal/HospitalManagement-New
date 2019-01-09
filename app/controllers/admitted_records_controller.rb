@@ -1,10 +1,11 @@
 class AdmittedRecordsController < ApplicationController
 
+  # display all records
   def index
     @admitted_records = AdmittedRecord.all
   end
 
-  
+  # New record form creation
   def new_record
     if params[:room_id]
       @flag = 1
@@ -24,7 +25,7 @@ class AdmittedRecordsController < ApplicationController
     end
   end
 
-
+  # create new record
   def create_record
     @bed = Bed.find(params[:bed_id][:id])
     @bed.update_attributes(:is_engaged => 1)
@@ -34,6 +35,7 @@ class AdmittedRecordsController < ApplicationController
     redirect_to("/comments?id=1")
   end
 
+  # deleting record
   def delete
     @admitted_record = AdmittedRecord.find(params[:id])
     @bed = Bed.find(@admitted_record.bed_id)

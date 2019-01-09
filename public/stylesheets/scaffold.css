@@ -336,3 +336,10 @@ a:hover { color: #fff; background-color:#000; }
 .datepick{
   margin-top: 1px;
 }
+.optionfield {
+    padding: 4%;
+    font-size: 107%;
+}
+.btndiv{
+  margin-left: 79%;
+}

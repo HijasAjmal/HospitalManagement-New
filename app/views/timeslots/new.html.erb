@@ -1,8 +1,8 @@
 <div class="container border w-55" style="height: 40%; margin-top: 6%;">
   <h3 class="text-center" style="margin-top: 15px;"><b>New timeslot<b></h3><hr></br></br>
-  <div class="form-group col-md-8" style="margin-left: 30%;">
+  <div class="form-group col-md-8" style="margin-left: 35%; padding-left: 5px; font-size: 25px;">
     <!-- <%= label_tag 'Department:'%> -->
-    <%= collection_select(:department, :id, Department.all, :id, :department_name,{:action => ""}, { :onchange => "list_doctors(this.value);"})%>
+    <%= collection_select(:department, :id, Department.all, :id, :department_name, {:include_blank => "Select Department"}, { :onchange => "list_doctors(this.value);"})%>
     </div>
 
       <div id="doctor" style="width: 50%; height: 25%; margin-top: 35px;">

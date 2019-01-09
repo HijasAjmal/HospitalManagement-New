@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20190109100544) do
   create_table "appointments", :force => true do |t|
     t.string   "case"
     t.integer  "patient_id"
+    t.datetime "date"
     t.integer  "is_diogonised", :default => 0
     t.integer  "is_expired",    :default => 0
     t.integer  "slot_id"
@@ -75,7 +76,6 @@ ActiveRecord::Schema.define(:version => 20190109100544) do
     t.string   "last_name"
     t.string   "contact_number"
     t.string   "email"
-    t.string   "photo"
     t.string   "date_of_birth"
     t.string   "nationality"
     t.string   "gender"
@@ -118,9 +118,9 @@ ActiveRecord::Schema.define(:version => 20190109100544) do
     t.string   "address"
     t.string   "gender"
     t.string   "blood_group"
-    t.string   "photo"
     t.integer  "is_admitted",        :default => 2
     t.integer  "is_discharged",      :default => 2
+    t.integer  "appointment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"

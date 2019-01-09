@@ -41,9 +41,12 @@
       </div>
       <div class="modal-body">
          <% form_tag({:controller => :beds, :action => 'new'}, {:class => 'user_r'}) do -%>
-         <label >Room No:</label>
-          <%= collection_select :room_id ,:id, Room.all, :id, :id, :class => "form-control w-25" %>  </br></br></br>
-          <%= text_field_tag :no_of_beds, params[:no_of_beds], :placeholder => "No: of Beds" %></br></br>
+         <div class="form-row">
+            <div class="form-group">
+          <%= collection_select(:room_id , :id, Room.all, :id, :id, {:include_blank => "Select Room"}, {:class => "form-control w-25"}) %>  </br></br></br>
+        </div>
+      </div>
+          <%= text_field_tag :no_of_beds, params[:no_of_beds], :placeholder => "No: of Beds", :required => true %></br></br>
           </br></br><%= submit_tag "Create", :name => nil, :class => "btn btn-primary" %>
       <% end %>
   </div>

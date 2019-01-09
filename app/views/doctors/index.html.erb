@@ -47,10 +47,10 @@
       </div>
       <div class="modal-body">
       	 <% form_tag({:controller => :users, :action => 'signup', :id => "2" }, {:class => 'user_r'}) do -%>
-        	<%= text_field_tag :first_name, params[:first_name], :placeholder => "First Name", :class => "form-control" %>  </br></br>
+        	<%= text_field_tag :first_name, params[:first_name], :placeholder => "First Name", :class => "form-control",:minlength => 3, :required => true %>  </br></br>
         	<%= text_field_tag :middle_name, params[:middle_name], :placeholder => "Middle Name", :class => "form-control"%>  </br></br>
         	<%= text_field_tag :last_name, params[:last_name], :placeholder => "Last Name", :class => "form-control", :required => true%>  </br></br>
-        	<%= text_field_tag :email, params[:email], :placeholder => "Email", :class => "form-control"%>  </br></br>
+        	<%= text_field_tag :email, params[:email], :placeholder => "Email", :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}', :required => true, :class => "form-control"%>  </br></br>
           <%= collection_select(:category, :id, Department.all, :id, :department_name) %></br>
       		</br></br><%= submit_tag "Sign Up", :name => nil, :class => "btn btn-primary" %>
     	<% end %>

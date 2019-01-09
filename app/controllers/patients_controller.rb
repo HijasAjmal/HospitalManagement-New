@@ -25,16 +25,19 @@ class PatientsController < ApplicationController
     @p = User.find(:first, :conditions => {:user_name => params[:user_id]})
     @patient = @p.user_record
     @doctor = User.find(session[:current_user_id]).user_record
-    @time_slot = @doctor.timeslots
-
-    @appointment = Appointment.find(:first, :conditions => {:patient_id => @patient.id})
-    @slot = Slot.find(@appointment.slot_id)
-    if @slot.date.strftime("%m:%d:%y") < Time.now.strftime("%m:%d:%y")
-      @flag = 1
-    elsif @slot.date.strftime("%m:%d:%y") == Time.now.strftime("%m:%d:%y") && @slot.time.strftime("%H:%M") > Time.now.strftime("%H:%M")
-      @flag = 1
-    else
-      @flag = 0
+    @appointment = Appointment.find(:all, :conditions => {:patient_id => @patient.id, :date => Time.now.strftime("%Y-%D-%M")})
+    @appointment.each do |appointment|
+      @slot = Slot.find(:first, :conditions => {:id => @appointment.slot_id, :date => Time.now.strftime("%Y-%D-%M")})
+    end
+    @time_slot = Timeslot.find(@slot.timeslot_id)
+    if @time_slot.doctor_id == @doctor.id
+      if @slot.date.strftime("%m:%d:%y") < Time.now.strftime("%m:%d:%y")
+        @flag = 1
+      elsif @slot.date.strftime("%m:%d:%y") == Time.now.strftime("%m:%d:%y") && @slot.time.strftime("%H:%M") > Time.now.strftime("%H:%M")
+        @flag = 1
+      else
+        @flag = 0
+      end
     end
   end
 

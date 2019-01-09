@@ -1,1 +1,4 @@
 1. doctor signup
+2. Patient controller 
+
+3 . new appointments

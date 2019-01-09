@@ -3,7 +3,7 @@
   <div class="form-row">
     <div class="form-group col-md-6" style="margin-left: 30%;">
       <%= label_tag "Doctor:"%>
-      <%= collection_select(:doctor, :id, @doctors, :id, :first_name)%></br>
+      <%= collection_select(:doctor, :id, @doctors, :id, :first_name, {:include_blank => "Select Doctor"})%></br>
     </div>
   </div>
 <div class="form-row w-23" style="margin-top: 10px;">

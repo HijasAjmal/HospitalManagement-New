@@ -24,7 +24,7 @@ config.action_mailer.smtp_settings = {
   :domain => "gmail.com",
   :port => 587,
   :user_name => "hijasajmal@gmail.com",
-  :password => ".virus@4668",
+  :password => "",
   :authentication => 'login',
   :enable_starttls_auto => true
 }

@@ -8,22 +8,30 @@
 require 'open-uri'
 require 'active_record/fixtures'
 
-["A+", "O+", "B+","AB+", "A-", "O-", "B-", "AB-"].each do |bg|
-  Bloodgroup.find_or_create_by_name(bg)
+Bloodgroup.delete_all
+blood_groups = ["A+", "O+", "B+","AB+", "A-", "O-", "B-", "AB-"]
+blood_groups.each do |name|
+  Bloodgroup.create(:name => name)
 end
 
-["Undetermined", "Good", "Fair","Serious", "Critical", "Treated and Released", "Confirming patient deaths"].each do |ps|
-  PatientCondition.find_or_create_by_name(ps)
-end
+PatientCondition.delete_all
+patient_conditions = ["Undetermined", "Good", "Fair","Serious", "Critical", "Treated and Released", "Confirming patient deaths"]
+patient_conditions.each do |patientcondition|
+   PatientCondition.create(:status => patientcondition)
+ end
 
-["Male", "Female", "Other"].each do |g|
-  Gender.find_or_create_by_name(g)
-end
+Gender.delete_all
+gender = ["Male", "Female", "Other"]
+ gender.each do |gender|
+   Gender.create(:name => gender)
+ end
 
-Country.delete_all
-open("/home/foradian/RailProjects/HospitalManagement/db/country_list.txt") do |countries|
+ Country.delete_all
+ open("/home/virus/HospitalManagement/HospitalManagement-New/db/country_list.txt") do |countries|
   countries.read.each_line do |country|
-    code, name = country.chomp.split("|")
-    Country.create!(:country_name => name, :code => code)
-  end
-end
+     code, name = country.chomp.split("|")
+     Country.create!(:country_name => name, :code => code)
+   end
+ end
+
+User.create(:first_name => "Hijas", :middle_name => " ", :last_name => "Ajmal", :contact_number => "8907018654", :email => "Hijasajmal@gmail.com", :password => ".virus", :user_name => "A001", :confirmed => 1, :profile_status => 1, :user_record_type => "Admin")

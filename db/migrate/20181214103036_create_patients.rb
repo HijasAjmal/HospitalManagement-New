@@ -12,6 +12,7 @@ class CreatePatients < ActiveRecord::Migration
       t.string :blood_group
       t.integer :is_admitted, :default => 2
       t.integer :is_discharged, :default => 2
+      t.belongs_to :appointment, :index => true
       t.timestamps
     end
   end

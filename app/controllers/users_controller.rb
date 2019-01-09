@@ -3,11 +3,12 @@ class UsersController < ApplicationController
   def index
     @users = User.all
   end
+
   def signup
-    @user = User.create()
+    @user = User.new()
     if User.find(:first, :conditions => {:email => params[:email]}) || User.find(:first, :conditions => {:email => params[:email]}) || User.find(:first, :conditions => {:email => params[:email]})
      flash[:notice] = "Email Already Exist in Our Database...!"
-     redirect_to("/")
+     redirect_to :controller => :sessions
     elsif params[:id] == "3"
       @user.user_record = Patient.create(:first_name => params[:first_name], :middle_name => params[:middle_name],
       :last_name => params[:last_name],:email => params[:email])
@@ -33,9 +34,5 @@ class UsersController < ApplicationController
       UserMailer.deliver_admin_email(@user)
       redirect_to("/sessions/show")
     end
-  end
-
-  def veruthe
-    render :partial => "registration", :controller => :sessions, :action => "veruthe"
   end
 end

@@ -1,10 +1,11 @@
 class AppointmentsController < ApplicationController
 
+  # listing all appointments
   def index
     @appointments = Appointment.all
   end
 
-
+  # 
   def show
     @appointment = Appointment.find(params[:id])
   end
