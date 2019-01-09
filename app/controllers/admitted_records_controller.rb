@@ -3,6 +3,8 @@ class AdmittedRecordsController < ApplicationController
   def index
     @admitted_records = AdmittedRecord.all
   end
+
+  
   def new_record
     if params[:room_id]
       @flag = 1

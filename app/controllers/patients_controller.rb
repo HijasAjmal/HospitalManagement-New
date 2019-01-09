@@ -24,6 +24,9 @@ class PatientsController < ApplicationController
     @flag = 0
     @p = User.find(:first, :conditions => {:user_name => params[:user_id]})
     @patient = @p.user_record
+    @doctor = User.find(session[:current_user_id]).user_record
+    @time_slot = @doctor.timeslots
+
     @appointment = Appointment.find(:first, :conditions => {:patient_id => @patient.id})
     @slot = Slot.find(@appointment.slot_id)
     if @slot.date.strftime("%m:%d:%y") < Time.now.strftime("%m:%d:%y")

@@ -1,4 +1,4 @@
-<div class="container border rounded shadow p-4 mb-4 border-secondary w-50" style="margin-top:5%;">
+<div class="container border rounded shadow p-4 mb-4 border-secondary w-60" style="margin-top:5%;">
 
 <div class="row panel panel-success" style="margin-top:2%;">
             <div class="panel-heading lead">
@@ -119,7 +119,7 @@
                                                         <% @index = 0%>
                                                             <% @appointments.each do |a| %>
                                                             <p>
-                                                              <div class="container border rounded shadow mb-4 border-secondary w-100 fontsize" style="text-decoration: none;" data-toggle="collapse" href="#collapseExample<%=@index%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                              <div class="container border rounded shadow mb-4 border-secondary w-100 fontsize" style="text-decoration: none; height: 10%" data-toggle="collapse" href="#collapseExample<%=@index%>" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                                 <%= label_tag "Dept:" %>
                                                                 <%=h depFind(a) %> &nbsp &nbsp
                                                                 <%= label_tag "Dr:" %>

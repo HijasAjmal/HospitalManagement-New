@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20190107114643) do
+ActiveRecord::Schema.define(:version => 20190109100544) do
 
   create_table "admitted_records", :force => true do |t|
     t.integer  "bed_id"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20190107114643) do
   end
 
   create_table "beds", :force => true do |t|
-    t.integer  "is_engaged", :default => 0
+    t.integer  "is_engaged", :default => 2
     t.integer  "room_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -84,6 +84,10 @@ ActiveRecord::Schema.define(:version => 20190107114643) do
     t.integer  "department_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "genders", :force => true do |t|
@@ -115,10 +119,14 @@ ActiveRecord::Schema.define(:version => 20190107114643) do
     t.string   "gender"
     t.string   "blood_group"
     t.string   "photo"
-    t.integer  "is_admitted",    :default => 0
-    t.integer  "is_discharged",  :default => 0
+    t.integer  "is_admitted",        :default => 2
+    t.integer  "is_discharged",      :default => 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "rooms", :force => true do |t|

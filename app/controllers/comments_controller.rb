@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
-  # GET /comments
-  # GET /comments.xml
+
   def index
     if params[:id] == "1"
       @admin = 1
@@ -10,19 +9,15 @@ class CommentsController < ApplicationController
     end
   end
 
-  # GET /comments/1
-  # GET /comments/1.xml
   def show
     @comment = Comment.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.xml  { render :xml => @comment }
     end
   end
 
-  # GET /comments/new
-  # GET /comments/new.xml
   def new
     @appointment = Appointment.find(params[:id])
     @appointment.comments.create(:patient_condition => params[:patient_status][:id], :medication => params[:medication], :is_recommended => params[:opt][:id])
@@ -31,13 +26,11 @@ class CommentsController < ApplicationController
     redirect_to :controller => :patients, :action => "details_view_doctor", :user_id => @user.user_name
   end
 
-  # GET /comments/1/edit
   def edit
     @comment = Comment.find(params[:id])
   end
 
-  # POST /comments
-  # POST /comments.xml
+
   def create
     @comment = Comment.new(params[:comment])
 
@@ -53,8 +46,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # PUT /comments/1
-  # PUT /comments/1.xml
   def update
     @comment = Comment.find(params[:id])
 
@@ -70,8 +61,6 @@ class CommentsController < ApplicationController
     end
   end
 
-  # DELETE /comments/1
-  # DELETE /comments/1.xml
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy

@@ -6,7 +6,6 @@ class CreateDoctors < ActiveRecord::Migration
       t.string :last_name
       t.string :contact_number
       t.string :email
-      t.string :photo
       t.string :date_of_birth
       t.string :nationality
       t.string :gender

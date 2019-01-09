@@ -10,9 +10,8 @@ class CreatePatients < ActiveRecord::Migration
       t.string :address
       t.string :gender
       t.string :blood_group
-      t.string :photo
-      t.integer :is_admitted, :default => 0
-      t.integer :is_discharged, :default => 0
+      t.integer :is_admitted, :default => 2
+      t.integer :is_discharged, :default => 2
       t.timestamps
     end
   end

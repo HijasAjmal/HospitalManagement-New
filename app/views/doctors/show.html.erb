@@ -16,7 +16,7 @@
                                 <div class="col-lg-3 col-md-3">
                                     <center>
                                         <span class="text-left">
-                                        <img src="https://lh5.googleusercontent.com/proxy/EkYugv9KzLUfAIpv-P4g6b0_mKxhcsfTvNmVueDn6XDHQp_SA0_hG2YFVAwB0Lbj_S-LrT-OtYsvxXMCrkZZMCmBfwelTQaAZW6GZwMQ8bRLwEvZonc0k0NxUpkhLBDuApx25K735rZfyHCIqA1RVpSdU84HF7U-j3xAwt3XLevAJtr5pwaVnRUC=w120-h120" class="img-responsive img-thumbnail">
+                                        <img src="<%=@doctors.photo_file_name%>" class="img-responsive img-thumbnail">
 
 
                                             <!-- Modal -->
@@ -27,13 +27,16 @@
                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                             <h4 class="modal-title text-success" id="myModalLabel"><i class="fa fa-gear"></i> <span class="text-right">Viddhyut Mall</span></h4>
                                                         </div>
+                                                         <% form_tag({:action => 'uploadPhoto'}, :url => {:multipart => true}) do -%>
                                                         <div class="modal-body">
-    <center><img src="upload/profile_pic/701b4263f7d38604699b7c1f89a3e6a6.jpg" class="img-responsive img-thumbnail"></center>
+                                                          <%= file_field 'photo', :type => "file"%>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <a href="upload/upload-view.php?id=68" class="btn btn-success"><i class="fa fa-photo"></i> Upload</a>
-                                                            <a href="details_view_admin?id=1&amp;action="details_view_admin"" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
+                                                            <!-- <a href="upload/upload-view.php?id=68" class="btn btn-success"><i class="fa fa-photo"></i> Upload</a>
+                                                            <a href="details_view_admin?id=1&amp;action="details_view_admin"" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a> -->
+                                                          </br></br><%= submit_tag "Upload", :name => nil, :class => "btn btn-primary recbtn" %>
                                                         </div>
+                                                        <% end %>
                                                     </div>
                                                     <!-- /.modal-content -->
                                                 </div>

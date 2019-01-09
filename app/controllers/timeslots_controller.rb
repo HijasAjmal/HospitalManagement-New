@@ -10,8 +10,7 @@ class TimeslotsController < ApplicationController
       end
   end
 
-  # GET /timeslots/1
-  # GET /timeslots/1.xml
+
   def show
     @timeslot = Timeslot.find(params[:id])
 
@@ -21,8 +20,6 @@ class TimeslotsController < ApplicationController
     end
   end
 
-  # GET /timeslots/new
-  # GET /timeslots/new.xml
   def new
     @timeslot = Timeslot.new
     puts request.xhr?
@@ -39,13 +36,10 @@ class TimeslotsController < ApplicationController
 
   end
 
-  # GET /timeslots/1/edit
   def edit
     @timeslot = Timeslot.find(params[:id])
   end
 
-  # POST /timeslots
-  # POST /timeslots.xml
   def create
     @doctor = Doctor.find(params[:doctor][:id])
     @timeslot = @doctor.timeslots.create(params[:timeslot])
@@ -77,8 +71,7 @@ class TimeslotsController < ApplicationController
     redirect_to :controller => :timeslots, :action => "index"
   end
 
-  # PUT /timeslots/1
-  # PUT /timeslots/1.xml
+
   def update
     @timeslot = Timeslot.find(params[:id])
 
@@ -93,8 +86,7 @@ class TimeslotsController < ApplicationController
     end
   end
 
-  # DELETE /timeslots/1
-  # DELETE /timeslots/1.xml
+
   def destroy
     @timeslot = Timeslot.find(params[:id])
     @timeslot.destroy

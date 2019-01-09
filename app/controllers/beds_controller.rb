@@ -1,6 +1,4 @@
 class BedsController < ApplicationController
-  # GET /beds
-  # GET /beds.xml
   def index
     @beds = Bed.all
 
@@ -10,8 +8,7 @@ class BedsController < ApplicationController
     end
   end
 
-  # GET /beds/1
-  # GET /beds/1.xml
+
   def show
     @bed = Bed.find(params[:id])
 
@@ -21,8 +18,7 @@ class BedsController < ApplicationController
     end
   end
 
-  # GET /beds/new
-  # GET /beds/new.xml
+
   def new
     @room = Room.find(params[:room_id][:id])
     @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i+params[:no_of_beds].to_i)
@@ -33,15 +29,14 @@ class BedsController < ApplicationController
     redirect_to :controller => :beds
   end
 
-  # GET /beds/1/edit
+
   def edit
     @bed = Bed.find(params[:id])
     @room = Room.find(@bed.room_id)
     @department = Department.find(@room.department_id)
   end
 
-  # POST /beds
-  # POST /beds.xml
+
   def create
     @bed = Bed.new(params[:bed])
 
@@ -56,8 +51,7 @@ class BedsController < ApplicationController
     end
   end
 
-  # PUT /beds/1
-  # PUT /beds/1.xml
+
   def update
     @bed = Bed.find(params[:id])
       if @bed.update_attributes(params[:bed])
@@ -66,11 +60,9 @@ class BedsController < ApplicationController
       #   format.html { render :action => "edit" }
       #   format.xml  { render :xml => @bed.errors, :status => :unprocessable_entity }
       end
-  
+
   end
 
-  # DELETE /beds/1
-  # DELETE /beds/1.xml
   def destroy
     @bed = Bed.find(params[:id])
     @bed.destroy

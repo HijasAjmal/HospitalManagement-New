@@ -1,7 +1,8 @@
 <div class="container border w-50" style="height: 50%;">
   <% form_for @appointment, :url => {:id => @slot_id, :action => "create"} do |f| %>
    <div class="text-center">
-    <h1>New appointment</h1>   
+    <h1>New appointment</h1>
+    <%= f.hidden_field :date, :value => Time.now%>
     <%= f.hidden_field :patient_id, :value => @patient.id%>
   </div></br>
   <div class="form-row">

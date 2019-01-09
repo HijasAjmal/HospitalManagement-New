@@ -2,14 +2,13 @@ class AppointmentsController < ApplicationController
 
   def index
     @appointments = Appointment.all
-
-
   end
 
 
   def show
     @appointment = Appointment.find(params[:id])
   end
+
 
   def new
     @appointment = Appointment.new
@@ -22,13 +21,14 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find(params[:id])
   end
 
+
   def create
     @slot_id = Slot.find(params[:id])
-    print params[:id]
     @appointment = @slot_id.appointment.create(params[:appointment])
     @slot_id.update_attributes(:status => 1)
     redirect_to("/")
   end
+
 
   def destroy
     @appointment = Appointment.find(params[:id])

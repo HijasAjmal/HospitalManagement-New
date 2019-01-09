@@ -12,12 +12,9 @@ class RoomsController < ApplicationController
   end
 
   def reports
-
     redirect_to :controller => :rooms
   end
 
-  # GET /rooms/1
-  # GET /rooms/1.xml
   # def show
   #   @room = Room.find(params[:id])
   #
@@ -27,22 +24,17 @@ class RoomsController < ApplicationController
   #   end
   # end
 
-  # GET /rooms/new
-  # GET /rooms/new.xml
   def new
     @room = Room.new
     @departments = Department.all
   end
 
-  # GET /rooms/1/edit
   def edit
     @room = Room.find(params[:id])
     @room_beds = Bed.count(:id, :conditions => {:room_id => params[:id]})
     @department = Department.find(@room.department_id)
   end
 
-  # POST /rooms
-  # POST /rooms.xml
   def create
     @room = Room.create(:no_of_beds => params[:no_of_beds], :department_id => params[:category][:id])
     @no = params[:no_of_beds].to_i
@@ -52,8 +44,7 @@ class RoomsController < ApplicationController
     redirect_to :controller => :rooms
   end
 
-  # PUT /rooms/1
-  # PUT /rooms/1.xml
+
   def updateRoom
     @room = Room.find(params[:id])
     @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i+params[:no_of_beds].to_i)
@@ -64,8 +55,7 @@ class RoomsController < ApplicationController
     redirect_to :controller => :rooms
   end
 
-  # DELETE /rooms/1
-  # DELETE /rooms/1.xml
+
   def destroy
     @room = Room.find(params[:id])
     @room.destroy

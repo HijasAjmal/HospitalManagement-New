@@ -12,7 +12,8 @@ config.whiny_nils = true
 config.action_controller.consider_all_requests_local = true
 config.action_view.debug_rjs                         = true
 config.action_controller.perform_caching             = false
-
+config.gem 'paperclip'
+# Paperclip.options[:command_path] = "/usr/local/bin/"
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
 config.action_mailer.perform_deliveries = true
@@ -23,7 +24,7 @@ config.action_mailer.smtp_settings = {
   :domain => "gmail.com",
   :port => 587,
   :user_name => "hijasajmal@gmail.com",
-  :password => "",
+  :password => ".virus@4668",
   :authentication => 'login',
   :enable_starttls_auto => true
 }
