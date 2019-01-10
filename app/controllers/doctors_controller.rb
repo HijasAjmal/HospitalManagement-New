@@ -2,11 +2,25 @@ require 'securerandom'
 class DoctorsController < ApplicationController
   def index
     @doctors = Doctor.all
+    respond_to do |format|
+        format.pdf do
+                @html = get_html
+                @pdf = Wickedpdf.new.pdf_from_string(@html)
+                send_data(@pdf, :filename => 'Test', :type => 'application/pdf')
+        end
+    end
+  end
+
+  def get_html
+          ActionController::Base.new.render_to_string(:template => 'v1/profile/reports.pdf.rb',
+                                          :orientation => 'Landscap',
+                                          :page_size => 'Letter',
+                                          :background => true)
   end
 
   def show
     @doctors = Doctor.find(params[:id])
-    @pic = Doctor.new
+    @user = User.find(:first, :conditions => {:user_record_id => @doctors.id, :user_record_type => "Doctor"})
   end
 
   def doctor_profile_form
@@ -32,8 +46,8 @@ redirect_to("/")
   end
 
   def uploadPhoto
-    @user_type = User.find(:first, :conditions => {:user_record_id => 1}).user_record
-    @user_type.update_attributes(:photo_file_name => params[:photo])
+    @user_type = User.find(:first, :conditions => {:user_record_id => 1, :user_record_type => "Doctor"}).user_record
+    @user_type.update_attributes(params[:pic])
     redirect_to("/")
 
   end

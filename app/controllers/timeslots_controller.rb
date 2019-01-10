@@ -43,6 +43,8 @@ class TimeslotsController < ApplicationController
   def create
     @doctor = Doctor.find(params[:doctor][:id])
     @timeslot = @doctor.timeslots.create(params[:timeslot])
+    @timeslot = Timeslot.find(@timeslot.id)
+    @timeslot.update_attributes(:date => @timeslot.date.strftime("%Y-%m-%d"))
     @const_time = @timeslot.slot_count_constant.min
     @start_time_hour = @timeslot.start_time.hour
     @start_time_min = @timeslot.start_time.min

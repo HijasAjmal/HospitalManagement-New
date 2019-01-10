@@ -10,4 +10,13 @@ module DoctorsHelper
 		@department = Department.find(@doctor.department_id)
 		return @department.department_name
 	end
+
+	def findImagedoctor(user)
+			@photo = Photo.find(:first, :conditions => {:user_id => user})
+			if @photo.nil?
+				return "/images/contact.png"
+			else
+				return @photo.photo.url(:small)
+			end
+	end
 end

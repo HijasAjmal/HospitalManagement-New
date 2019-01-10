@@ -9,16 +9,6 @@
 <div class="row panel panel-success" style="margin-top:2%;">
             <div class="panel-heading lead">
                 <div class="row">
-                    <!-- <div class="col-lg-8 col-md-8"><i class="fa fa-users"></i> View Patient Details</div>
-                    <div class="col-lg-4 col-md-4 text-right">
-                        <div class="btn-group text-center">
-                            <a href="student-view.php?sid=1&amp;id=68" class="btn btn-success btn-sm btn-default"><i class="fa fa-eye fa-1x"></i></a>
-                            <a href="student-modify.php?sid=1&amp;id=68" class="btn btn-success btn-sm btn-default"><i class="fa fa-edit fa-1x"></i></a>
-                            <a href="student-print.php?sid=1&amp;id=68" class="btn btn-success btn-sm btn-default"><i class="fa fa-print fa-1x"></i></a>
-                            <a href="student-delete.php?sid=1&amp;id=68" class="btn btn-success btn-sm btn-default"><i class="fa fa-trash-o fa-1x"></i></a>
-                        </div>
-                    </div>
-                </div> -->
             </div>
             <div class="panel-body">
 
@@ -30,31 +20,9 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-3">
                                     <center>
-                                        <span class="text-left">
-                                        <img src="https://lh5.googleusercontent.com/proxy/EkYugv9KzLUfAIpv-P4g6b0_mKxhcsfTvNmVueDn6XDHQp_SA0_hG2YFVAwB0Lbj_S-LrT-OtYsvxXMCrkZZMCmBfwelTQaAZW6GZwMQ8bRLwEvZonc0k0NxUpkhLBDuApx25K735rZfyHCIqA1RVpSdU84HF7U-j3xAwt3XLevAJtr5pwaVnRUC=w120-h120" class="img-responsive img-thumbnail">
+                                        <span class="text-left" style="margin-left: 5px;">
+                                          <%= image_tag findImagedoctor(@user.id), :class => "img-responsive img-thumbnail"%>
 
-
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="PhotoOption" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                                <div class="modal-dialog" style="width:30%;height:30%;">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                            <h4 class="modal-title text-success" id="myModalLabel"><i class="fa fa-gear"></i> <span class="text-right">Viddhyut Mall</span></h4>
-                                                        </div>
-                                                        <div class="modal-body">
-    <center><img src="upload/profile_pic/701b4263f7d38604699b7c1f89a3e6a6.jpg" class="img-responsive img-thumbnail"></center>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <a href="upload/upload-view.php?id=68" class="btn btn-success"><i class="fa fa-photo"></i> Upload</a>
-                                                            <a href="details_view_admin?id=1&amp;action="details_view_admin"" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.modal-content -->
-                                                </div>
-                                                <!-- /.modal-dialog -->
-                                            </div>
-                                            <!-- /.modal -->
                                     </span></center>
 
                                     <div class="panel">
@@ -62,7 +30,7 @@
                                             <tbody>
                                                         <tr>
                                                         <td class="text-center">
-                                                            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#PhotoOption"><i class="fa fa-photo"></i> Change</a>
+                                                          <button class="btn btn-success btn-block"><%= link_to 'Change', :controller => :photos, :action => "new", :id => @user.id%></button>
                                                         </td>
                                                     </tr>
 

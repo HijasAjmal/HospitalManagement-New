@@ -15,42 +15,17 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-3">
                                     <center>
-                                        <span class="text-left">
-                                        <img src="<%=@doctors.photo_file_name%>" class="img-responsive img-thumbnail">
-
-
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="PhotoOption" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                                <div class="modal-dialog" style="width:30%;height:30%;">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                            <h4 class="modal-title text-success" id="myModalLabel"><i class="fa fa-gear"></i> <span class="text-right">Viddhyut Mall</span></h4>
-                                                        </div>
-                                                         <% form_tag({:action => 'uploadPhoto'}, :url => {:multipart => true}) do -%>
-                                                        <div class="modal-body">
-                                                          <%= file_field 'photo', :type => "file"%>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <!-- <a href="upload/upload-view.php?id=68" class="btn btn-success"><i class="fa fa-photo"></i> Upload</a>
-                                                            <a href="details_view_admin?id=1&amp;action="details_view_admin"" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a> -->
-                                                          </br></br><%= submit_tag "Upload", :name => nil, :class => "btn btn-primary recbtn" %>
-                                                        </div>
-                                                        <% end %>
-                                                    </div>
-                                                    <!-- /.modal-content -->
-                                                </div>
-                                                <!-- /.modal-dialog -->
-                                            </div>
-                                            <!-- /.modal -->
-                                    </span></center>
+                                        <span class="text-left" style="margin-left: 5px;">
+                                        <%= image_tag findImage(@user.id), :class => "img-responsive img-thumbnail"%>
+                                      </span>
+                                    </center>
 
                                     <div class="panel">
                                         <table class="table">
                                             <tbody>
                                                         <tr>
                                                         <td class="text-center">
-                                                            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#PhotoOption"><i class="fa fa-photo"></i> Change</a>
+                                                            <!-- <button class="btn btn-success btn-block"><%= link_to 'Change', :controller => :photos, :action => "new", :id => @user.id%></button> -->
                                                         </td>
                                                     </tr>
 

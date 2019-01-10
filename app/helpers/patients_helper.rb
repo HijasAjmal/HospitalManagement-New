@@ -35,4 +35,13 @@ module PatientsHelper
   	@doctor = Doctor.find(@timeslot.doctor_id)
   	return @doctor.first_name+" "+@doctor.middle_name+" "+@doctor.last_name
   end
+
+	def findImagePatient(user)
+		@photo = Photo.find(:first, :conditions => {:user_id => user})
+		if @photo.nil?
+			return "/images/contact.png"
+		else
+			return @photo.photo.url(:small)
+		end
+	end
 end

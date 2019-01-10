@@ -7,31 +7,9 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-3">
                                     <center>
-                                        <span class="text-left">
-                                        <img src="https://lh5.googleusercontent.com/proxy/EkYugv9KzLUfAIpv-P4g6b0_mKxhcsfTvNmVueDn6XDHQp_SA0_hG2YFVAwB0Lbj_S-LrT-OtYsvxXMCrkZZMCmBfwelTQaAZW6GZwMQ8bRLwEvZonc0k0NxUpkhLBDuApx25K735rZfyHCIqA1RVpSdU84HF7U-j3xAwt3XLevAJtr5pwaVnRUC=w120-h120" class="img-responsive img-thumbnail">
+                                        <span class="text-left" style="margin-left: 5px;">
+                                        <%= image_tag findImagePatient(@user.id), :class => "img-responsive img-thumbnail"%>
 
-
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="PhotoOption" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-                                                <div class="modal-dialog" style="width:30%;height:30%;">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                            <h4 class="modal-title text-success" id="myModalLabel"><i class="fa fa-gear"></i> <span class="text-right">Viddhyut Mall</span></h4>
-                                                        </div>
-                                                        <div class="modal-body">
-    <center><img src="upload/profile_pic/701b4263f7d38604699b7c1f89a3e6a6.jpg" class="img-responsive img-thumbnail"></center>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <a href="upload/upload-view.php?id=68" class="btn btn-success"><i class="fa fa-photo"></i> Upload</a>
-                                                            <a href="upload/upload-view.php?id=68&amp;name=Viddhyut Mall&amp;src=view" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.modal-content -->
-                                                </div>
-                                                <!-- /.modal-dialog -->
-                                            </div>
-                                            <!-- /.modal -->
                                     </span></center>
 
                                     <div class="panel">
@@ -39,7 +17,7 @@
                                             <tbody>
                                                         <tr>
                                                         <td class="text-center">
-                                                            <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#PhotoOption"><i class="fa fa-photo"></i> Change</a>
+
                                                         </td>
                                                     </tr>
 
@@ -129,51 +107,10 @@
                                             <div class="table-responsive panel">
                                                 <% if @flag == 1 %>
                                                         <p class="control-form" style="color: red; margin-left: 30%; font-size: 19px; margin-top: 13px;">This Token is Expired...</p>
+                                                        <% else %>
+                                                        <%= render :partial => "appointment_view"%>
                                                     <% end %>
-                                                    <% form_tag({:controller => :comments, :action => "new", :id => @appointment.id}, {:class => 'signin_form'}) do -%>
-                                                <table class="table">
-                                                    <tbody>
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-envelope-o"></i> Patient Id</td>
-                                                                <td><%= text_field_tag :patient_id, params[:patient_id], :value => @patient.id, :disabled => true%></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Slot Id</td>
-                                                                <td><%= text_field_tag :slot_id, params[:slot_id], :value => @appointment.slot_id, :disabled => true%></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-flag"></i> Case</td>
-                                                                <td><%= text_area :case, params[:case], :value => @appointment.case, :disabled => true%></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-user"></i> Diogonised</td>
-                                                                <% if @appointment.is_diogonised == 0%>
-                                                                    <% @is_diogonised = "Not Diogonised"%>
-                                                                <% else %>
-                                                                    <% @is_diogonised = "Diogonised" %>
-                                                                <% end %>
-                                                                <td><%= text_field_tag :is_diogonised, params[:is_diogonised], :value => @is_diogonised, :disabled => true%></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="glyphicon glyphicon-phone"></i>Patient Condition </td>
-                                                                <td><%= collection_select :patient_status, :id, PatientCondition.all, :id, :status, :class => "control-form"%></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-user"></i>Medication</td>
-                                                                <td><%= text_area_tag :medication, params[:medication], :class => "control-form"%></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Recommendation To Admin</td>
-                                                                <td><%= collection_select :opt, :id, Option.all, :id, :opt, :class => "control-form"%></td>
-                                                            </tr>
 
-
-                                                    </tbody>
-                                                </table>
-                                                <% if @flag == 0 %>
-                                                    <%= submit_tag "Update Record", :name => nil, :class => "btn btn-primary upbedbtn"%>
-                                                <% end %>
-                                                <% end %>
                                             </div>
                                         </div>
 

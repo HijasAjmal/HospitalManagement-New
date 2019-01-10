@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20190109100544) do
+ActiveRecord::Schema.define(:version => 20190110071537) do
 
   create_table "admitted_records", :force => true do |t|
     t.integer  "bed_id"
@@ -25,11 +25,11 @@ ActiveRecord::Schema.define(:version => 20190109100544) do
 
   create_table "appointments", :force => true do |t|
     t.string   "case"
-    t.integer  "patient_id"
-    t.datetime "date"
-    t.integer  "is_diogonised", :default => 0
-    t.integer  "is_expired",    :default => 0
+    t.string   "date",          :limit => 10
+    t.integer  "is_diogonised",               :default => 0
+    t.integer  "is_expired",                  :default => 0
     t.integer  "slot_id"
+    t.integer  "patient_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -121,6 +121,16 @@ ActiveRecord::Schema.define(:version => 20190109100544) do
     t.integer  "is_admitted",        :default => 2
     t.integer  "is_discharged",      :default => 2
     t.integer  "appointment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  create_table "photos", :force => true do |t|
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "photo_file_name"
