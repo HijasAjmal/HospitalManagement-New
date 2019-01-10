@@ -9,7 +9,7 @@ class AdmittedRecordsController < ApplicationController
   def new_record
     if params[:room_id]
       @flag = 1
-      @beds = Bed.find(:all, :conditions => {:is_engaged => 0, :room_id => params[:room_id]})
+      @beds = Bed.find(:all, :conditions => {:is_engaged => 2, :room_id => params[:room_id]})
       render :update do |page|
       page.replace_html 'bedlistform' ,:partial =>'bed_list'
       end

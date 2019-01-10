@@ -17,20 +17,30 @@ class PatientsController < ApplicationController
   def details_view_patient
     @user = User.find(session[:current_user_id])
     @patients = @user.user_record
-    @appointments = Appointment.find(:all, :conditions => {:patient_id => @patients.id})
+    begin
+      @appointments = Appointment.find(:all, :conditions => {:patient_id => @patients.id})
+    rescue Exception => e
+      
+    end
+    if @appointments.empty?
+      @flag = 1
+    else
+      @flag = 0
+    end
   end
 
   def details_view_doctor
     @flag = 0
-    @user = User.find(:first, :conditions => {:user_name => params[:user_id]})
-    @patient = @user.user_record
-    @doctor = User.find(session[:current_user_id]).user_record
+    begin
+      @user = User.find(:first, :conditions => {:user_name => params[:user_id].to_s, :user_record_type => "Patient"})
+      @patient = @user.user_record
+      @doctor = User.find(session[:current_user_id]).user_record
     begin
       @appointment = Appointment.find(:first, :conditions => {:patient_id => @patient.id, :date => Time.now.strftime("%Y-%m-%d")})
     rescue
     end
       if @appointment.nil?
-        @flag =1
+        @flag = 1
       else
         @slot = Slot.find(:first, :conditions => {:id => @appointment.slot_id, :date => Time.now.strftime("%Y-%m-%d")})
         @time_slot = Timeslot.find(@slot.timeslot_id.to_i)
@@ -42,6 +52,14 @@ class PatientsController < ApplicationController
           end
         end
       end
+    rescue Exception => e
+      
+    end
+    if @user.nil?
+      @user_st = 1
+    else
+      @user_st = 0
+    end
   end
 
   def patient_profile_form
@@ -55,7 +73,7 @@ class PatientsController < ApplicationController
     @gender = Gender.find(params[:gender][:id])
     @date = Date.civil(*params[:event].sort.map(&:last).map(&:to_i))
     @patient = Patient.find(params[:patient])
-    @patient.update_attributes(:contact_number => params[:contact_number], :photo => params[:photo],
+    @patient.update_attributes(:contact_number => params[:contact_number],
   :date_of_birth => @date, :blood_group => @blood_group.name, :gender => @gender.name,
 :address => params[:address])
     @user = User.find(:first, :conditions => {:user_record_id  => params[:patient], :user_record_type => "Patient"})

@@ -1,5 +1,12 @@
 class CommentsController < ApplicationController
 
+  before_filter :first_rule,
+    :only => [:edit, :show, :destroy, :update]
+
+  def first_rule
+    @comment = Comment.find(params[:id])
+  end
+
   def index
     if params[:id] == "1"
       @admin = 1
@@ -10,7 +17,6 @@ class CommentsController < ApplicationController
   end
 
   def show
-    @comment = Comment.find(params[:id])
 
     respond_to do |format|
       format.html
@@ -22,12 +28,12 @@ class CommentsController < ApplicationController
     @appointment = Appointment.find(params[:id])
     @appointment.comments.create(:patient_condition => params[:patient_status][:id], :medication => params[:medication], :is_recommended => params[:opt][:id])
     @appointment.update_attributes(:is_diogonised => 1)
-    @user = User.find(:first, :conditions => {:user_record_id => @appointment.patient_id})
+    @user = User.find(:first, :conditions => {:user_record_id => @appointment.patient_id, :user_record_type => "Patient"})
     redirect_to :controller => :patients, :action => "details_view_doctor", :user_id => @user.user_name
   end
 
   def edit
-    @comment = Comment.find(params[:id])
+    
   end
 
 
@@ -47,7 +53,6 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment = Comment.find(params[:id])
 
     respond_to do |format|
       if @comment.update_attributes(params[:comment])
@@ -62,7 +67,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
     @comment.destroy
 
     respond_to do |format|

@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :reports
+
   map.resources :photos
 
 
@@ -13,11 +15,14 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :rooms
 
-  # map.resources :admitted_records
+
+
+   # map.resources :doctors
 
   # The priority is based upon order of creation: first created -> highest priority.
   # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
+  
+     # map.connect 'doctors/index', :controller => 'doctors', :action => 'index'
   # map.connect 'admitted_records/new_record', :controller => 'admitted_records', :action => 'new_record'
   # Keep in mind you can assign values other than :controller and :action
 

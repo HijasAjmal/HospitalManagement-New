@@ -83,11 +83,15 @@
                                         </div>
 
                                         <div id="Appointmenthistory" class="tab-pane fade">
-                                            <div class="table-responsive panel">
-                                                        <% @index = 0%>
-                                                            <% @appointments.each do |a| %>
-                                                            <p>
-                                                              <div class="container border rounded shadow mb-4 border-secondary w-100 fontsize" style="text-decoration: none; height: 10%" data-toggle="collapse" href="#collapseExample<%=@index%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                            <% if @flag == 1%>
+                                            <%= p @flag%>
+                                                <h3 style="color: red;">No Recent History<h3>
+                                            <% else %>
+                                                <div class="table-responsive panel">
+                                                    <% @index = 0%>
+                                                    <% @appointments.each do |a| %>
+                                                        <p>
+                                                            <div class="container border rounded shadow mb-4 border-secondary w-100 fontsize" style="text-decoration: none; height: 10%" data-toggle="collapse" href="#collapseExample<%=@index%>" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                                 <%= label_tag "Dept:" %>
                                                                 <%=h depFind(a) %> &nbsp &nbsp
                                                                 <%= label_tag "Dr:" %>
@@ -102,12 +106,12 @@
                                                                     <% @status = "Not Diognised"%>
                                                                 <% end %>
                                                                 <%= label_tag "Status: "+@status %>
-                                                              </div>
-                                                            </p>
-
-                                                            <% @index = @index+1%>
-                                                            <% end %>
-                                            </div>
+                                                            </div>
+                                                        </p>
+                                                    <% @index = @index+1%>
+                                                    <% end %>
+                                                </div>
+                                            <% end %>
                                         </div>
                                         <div id="Records" class="tab-pane fade">
                                             <div class="table-responsive panel">
@@ -127,6 +131,7 @@
                                                             </tr>
                                                             </tbody>
                                                 </table>
+                                                <!-- <button class="btn btn-success btn-block"><%= link_to 'Add Report', :controller => :reports, :action => "new", :id => @user.id%></button> -->
                                             </div>
                                         </div>
                                         <div id="General" class="tab-pane fade">

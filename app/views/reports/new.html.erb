@@ -1,0 +1,15 @@
+<div class="container border w-50" style="height: 20%;">
+	<% form_for @report, :url => reports_path, :html => {:multipart => true}, :id => @user do |f| %>
+   <div class="text-center">
+    <h1>Add file</h1>
+  </div></br>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= f.error_messages %>
+      <%= f.hidden_field :user_id, :value => @user%>
+      <%= f.file_field :file%>
+    </div>
+  </div></br>
+  <%= f.submit 'Add', :class => "btn btn-primary btnphoto" %>
+<% end %>
+</div>

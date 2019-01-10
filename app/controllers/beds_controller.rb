@@ -1,4 +1,13 @@
 class BedsController < ApplicationController
+
+
+  before_filter :first_rule,
+    :only => [:edit, :show, :destroy, :update]
+
+  def first_rule
+    @bed = Bed.find(params[:id])
+  end
+
   def index
     @beds = Bed.all
 
@@ -10,8 +19,6 @@ class BedsController < ApplicationController
 
 
   def show
-    @bed = Bed.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @bed }
@@ -31,7 +38,6 @@ class BedsController < ApplicationController
 
 
   def edit
-    @bed = Bed.find(params[:id])
     @room = Room.find(@bed.room_id)
     @department = Department.find(@room.department_id)
   end
@@ -53,7 +59,6 @@ class BedsController < ApplicationController
 
 
   def update
-    @bed = Bed.find(params[:id])
       if @bed.update_attributes(params[:bed])
         redirect_to :controller => :beds
       # else
@@ -64,7 +69,6 @@ class BedsController < ApplicationController
   end
 
   def destroy
-    @bed = Bed.find(params[:id])
     @bed.destroy
 
     respond_to do |format|

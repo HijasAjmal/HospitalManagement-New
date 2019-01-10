@@ -9,13 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20190110071537) do
+ActiveRecord::Schema.define(:version => 20190110193331) do
 
   create_table "admitted_records", :force => true do |t|
     t.integer  "bed_id"
     t.datetime "date"
     t.datetime "time"
-    t.integer  "is_discharged"
+    t.integer  "is_discharged",   :default => 2
     t.datetime "discharged_date"
     t.datetime "discharged_time"
     t.integer  "patient_id"
@@ -84,10 +84,6 @@ ActiveRecord::Schema.define(:version => 20190110071537) do
     t.integer  "department_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
   end
 
   create_table "genders", :force => true do |t|
@@ -118,15 +114,11 @@ ActiveRecord::Schema.define(:version => 20190110071537) do
     t.string   "address"
     t.string   "gender"
     t.string   "blood_group"
-    t.integer  "is_admitted",        :default => 2
-    t.integer  "is_discharged",      :default => 2
+    t.integer  "is_admitted",    :default => 2
+    t.integer  "is_discharged",  :default => 2
     t.integer  "appointment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
   end
 
   create_table "photos", :force => true do |t|
@@ -137,6 +129,16 @@ ActiveRecord::Schema.define(:version => 20190110071537) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+  end
+
+  create_table "reports", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   create_table "rooms", :force => true do |t|

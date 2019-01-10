@@ -1,5 +1,11 @@
 class AppointmentsController < ApplicationController
 
+  before_filter :first_rule,
+    :only => [:edit, :show, :destroy]
+
+  def first_rule
+    @appointment = Appointment.find(params[:id])
+  end  
   # listing all appointments
   def index
     @appointments = Appointment.all
@@ -7,7 +13,7 @@ class AppointmentsController < ApplicationController
 
   #
   def show
-    @appointment = Appointment.find(params[:id])
+    
   end
 
 
@@ -19,7 +25,7 @@ class AppointmentsController < ApplicationController
 
 
   def edit
-    @appointment = Appointment.find(params[:id])
+    
   end
 
 
@@ -32,7 +38,6 @@ class AppointmentsController < ApplicationController
 
 
   def destroy
-    @appointment = Appointment.find(params[:id])
     @appointment.destroy
     redirect_to(appointments_url)
   end
