@@ -1,3 +1,4 @@
+require "open-uri"
 module PatientsHelper
 	def patientFindDepartment(timeslot)
     @doctor = Doctor.find(timeslot.doctor_id)
@@ -43,5 +44,13 @@ module PatientsHelper
 		else
 			return @photo.photo.url(:small)
 		end
+	end
+
+
+	def findFile(url)
+		@url = url.to_s
+		@new_url = @url.split('?')
+		return @new_url[0]
+
 	end
 end

@@ -1,18 +1,17 @@
 <div class="form-row">
-<div class="form-group col-md-6">
-  <label >Bed No:</label>
-  <%= collection_select :bed_id, :id, @beds, :id, :id, :class => "dropdownmenu"%>
-</div>
+  <div class="form-group col-md-6">
+    <label >Bed No:</label>
+    <%= collection_select :bed_id, :id, @beds, :id, :id, :class => "dropdownmenu"%>
+  </div>
 </div></br></br>
-
 <div class="form-row">
-<div class="form-group col-md-6">
-  <label >Date</label>
-  <%= text_field_tag :date, params[:date], :value => Time.now.strftime("%d:%m:%y"), :disabled => true, :class => "form-control" %>
-</div>
-<div class="form-group col-md-6">
-  <label >Time</label>
-  <%= text_field_tag :time, params[:time], :value => Time.now.strftime("%H:%M%p"), :disabled => true, :class => "form-control" %>
-</div>
+  <div class="form-group col-md-6">
+    <label >Date</label>
+    <%= text_field_tag :date, params[:date], :value => Time.now.strftime("%d:%m:%y"), :disabled => true, :class => "form-control" %>
+  </div>
+  <div class="form-group col-md-6">
+    <label >Time</label>
+    <%= text_field_tag :time, params[:time], :value => Time.now.strftime("%H:%M%p"), :disabled => true, :class => "form-control" %>
+  </div>
 </div></br></br>
 </br></br><%= submit_tag "Create Record", :name => nil, :class => "btn btn-primary recbtn" %>

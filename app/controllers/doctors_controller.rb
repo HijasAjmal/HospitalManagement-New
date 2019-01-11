@@ -1,27 +1,27 @@
 require 'securerandom'
 class DoctorsController < ApplicationController
 
+
+  # list all doctors
   def index
     @doctors = Doctor.all
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render :pdf => "doctors_list"   # Excluding ".pdf" extension.
-      end
-    end
   end
 
+  # show details of doctors
   def show
     @doctors = Doctor.find(params[:id])
     @user = User.find(:first, :conditions => {:user_record_id => @doctors.id, :user_record_type => "Doctor"})
   end
 
+  # create doctor profile
   def doctor_profile_form
     @user = User.find(session[:current_user_id])
     @doctor = @user.user_record
     @department = Department.find(@doctor.department_id)
   end
 
+
+  # update doctor profile with full details
   def updateprofile
     @doctor = Doctor.find(params[:doctor])
     @gender = Gender.find(params[:gender][:id])
@@ -34,9 +34,22 @@ class DoctorsController < ApplicationController
     redirect_to("/")
   end
 
+
+  # delete doctor by admin
   def delete
     @doctor = User.find(:first, :conditions => {:user_record_id => params[:id], :user_record_type => "Doctor"})
     @doctor.destroy
     redirect_to ("/doctors/index")
   end
+
+
+  # create doctor details as pdf (Pdf generate using wkhtmltopdf)
+  def doctor_list
+    @doctors = Doctor.all
+    render :pdf => "doctor_list", :header => { :right => '[page] of [topage]'}, :margin => {
+                  :top => 40,
+                  :bottom => 0
+               }
+  end
+
 end

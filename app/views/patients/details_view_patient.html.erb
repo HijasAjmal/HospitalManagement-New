@@ -39,7 +39,6 @@
                                         <li class="active"><a data-toggle="tab" href="#Details" class="text-success"><i class="fa fa-indent"></i> Details</a></li>
                                         <li><a data-toggle="tab" href="#Appointmenthistory" class="text-success"><i class="fa fa-bookmark-o"></i>Appointment History</a></li>
                                         <li><a data-toggle="tab" href="#Records" class="text-success"><i class="fa fa-home"></i> Records</a></li>
-                                        <li><a data-toggle="tab" href="#General" class="text-success"><i class="fa fa-info"></i> General Info</a></li>
                                     </ul>
 
                                     <div class="tab-content">
@@ -84,7 +83,6 @@
 
                                         <div id="Appointmenthistory" class="tab-pane fade">
                                             <% if @flag == 1%>
-                                            <%= p @flag%>
                                                 <h3 style="color: red;">No Recent History<h3>
                                             <% else %>
                                                 <div class="table-responsive panel">
@@ -114,64 +112,31 @@
                                             <% end %>
                                         </div>
                                         <div id="Records" class="tab-pane fade">
-                                            <div class="table-responsive panel">
-                                                <table class="table">
-                                                    <tbody>
+                                            <% if @report_status == 1%>
+                                                <h3 style="color: red;">No Recent Reports<h3>
+                                            <% else %>
+                                              <div class="table-responsive panel">
+                                                  <% @index = 0%>
+                                                  <% @reports.each do |report| %>
+                                                      <p>
+                                                          <div class="container border rounded shadow mb-4 border-secondary w-100 fontsize" style="text-decoration: none; height: 10%" data-toggle="collapse" href="#collapseExample<%=@index%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                              <%= label_tag "Title:" %>
+                                                              <%=h report.title %> &nbsp &nbsp
+                                                              <%= label_tag "File Type:" %>
+                                                              <%=h report.file_content_type %> &nbsp &nbsp
+                                                              <%= label_tag "Date:" %>
+                                                              <%=h report.created_at.strftime("%Y/%m/%d") %> &nbsp &nbsp</br>
+                                                              <%= label_tag "File Name:" %>
+                                                              <%=h report.file_file_name %> &nbsp &nbsp
+                                                              <%= link_to 'Download', findFile(report.file.url)%>
+                                                          </div>
+                                                      </p>
+                                                  <% @index = @index+1%>
+                                                  <% end %>
+                                              </div>
 
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-home"></i> Address</td>
-                                                                <td>
-                                                                    <address>
-                                                                        <strong>
-                                                                            C-***, Amahiya </strong><br>
-                                                                            Kharobar, ****** <br>
-                                                                            Gorakhpur, Utter Pradesh, India<br>
-                                                                    </address>
-                                                                </td>
-                                                            </tr>
-                                                            </tbody>
-                                                </table>
-                                                <!-- <button class="btn btn-success btn-block"><%= link_to 'Add Report', :controller => :reports, :action => "new", :id => @user.id%></button> -->
-                                            </div>
-                                        </div>
-                                        <div id="General" class="tab-pane fade">
-                                            <div class="table-responsive panel">
-                                                <table class="table">
-                                                    <tbody>
-                                                                <tr>
-                                                                <td class="text-success"><i class="fa fa-university"></i> Last School</td>
-                                                                <td>Pawan Mall's School</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-calendar"></i> Date of Admission</td>
-                                                                <td>March 4, 2009</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-home"></i> Birth Place</td>
-                                                                <td>Delhi</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-calendar"></i> Academic Year</td>
-                                                                <td>2015-2016</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-medkit"></i> Medical Condition</td>
-                                                                <td>Normal</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-thumbs-up"></i> Active/Inactive</td>
-                                                                <td>Student is Active</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="glyphicon glyphicon-time"></i> Last Editing</td>
-                                                                <td>2015-08-20 09:41:56</td>
-                                                            </tr>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-
+                                          </div>
+                                          <% end %>
                                     </div>
 
                                 </div>

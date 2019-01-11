@@ -1,23 +1,30 @@
 require 'securerandom'
 class SessionsController < ApplicationController
 
+
+  # check session nil or not
   def index
     if session[:current_user_id]
       redirect_to :controller => :sessions, :action => "signin"
     end
   end
 
+
+  # create new session
   def create
     # ...
     session[:current_user_id] = @user.id
     # ...
   end
 
+  # destroy existing session
   def destroy
     session[:current_user_id] = nil
     redirect_to :controller => :sessions, :action => "index"
   end
 
+
+  # signin method
   def signin
     if session[:current_user_id]
       @user = User.find(session[:current_user_id])
@@ -51,10 +58,14 @@ class SessionsController < ApplicationController
       redirect_to :controller => :sessions
     end
   end
+
+  # show all admin records
   def show
     @admin = User.find(:all, :conditions =>{:user_record_type => "Admin"})
   end
 
+
+  # confirm new account with email confirmation_token
   def confirm
     @user = User.find(:first, :conditions => { :confirmation_token => params[:id]})
     if @user.nil?
@@ -68,6 +79,8 @@ class SessionsController < ApplicationController
     end
   end
 
+
+  # request method for forget password
   def forget
     @user = User.find(:first, :conditions => { :email => params[:email]})
     if @user.nil?
@@ -81,6 +94,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  # method to change the password
   def changepwd
     @user = User.find(:first, :conditions => { :remember_token => params[:id]})
     if @user.nil?

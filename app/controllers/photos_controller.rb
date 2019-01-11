@@ -1,17 +1,13 @@
 class PhotosController < ApplicationController
 
 
-
+  # Upload new photo
   def new
     @photo = Photo.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @photo }
-    end
   end
 
 
+  # create photo document
   def create
     @user = User.find(session[:current_user_id])
     @photo = Photo.new(params[:photo])
@@ -19,9 +15,4 @@ class PhotosController < ApplicationController
     redirect_to :controller => :sessions
   end
 
-  private
-
-  def photo_params
-    params.require(:photo).permit(:photo)
-  end
 end

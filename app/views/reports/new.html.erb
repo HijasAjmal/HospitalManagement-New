@@ -7,6 +7,8 @@
     <div class="form-group col-md-6">
       <%= f.error_messages %>
       <%= f.hidden_field :user_id, :value => @user%>
+			<label>Titile:</label>
+			<%= f.text_field :title, :class => "control-form"%></br></br></br>
       <%= f.file_field :file%>
     </div>
   </div></br>

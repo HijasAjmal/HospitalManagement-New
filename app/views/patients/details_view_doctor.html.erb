@@ -88,24 +88,15 @@
                                         </div>
                                         <div id="Reports" class="tab-pane fade">
                                             <div class="table-responsive panel">
-                                                <table class="table">
-                                                    <tbody>
-
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-home"></i> Address</td>
-                                                                <td>
-                                                                    <address>
-                                                                        <strong>
-                                                                            C-***, Amahiya </strong><br>
-                                                                            Kharobar, ****** <br>
-                                                                            Gorakhpur, Utter Pradesh, India<br>
-                                                                    </address>
-                                                                </td>
-                                                            </tr>
-                                                            </tbody>
-                                                </table>
+                                              <div class="table-responsive panel">
+                                            <address>
+                                                      <p>Upload Reports Last, After Uploading Report Patient Profile will be Hide</p><br>
+                                            </address>
+                                              </div>
+                                              
                                                 <button class="btn btn-success btn-block"><%= link_to 'Add Report', :controller => :reports, :action => "new", :id => @user.id%></button>
                                             </div>
+
                                         </div>
                                         <div id="Appointmentdetails" class="tab-pane fade">
                                             <div class="table-responsive panel">

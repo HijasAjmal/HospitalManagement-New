@@ -21,7 +21,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # The priority is based upon order of creation: first created -> highest priority.
   # Sample of regular route:
-  
+
      # map.connect 'doctors/index', :controller => 'doctors', :action => 'index'
   # map.connect 'admitted_records/new_record', :controller => 'admitted_records', :action => 'new_record'
   # Keep in mind you can assign values other than :controller and :action

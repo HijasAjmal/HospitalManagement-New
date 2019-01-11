@@ -6,4 +6,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+
+  # begin
+  #   @user = User.find(session[:current_user_id])
+  #   @user_type = @user.user_record_type
+  #   before_filter { Authorization.current_user = @user_type }
+  # rescue
+  #
+  # end
+  #
+  # protected
+  #
+  # def permission_denied
+  #   flash[:error] = "Sorry, you are not allowed to access that page."
+  #   redirect_to root_url
+  # end
 end

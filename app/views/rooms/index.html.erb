@@ -1,6 +1,9 @@
 <div class="container">
   <h2><b>Listing rooms</b></h2>
   <table class="table table-bordered">
+          <button type="button" class="btn bednewbtn" style="width: 20%;">
+                  <%= link_to "Generate Pdf Report", :controller => :rooms, :action => "room_report"%>
+                </button>
     <thead>
       <tr>
         <th>Room no:</th>
@@ -50,7 +53,7 @@
             </div>
     </div>
 
-        
+
     <%= text_field_tag :no_of_beds, params[:no_of_beds], :placeholder => "No: of Beds", :required => true %></br></br>
           </br></br><%= submit_tag "Create", :name => nil, :class => "btn btn-primary" %>
       <% end %>

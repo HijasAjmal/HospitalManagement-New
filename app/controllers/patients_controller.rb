@@ -1,26 +1,35 @@
 class PatientsController < ApplicationController
 
+
+  # list all patients
   def index
       @patients = Patient.all
   end
 
+
+  # new patient
   def new
 
 
   end
 
+
+  # creat details view of patient for admin
   def details_view_admin
     @user = User.find(:first, :conditions => {:user_record_id => params[:id], :user_record_type => 'Patient'})
     @patient = @user.user_record
   end
 
+
+  # creat patient profile view for patient
   def details_view_patient
     @user = User.find(session[:current_user_id])
     @patients = @user.user_record
     begin
       @appointments = Appointment.find(:all, :conditions => {:patient_id => @patients.id})
+      find_reports(@user.id)
     rescue Exception => e
-      
+
     end
     if @appointments.empty?
       @flag = 1
@@ -29,6 +38,7 @@ class PatientsController < ApplicationController
     end
   end
 
+  # create patient profile view for doctor
   def details_view_doctor
     @flag = 0
     begin
@@ -53,7 +63,7 @@ class PatientsController < ApplicationController
         end
       end
     rescue Exception => e
-      
+
     end
     if @user.nil?
       @user_st = 1
@@ -62,12 +72,15 @@ class PatientsController < ApplicationController
     end
   end
 
+
+
+  # create patient profile form
   def patient_profile_form
     @user = User.find(session[:current_user_id])
     @patient = @user.user_record
-
   end
 
+  # update patient frofile form
   def updateprofile
     @blood_group = Bloodgroup.find(params[:blood][:id])
     @gender = Gender.find(params[:gender][:id])
@@ -81,6 +94,7 @@ class PatientsController < ApplicationController
     redirect_to ("/patients/details_view_patient")
   end
 
+  # craete all available time-slot for perticular date
   def searchslots
     @doctors = Doctor.find(:all, :conditions => {:department_id => params[:department][:id]})
     @timeslots = Timeslot.find(:all, :conditions => {:date => Date.civil(*params[:event].sort.map(&:last).map(&:to_i)).strftime("%Y-%m-%d"), :doctor_id => @doctors.each do |d| d.id end })
@@ -95,9 +109,22 @@ class PatientsController < ApplicationController
     end
   end
 
+
+  # delete time-slot
   def delete
     @user = User.find(:first, :conditions => {:user_record_id => params[:id]})
     @user.destroy
     redirect_to :controller => :patients
+  end
+
+  # find documents Uploaded by user id
+  def find_reports(user)
+    @reports = Report.find(:all, :conditions => {:user_id => user })
+    if @reports.empty?
+      @report_status = 1
+    else
+      @report_status = 0
+    end
+
   end
 end

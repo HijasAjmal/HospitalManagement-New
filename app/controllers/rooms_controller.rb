@@ -1,6 +1,6 @@
 require 'csv'
 class RoomsController < ApplicationController
-  
+
 
   before_filter :first_rule,
     :only => [:edit, :destroy, :updateRoom]
@@ -10,6 +10,7 @@ class RoomsController < ApplicationController
   end
 
 
+  # list all rooms
   def index
     @rooms = Room.all
       respond_to do |format|
@@ -18,20 +19,27 @@ class RoomsController < ApplicationController
       end
   end
 
-  def reports
-    redirect_to :controller => :rooms
-  end
 
+  # def reports
+  #   redirect_to :controller => :rooms
+  # end
+
+
+  # new room
   def new
     @room = Room.new
     @departments = Department.all
   end
 
+
+  # editing room details
   def edit
     @room_beds = Bed.count(:id, :conditions => {:room_id => params[:id]})
     @department = Department.find(@room.department_id)
   end
 
+
+  # create new room
   def create
     @room = Room.create(:no_of_beds => params[:no_of_beds], :department_id => params[:category][:id])
     @no = params[:no_of_beds].to_i
@@ -42,6 +50,7 @@ class RoomsController < ApplicationController
   end
 
 
+  # update room  details
   def updateRoom
     @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i+params[:no_of_beds].to_i)
     @no = params[:no_of_beds].to_i
@@ -52,18 +61,26 @@ class RoomsController < ApplicationController
   end
 
 
+  # destroy room
   def destroy
     @room.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(rooms_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to :controller => :rooms
   end
 
+
   def showRooms
+    # show room details
     @rooms = Room.find(:all, :conditions => {:department_id => params[:id]})
     render :action => "index"
+  end
 
+
+  # generate pdf report of room by using (wkhtmltopdf)
+  def room_report
+    @rooms = Room.all
+    render :pdf => "room_report", :header => { :right => '[page] of [topage]'}, :margin => {
+                  :top => 40,
+                  :bottom => 0
+               }
   end
 end

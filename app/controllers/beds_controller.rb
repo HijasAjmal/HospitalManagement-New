@@ -8,24 +8,18 @@ class BedsController < ApplicationController
     @bed = Bed.find(params[:id])
   end
 
+  # list all beds
   def index
     @beds = Bed.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @beds }
-    end
   end
 
 
+  #show bed details
   def show
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @bed }
-    end
+
   end
 
-
+  # new bed
   def new
     @room = Room.find(params[:room_id][:id])
     @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i+params[:no_of_beds].to_i)
@@ -36,44 +30,37 @@ class BedsController < ApplicationController
     redirect_to :controller => :beds
   end
 
-
+  # edit bed
   def edit
     @room = Room.find(@bed.room_id)
     @department = Department.find(@room.department_id)
   end
 
-
+  #create beds
   def create
     @bed = Bed.new(params[:bed])
-
-    respond_to do |format|
-      if @bed.save
-        format.html { redirect_to(@bed, :notice => 'Bed was successfully created.') }
-        format.xml  { render :xml => @bed, :status => :created, :location => @bed }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @bed.errors, :status => :unprocessable_entity }
-      end
-    end
+    redirect_to :controller => :beds
   end
 
 
   def update
       if @bed.update_attributes(params[:bed])
         redirect_to :controller => :beds
-      # else
-      #   format.html { render :action => "edit" }
-      #   format.xml  { render :xml => @bed.errors, :status => :unprocessable_entity }
       end
 
   end
 
   def destroy
     @bed.destroy
+    redirect_to :controller => :beds
+  end
 
-    respond_to do |format|
-      format.html { redirect_to(beds_url) }
-      format.xml  { head :ok }
-    end
+
+  def bed_report
+    @beds = Bed.all
+    render :pdf => "bed_report", :header => { :right => '[page] of [topage]'}, :margin => {
+                  :top => 40,
+                  :bottom => 0
+               }
   end
 end

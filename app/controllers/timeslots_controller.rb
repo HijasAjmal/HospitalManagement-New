@@ -1,25 +1,18 @@
 class TimeslotsController < ApplicationController
 
-  #
+  # list all the timeslots
   def index
       @user = User.find(session[:current_user_id])
       @timeslots = Timeslot.all
-      respond_to do |format|
-         format.html # index.html.erb
-         format.xml  { render :xml => @timeslots }
-      end
   end
 
 
+  # show time slot
   def show
     @timeslot = Timeslot.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @timeslot }
-    end
   end
 
+  # new time slot
   def new
     @timeslot = Timeslot.new
     puts request.xhr?
@@ -36,10 +29,14 @@ class TimeslotsController < ApplicationController
 
   end
 
+
+  # edit the existing time slot
   def edit
     @timeslot = Timeslot.find(params[:id])
   end
 
+
+  # create new time slot
   def create
     @doctor = Doctor.find(params[:doctor][:id])
     @timeslot = @doctor.timeslots.create(params[:timeslot])
@@ -74,6 +71,7 @@ class TimeslotsController < ApplicationController
   end
 
 
+  # update time slot
   def update
     @timeslot = Timeslot.find(params[:id])
 
@@ -89,14 +87,11 @@ class TimeslotsController < ApplicationController
   end
 
 
+  # destroy time slot
   def destroy
     @timeslot = Timeslot.find(params[:id])
     @timeslot.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(timeslots_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to :controller => :timeslots
   end
 
 end

@@ -1,9 +1,14 @@
 require 'securerandom'
 class UsersController < ApplicationController
+
+
+  # list all the users
   def index
     @users = User.all
   end
 
+
+  # signup method
   def signup
     @user = User.new()
     if User.find(:first, :conditions => {:email => params[:email]}) || Doctor.find(:first, :conditions => {:email => params[:email]}) || Patient.find(:first, :conditions => {:email => params[:email]})

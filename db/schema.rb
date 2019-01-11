@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20190110193331) do
     t.integer  "bed_id"
     t.datetime "date"
     t.datetime "time"
-    t.integer  "is_discharged",   :default => 2
+    t.integer  "is_discharged"
     t.datetime "discharged_date"
     t.datetime "discharged_time"
     t.integer  "patient_id"
@@ -25,11 +25,11 @@ ActiveRecord::Schema.define(:version => 20190110193331) do
 
   create_table "appointments", :force => true do |t|
     t.string   "case"
-    t.string   "date",          :limit => 10
-    t.integer  "is_diogonised",               :default => 0
-    t.integer  "is_expired",                  :default => 0
-    t.integer  "slot_id"
+    t.string   "date"
+    t.integer  "is_diogonised", :default => 0
+    t.integer  "is_expired",    :default => 0
     t.integer  "patient_id"
+    t.integer  "slot_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

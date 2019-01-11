@@ -1,0 +1,26 @@
+<%= stylesheet_link_tag 'form_styles' %>
+<div class="container">
+  <h2><b>All Doctors</b></h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Department</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @doctors.each do |d| %>
+      <tr>
+        <td><%=d.first_name %></td>
+        <td><%=d.last_name %></td>
+        <td><%=d.contact_number %></td>
+        <td><%=d.email %></td>
+        <td><%=d.department_id %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

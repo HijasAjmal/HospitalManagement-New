@@ -1,19 +1,5 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
-// function load_doctors(msg){
-//   $.ajax({
-//          url: "/timeslots/new",
-//          asynchronous: true,
-//          evalScripts: true,
-//          method: 'post',
-//          data: {
-//              department_id: msg,
-//          }
-//      });
-// }
-function load_timeslotform(msg){
-  alert(msg);
-}
 
 function show_group_popup() {
   $('#groups_show').show();
