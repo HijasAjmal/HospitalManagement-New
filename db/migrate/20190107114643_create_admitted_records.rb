@@ -4,7 +4,7 @@ class CreateAdmittedRecords < ActiveRecord::Migration
       t.integer :bed_id
       t.datetime :date
       t.datetime :time
-      t.integer :is_discharged
+      t.integer :is_discharged, :default => 2
       t.datetime :discharged_date
       t.datetime :discharged_time
       t.belongs_to :patient, :index => true

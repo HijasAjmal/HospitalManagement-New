@@ -170,7 +170,9 @@
             <div class="modal-body">
               <!-- <%= link_to 'confirm', :controller => :timeslots%> -->
              	 <% form_tag :controller => :patients, :action => 'searchslots' do -%>
-              	<%= date_select(:event, :date, :required => true, :include_blank => true)%></br></br></br>
+              	<%= date_select(:date, :date, :required => true, :include_blank => true)%></br></br></br>
+                <%= time_select :time, :required => true, :include_blank => true%></br></br></br>
+                <%= select_time(Time.now, :prefix => "start_time") %>
                 <%= collection_select(:department, :id, Department.all, :id, :department_name)%>
               </br></br><%= submit_tag "Find", :name => nil, :class => "btn btn-primary" %>
           	<% end %>

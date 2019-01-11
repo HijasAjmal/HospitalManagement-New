@@ -43,4 +43,15 @@ class AdmittedRecordsController < ApplicationController
     AdmittedRecord.destroy(params[:id])
     redirect_to("/comments?id=1")
   end
+
+  def discharge_patient
+    @record = AdmittedRecord.find(params[:id])
+    @bed = Bed.find(@record.bed_id)
+  end
+
+  def dischargeRecord
+    @record = AdmittedRecord.find(params[:id])
+    @record.update_attributes(:is_discharged => 1, :discharged_date => Time.now.strftime("%Y-%m-%d"), :discharged_time => Time.now.strftime("%H:%M %p"))
+    redirect_to :controller => :admitted_records
+  end
 end

@@ -23,12 +23,20 @@ patient_conditions.each do |patientcondition|
 
 Gender.delete_all
 gender = ["Male", "Female", "Other"]
- gender.each do |gender|
+gender.each do |gender|
    Gender.create(:name => gender)
  end
 
+
+ Option.delete_all
+ options = ["Yes", "No"]
+options.each do |option|
+   Option.create(:opt => option)
+ end
+
+
  Country.delete_all
- open("/home/foradian/RailProjects/Ten/db/country_list.txt") do |countries|
+ open("/home/virus/Downloads/Ten/db/country_list.txt") do |countries|
   countries.read.each_line do |country|
      code, name = country.chomp.split("|")
      Country.create!(:country_name => name, :code => code)

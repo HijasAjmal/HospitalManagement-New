@@ -97,22 +97,27 @@ class PatientsController < ApplicationController
   # craete all available time-slot for perticular date
   def searchslots
     @doctors = Doctor.find(:all, :conditions => {:department_id => params[:department][:id]})
-    @timeslots = Timeslot.find(:all, :conditions => {:date => Date.civil(*params[:event].sort.map(&:last).map(&:to_i)).strftime("%Y-%m-%d"), :doctor_id => @doctors.each do |d| d.id end })
+    @date = Date.civil(*params[:date].sort.map(&:last).map(&:to_i)).strftime("%Y-%m-%d")
+    @time = params[:start_time][:hour]+":"+params[:start_time][:minute]+":00"
+    @datetime = DateTime.parse(@date.to_s+" "+@time.to_s)
+    @timeslots = Timeslot.all(:conditions =>["start_date_time >= ? ",@datetime])
     @flag = 0
-    @timeslots.each do |t|
-      @slot = t.slots
-      @slot.each do |s|
-        if s.status == 0
-          @flag = 1
+    if @timeslots.empty?
+      @flag = 0
+    else 
+      @timeslots.each do |t|
+        @slot = t.slots
+        @slot.each do |s|
+          if s.status == 0
+            @flag = 1
+          end
         end
       end
     end
   end
-
-
   # delete time-slot
   def delete
-    @user = User.find(:first, :conditions => {:user_record_id => params[:id]})
+    @user = User.find(:first, :conditions => {:user_record_id => params[:id], :user_record_type => "Patient"})
     @user.destroy
     redirect_to :controller => :patients
   end

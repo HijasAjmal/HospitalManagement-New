@@ -1,6 +1,6 @@
 require 'fastercsv'
 class Room < ActiveRecord::Base
-  belongs_to :departments
+  belongs_to :department
   has_many :beds, :dependent => :destroy
   validates_presence_of :no_of_beds
 

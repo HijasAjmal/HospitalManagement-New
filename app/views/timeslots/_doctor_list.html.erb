@@ -2,27 +2,22 @@
   <%= f.error_messages %>
   <div class="form-row">
     <div class="form-group col-md-6" style="margin-left: 30%;">
-      <%= label_tag "Doctor:"%>
-      <%= collection_select(:doctor, :id, @doctors, :id, :first_name, {:include_blank => "Select Doctor"})%></br>
+      <%= collection_select(:doctor, :id, @doctors, :id, :first_name, {:prompt => "Select Doctor"},{:class => "selectdoc"})%></br>
     </div>
   </div>
-<div class="form-row w-23" style="margin-top: 10px;">
+<div class="form-row w-33" style="margin-top: 10px; width: 206%; margin-left: -48%;">
   <div class="form-group col-md-6 datepick">
-    <%= f.label :date %><br />
-    <%= f.date_select :date %>
+    <%= f.label :start_date %><br/>
+    <%= f.datetime_select :start_date_time, {:class => "selectdep"} %>
   </div>
-<div class="form-group col-md-6">
-  <%= f.label :start_time %><br />
-  <%= f.time_select :start_time %></br></br></br></br>
-</div>
-<div class="form-group col-md-6">
-  <%= f.label :end_time %><br />
-  <%= f.time_select :end_time %></br></br></br></br>
-</div>
-<div class="form-group col-md-6">
-  <%= f.label :slot_count_constant %><br />
-  <%= f.time_select :slot_count_constant %></br></br></br></br>
-</div>
+  <div class="form-group col-md-6 datepick">
+    <%= f.label :end_date %><br/>
+    <%= f.datetime_select :end_date_time, {:class => "selectdep"} %>
+  </div><br/><br/><br/><br/><br/><br/>
+  <div class="form-group col-md-6 datepick" style="margin-left: 40%; ">
+    <%= f.label :slot_count_constant %><br/>
+    <%= f.time_select :slot_count_constant, {:class => "selectdep"} %><br/><br/>
+  </div>
+  </div><br/><br/>
   <%= f.submit 'Create', :name => nil, :class => "btn btn-primary upbedbtn" %>
-</p>
 <% end %>

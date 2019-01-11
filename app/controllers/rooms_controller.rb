@@ -35,7 +35,8 @@ class RoomsController < ApplicationController
   # editing room details
   def edit
     @room_beds = Bed.count(:id, :conditions => {:room_id => params[:id]})
-    @department = Department.find(@room.department_id)
+    @room = Room.find(params[:id])
+    @department = @room.department
   end
 
 
@@ -52,6 +53,7 @@ class RoomsController < ApplicationController
 
   # update room  details
   def updateRoom
+    @room = Room.find(params[:id])
     @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i+params[:no_of_beds].to_i)
     @no = params[:no_of_beds].to_i
     @no.times do

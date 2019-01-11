@@ -1,4 +1,4 @@
-<div class="container btndiv" style="width: 15%;"> 
+<div class="container btndiv" style="width: 15%;">
   <button type="button" class="btn bednewbtn">
     <%= link_to 'New timeslot', new_timeslot_path %>
   </button>
@@ -10,12 +10,11 @@
     <%= label_tag "Department:" %>
     <%=h department(timeslot) %> &nbsp &nbsp &nbsp &nbsp
 
-    <%=h timeslot.date %> &nbsp &nbsp
-    <%=h timeslot.start_time.strftime("%H:%M%p") %> &nbsp &nbsp
-    <%=h timeslot.end_time.strftime("%H:%M%p") %> &nbsp &nbsp
+    <%=h timeslot.start_date_time %> &nbsp &nbsp
+    <%=h timeslot.end_date_time %> &nbsp &nbsp
     <% if @user.user_record_type == "Admin"%>
     <div class="adminctrl">
-      <%= link_to 'Edit', edit_timeslot_path(timeslot) %> &nbsp &nbsp
+     <!--  <%= link_to 'Edit', edit_timeslot_path(timeslot) %> &nbsp &nbsp -->
       <%= link_to 'Destroy', timeslot, :confirm => 'Are you sure?', :method => :delete %>
     </div>
     <% end %></br>

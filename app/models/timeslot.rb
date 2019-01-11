@@ -1,4 +1,4 @@
 class Timeslot < ActiveRecord::Base
-  belongs_to :doctors
+  belongs_to :doctor
   has_many :slots, :dependent => :destroy
 end
