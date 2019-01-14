@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   # signup method
   def signup
     @user = User.new()
-    if User.find(:first, :conditions => {:email => params[:email]}) || Doctor.find(:first, :conditions => {:email => params[:email]}) || Patient.find(:first, :conditions => {:email => params[:email]})
+    if User.first(:conditions => {:email => params[:email]}) || Doctor.find(:first, :conditions => {:email => params[:email]}) || Patient.find(:first, :conditions => {:email => params[:email]})
      flash[:notice] = "Email Already Exist in Our Database...!"
      redirect_to :controller => :sessions
     elsif params[:id] == "3"

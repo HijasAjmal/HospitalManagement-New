@@ -1,4 +1,4 @@
-<% if @user_st == 1%>
+<% if @user.nil?%>
     <h3 style="color: red; margin-left: 40%; margin-top: 20%;"> Invalid Patient Id<h3>
 <%else%>
 <div class="container border rounded shadow p-4 mb-4 border-secondary w-50" style="margin-top:5%;">
@@ -93,7 +93,7 @@
                                                       <p>Upload Reports Last, After Uploading Report Patient Profile will be Hide</p><br>
                                             </address>
                                               </div>
-                                              
+
                                                 <button class="btn btn-success btn-block"><%= link_to 'Add Report', :controller => :reports, :action => "new", :id => @user.id%></button>
                                             </div>
 

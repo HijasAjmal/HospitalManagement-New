@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
     if session[:current_user_id]
       @user = User.find(session[:current_user_id])
     else
-      @user = User.find(:first, :conditions => { :user_name => params[:user_name] , :password => params[:password]})
+      @user = User.first(:conditions => { :user_name => params[:user_name] , :password => params[:password]})
     end
 
     if @user.nil?
@@ -61,13 +61,13 @@ class SessionsController < ApplicationController
 
   # show all admin records
   def show
-    @admin = User.find(:all, :conditions =>{:user_record_type => "Admin"})
+    @admin = User.all(:conditions =>{:user_record_type => "Admin"})
   end
 
 
   # confirm new account with email confirmation_token
   def confirm
-    @user = User.find(:first, :conditions => { :confirmation_token => params[:id]})
+    @user = User.first(:conditions => { :confirmation_token => params[:id]})
     if @user.nil?
       flash[:notice] = 'This link is not valid..!'
       signin()
@@ -82,7 +82,7 @@ class SessionsController < ApplicationController
 
   # request method for forget password
   def forget
-    @user = User.find(:first, :conditions => { :email => params[:email]})
+    @user = User.first(:conditions => { :email => params[:email]})
     if @user.nil?
       flash[:notice] = 'This email is not exist in our database..!'
       redirect_to("/")
@@ -96,7 +96,7 @@ class SessionsController < ApplicationController
 
   # method to change the password
   def changepwd
-    @user = User.find(:first, :conditions => { :remember_token => params[:id]})
+    @user = User.first(:conditions => { :remember_token => params[:id]})
     if @user.nil?
       flash[:notice] = 'This link is not valid..!'
       redirect_to("/")

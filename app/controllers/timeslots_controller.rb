@@ -15,11 +15,9 @@ class TimeslotsController < ApplicationController
   # new time slot
   def new
     @timeslot = Timeslot.new
-    puts request.xhr?
     if params[:department_id]
-      print params[:department_id]
       @flag = 1
-      @doctors = Doctor.find(:all, :conditions => {:department_id => params[:department_id]})
+      @doctors = Doctor.all(:conditions => {:department_id => params[:department_id]})
       @timeslot = Timeslot.new
       render :update do |page|
       page.replace_html 'doctor' ,:partial =>'doctor_list'
@@ -59,22 +57,6 @@ class TimeslotsController < ApplicationController
       end
     end
     redirect_to :controller => :timeslots, :action => "index"
-  end
-
-
-  # update time slot
-  def update
-    @timeslot = Timeslot.find(params[:id])
-
-    respond_to do |format|
-      if @timeslot.update_attributes(params[:timeslot])
-        format.html { redirect_to(@timeslot, :notice => 'Timeslot was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @timeslot.errors, :status => :unprocessable_entity }
-      end
-    end
   end
 
 

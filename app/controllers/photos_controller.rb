@@ -10,8 +10,8 @@ class PhotosController < ApplicationController
   # create photo document
   def create
     @user = User.find(session[:current_user_id])
-    @photo = Photo.new(params[:photo])
-    @photo.update_attributes(:user_id => @user.id)
+    @user.photos.destroy_all
+    @user.photos.create(params[:photo])
     redirect_to :controller => :sessions
   end
 

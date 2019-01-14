@@ -12,7 +12,7 @@
       <% @appointments.each do |appointment| %>
         <td><%=h appointment.id %></td>
         <td><%=h appointment.case %></td>
-        <td><%= link_to appointment.patient_id, :controller => :patients, :action => "details_view_admin", :id => appointment.patient_id%></td>
+        <td><%= link_to appointment.patient.first_name+" "+appointment.patient.middle_name+" "+appointment.patient.last_name, :controller => :patients, :action => "details_view_admin", :id => appointment.patient_id%></td>
         <td><%= link_to 'Destroy', appointment, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>
       <% end %>

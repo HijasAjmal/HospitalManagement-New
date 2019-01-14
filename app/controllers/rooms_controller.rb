@@ -42,9 +42,9 @@ class RoomsController < ApplicationController
 
   # create new room
   def create
-    @room = Room.create(:no_of_beds => params[:no_of_beds], :department_id => params[:category][:id])
-    @no = params[:no_of_beds].to_i
-    @no.times do
+    @room = Room.create(:room_id => params[:room_id], :no_of_beds => params[:no_of_beds], :department_id => params[:category][:id])
+    @no_of_beds = params[:no_of_beds].to_i
+    @no_of_beds.times do
       @room.beds.create()
     end
     redirect_to :controller => :rooms
@@ -55,8 +55,8 @@ class RoomsController < ApplicationController
   def updateRoom
     @room = Room.find(params[:id])
     @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i+params[:no_of_beds].to_i)
-    @no = params[:no_of_beds].to_i
-    @no.times do
+    @no_of_beds = params[:no_of_beds].to_i
+    @no_of_beds.times do
       @room.beds.create()
     end
     redirect_to :controller => :rooms
@@ -72,7 +72,7 @@ class RoomsController < ApplicationController
 
   def showRooms
     # show room details
-    @rooms = Room.find(:all, :conditions => {:department_id => params[:id]})
+    @rooms = Room.all(:conditions => {:department_id => params[:id]})
     render :action => "index"
   end
 

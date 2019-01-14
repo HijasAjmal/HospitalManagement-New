@@ -33,7 +33,6 @@ class BedsController < ApplicationController
   # edit bed
   def edit
     @room = Room.find(@bed.room_id)
-    @department = Department.find(@room.department_id)
   end
 
   #create beds

@@ -82,7 +82,7 @@
                                         </div>
 
                                         <div id="Appointmenthistory" class="tab-pane fade">
-                                            <% if @flag == 1%>
+                                            <% if @appointments.empty?%>
                                                 <h3 style="color: red;">No Recent History<h3>
                                             <% else %>
                                                 <div class="table-responsive panel">
@@ -171,7 +171,6 @@
               <!-- <%= link_to 'confirm', :controller => :timeslots%> -->
              	 <% form_tag :controller => :patients, :action => 'searchslots' do -%>
               	<%= date_select(:date, :date, :required => true, :include_blank => true)%></br></br></br>
-                <%= time_select :time, :required => true, :include_blank => true%></br></br></br>
                 <%= select_time(Time.now, :prefix => "start_time") %>
                 <%= collection_select(:department, :id, Department.all, :id, :department_name)%>
               </br></br><%= submit_tag "Find", :name => nil, :class => "btn btn-primary" %>

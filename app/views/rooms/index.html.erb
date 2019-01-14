@@ -1,65 +1,69 @@
 <div class="container">
-  <h2><b>Listing rooms</b></h2>
-  <table class="table table-bordered">
-          <button type="button" class="btn bednewbtn" style="width: 20%;">
-                  <%= link_to "Generate Pdf Report", :controller => :rooms, :action => "room_report"%>
+    <h2><b>Listing rooms</b></h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Room Id</th>
+          <th>Drepartment</th>
+          <th>No of beds</th>
+          <th><button type="button" class="btn bednewbtn" data-toggle="modal" data-target="#addroompopup">
+                  Add New Room
                 </button>
-    <thead>
-      <tr>
-        <th>Room no:</th>
-        <th>Drepartment</th>
-        <th>No of beds</th>
-        <th><button type="button" class="btn bednewbtn" data-toggle="modal" data-target="#addroompopup">
-                Add New Room
-              </button>
-        </th>
-        <th><a href="rooms.csv" style="text-decoration: none; width: 5px; border-radius: 11px;"><button type="button" class="btn bednewbtn">CSV Report</button></a>
-              <!-- <%= link_to 'CSV Report', :controller => ("rooms.csv")%> -->
+          </th>
+          <th><a href="rooms.csv" style="text-decoration: none; width: 5px; border-radius: 11px;"><button type="button" class="btn bednewbtn">CSV Report</button></a>
+                <!-- <%= link_to 'CSV Report', :controller => ("rooms.csv")%> -->
 
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @rooms.each do |room| %>
-      <tr>
-        <td><%=h room.id %></td>
-        <td><%=h room.department_id %></td>
-        <td><%=h room.no_of_beds %></td>
-        <td><%= link_to 'Edit', edit_room_path(room) %></td>
-        <td><%= link_to 'Destroy', room, :confirm => 'Are you sure?', :method => :delete %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-</div>
-<br />
-
-
-<!-- Modal1 -->
-<div class="modal fade" id="addroompopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content" height="34px">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalCenterTitle">Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-         <% form_tag({:controller => :rooms, :action => 'create'}, {:class => 'user_r'}) do -%>
-          <div class="form-row">
-            <div class="form-group">
-              <%= collection_select(:category, :id, Department.all, :id, :department_name,{:include_blank => 'Select Department'}, {:class => "optionfield"}) %></br></br>
-            </div>
-    </div>
-
-
-    <%= text_field_tag :no_of_beds, params[:no_of_beds], :placeholder => "No: of Beds", :required => true %></br></br>
-          </br></br><%= submit_tag "Create", :name => nil, :class => "btn btn-primary" %>
-      <% end %>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @rooms.nil?%>
+        <tr>
+          <h3 style="margin-left: 40%; color: red;">NO available Rooms</h3>
+        </tr>
+        <% else %>
+          <% @rooms.each do |room| %>
+          <tr>
+            <td><%=h room.room_id %></td>
+            <td><%=h room.department.department_name %></td>
+            <td><%=h room.no_of_beds %></td>
+            <td><%= link_to 'Edit', edit_room_path(room) %></td>
+            <td><%= link_to 'Destroy', room, :confirm => 'Are you sure?', :method => :delete %></td>
+          </tr>
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
   </div>
-  <div class="modal-footer">
+  <br />
+
+
+  <!-- Modal1 -->
+  <div class="modal fade" id="addroompopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" height="34px">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <% form_tag({:controller => :rooms, :action => 'create'}, {:class => 'user_r'}) do -%>
+            <div class="form-row">
+              <div class="form-group">
+                <%= collection_select(:category, :id, Department.all, :id, :department_name,{:include_blank => 'Select Department'}, {:class => "optionfield"}) %></br></br>
+              </div>
+      </div>
+
+      <%= text_field_tag :room_id, params[:room_id], :placeholder => "Room Id", :required => true %></br></br>
+
+      <%= text_field_tag :no_of_beds, params[:no_of_beds], :placeholder => "No: of Beds", :required => true %></br></br>
+            </br></br><%= submit_tag "Create", :name => nil, :class => "btn btn-primary" %>
+        <% end %>
+    </div>
+    <div class="modal-footer">
+        </div>
       </div>
     </div>
   </div>
-</div>

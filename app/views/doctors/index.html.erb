@@ -27,7 +27,7 @@
         <td><%=d.last_name %></td>
         <td><%=d.contact_number %></td>
         <td><%=d.email %></td>
-        <td><%=d.department_id %></td>
+        <td><%=d.department.department_name %></td>
         <td><%=link_to 'Details', :action => "show", :id => d.id%></td>
         <td><%=link_to 'Delete', :action => "delete", :id => d.id%></td>
       </tr>
