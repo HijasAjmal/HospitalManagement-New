@@ -1,0 +1,9 @@
+<% form_tag :controller => :patients, :action => 'search_slots', :id => params[:doctor_id] do -%>
+<div class="dateselect">
+	<%= date_select(:date, :date, :required => true, :include_blank => true)%></br></br></br>
+</div>
+<div class="timeselect">
+	<%= select_time(Time.now, :prefix => "start_time") %>
+</div>
+</br></br><%= submit_tag "Find", :name => nil, :class => "btn btn-primary btnback" %>
+              <% end %>

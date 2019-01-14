@@ -363,3 +363,38 @@ a:hover { color: #fff; background-color:#000; }
     border-radius: 8px;
     width: 74%;
 }
+.selectfield {
+    padding: 9px;
+    font-size: 25px;
+    border-radius: 15px;
+    margin-left: 85px;
+    margin-top: 6%;
+}
+.labeltext {
+  margin-left: 53px;
+    font-size: 211%;
+    font-weight: bold;
+}
+.selectdoctorfield{
+  padding: 9px;
+    font-size: 25px;
+    border-radius: 15px;
+    margin-left: 150px;
+    margin-top: 6%;
+}
+.dateselect {
+    font-size: 232%;
+    margin-left: 305px;
+    margin-top: 43px;
+}
+.timeselect {
+    font-size: 232%;
+    margin-left: 305px;
+    margin-top: 9px;
+}
+.btnback {
+    font-size: 23px;
+    width: 22%;
+    margin-left: 41%;
+    margin-top: 2%;
+}
