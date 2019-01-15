@@ -43,4 +43,9 @@ class AppointmentsController < ApplicationController
     @appointment.destroy
     redirect_to(appointments_url)
   end
+
+  # list of appointments for doctors
+  def doctor_appointment_list
+  
+  end
 end

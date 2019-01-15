@@ -15,7 +15,7 @@
                                 <div class="col-lg-3 col-md-3">
                                     <center>
                                         <span class="text-left" style="margin-left: 5px;">
-                                          <%= image_tag findImagedoctor(@user.id), :class => "img-responsive img-thumbnail"%>
+                                          <%= image_tag Photo.findImage(@user.id), :class => "img-responsive img-thumbnail"%>
 
                                     </span></center>
 
@@ -87,18 +87,18 @@
                                             <% else %>
                                                 <div class="table-responsive panel">
                                                     <% @index = 0%>
-                                                    <% @appointments.each do |a| %>
+                                                    <% @appointments.each do |appointment| %>
                                                         <p>
                                                             <div class="container border rounded shadow mb-4 border-secondary w-100 fontsize" style="text-decoration: none; height: 10%" data-toggle="collapse" href="#collapseExample<%=@index%>" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                                 <%= label_tag "Dept:" %>
-                                                                <%=h depFind(a) %> &nbsp &nbsp
+                                                                <%= Slot.depFindByAppointment(appointment) %> &nbsp &nbsp
                                                                 <%= label_tag "Dr:" %>
-                                                                <%=h docFind(a) %> &nbsp &nbsp
+                                                                <%= Slot.docFindByAppointment(appointment) %> &nbsp &nbsp
                                                                 <%= label_tag "Date:" %>
-                                                                <%=h dateFind(a) %> &nbsp &nbsp</br>
+                                                                <%= Slot.dateFindByAppointment(appointment) %> &nbsp &nbsp</br>
                                                                 <%= label_tag "Time:" %>
-                                                                <%=h timeFind(a) %> &nbsp &nbsp
-                                                                <% if a.is_diogonised == 1%>
+                                                                <%= Slot.timeFindAppointment(appointment) %> &nbsp &nbsp
+                                                                <% if appointment.is_diogonised == 1%>
                                                                     <% @status = "Diognised"%>
                                                                 <% else%>
                                                                     <% @status = "Not Diognised"%>
@@ -128,7 +128,7 @@
                                                               <%=h report.created_at.strftime("%Y/%m/%d") %> &nbsp &nbsp</br>
                                                               <%= label_tag "File Name:" %>
                                                               <%=h report.file_file_name %> &nbsp &nbsp
-                                                              <%= link_to 'Download', findFile(report.file.url)%>
+                                                              <%= link_to 'Download', Patient.findFile(report.file.url)%>
                                                           </div>
                                                       </p>
                                                   <% @index = @index+1%>

@@ -1,7 +1,6 @@
 require 'securerandom'
 class UsersController < ApplicationController
 
-
   # list all the users
   def index
     @users = User.all

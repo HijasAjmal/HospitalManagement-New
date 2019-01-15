@@ -16,7 +16,7 @@
                                 <div class="col-lg-3 col-md-3">
                                     <center>
                                         <span class="text-left" style="margin-left: 5px;">
-                                        <%= image_tag findImagedoctor(@user.id), :class => "img-responsive img-thumbnail"%>
+                                        <%= image_tag Photo.findImage(@user.id), :class => "img-responsive img-thumbnail"%>
                                       </span>
                                     </center>
 
@@ -91,7 +91,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-calendar"></i> Department Name</td>
-                                                                <td><%= text_field_tag :department_id, params[:department_id], :value => findDepartment(@doctors.id), :disabled => true%></td>
+                                                                <td><%= text_field_tag :department_id, params[:department_id], :value => User.findDepartment(@doctors.id), :disabled => true%></td>
                                                             </tr>
                                                     </tbody>
                                                 </table>

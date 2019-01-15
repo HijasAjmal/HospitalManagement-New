@@ -1,6 +1,7 @@
 class PatientsController < ApplicationController
 
 
+filter_access_to :all
   # list all patients
   def index
       @patients = Patient.all
@@ -34,6 +35,9 @@ class PatientsController < ApplicationController
   # create patient profile view for doctor
   def details_view_doctor
       @user = User.first(:conditions => {:user_name => params[:user_id].to_s, :user_record_type => "Patient"})
+      if @user.nil?
+          redirect_to :controller => :doctors, :action => "patient_details_login", :error => "ops! something went wrong.."
+        else
       @patient = @user.user_record
       @doctor = User.find(session[:current_user_id]).user_record
     begin
@@ -53,6 +57,7 @@ class PatientsController < ApplicationController
           end
         end
       end
+    end
   end
 
 
@@ -93,7 +98,7 @@ class PatientsController < ApplicationController
     end
   end
 
-  
+
   def search_slots
     @doctor = Doctor.find(params[:id])
     @date = Date.civil(*params[:date].sort.map(&:last).map(&:to_i)).strftime("%Y-%m-%d")

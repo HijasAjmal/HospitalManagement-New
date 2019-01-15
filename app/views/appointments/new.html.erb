@@ -2,8 +2,9 @@
   <% form_for @appointment, :url => {:id => @slot_id, :action => "create"} do |f| %>
    <div class="text-center">
     <h1>New appointment</h1>
-    <%= f.hidden_field :date, :value => findSlotDate(@slot_id)%>
+    <%= f.hidden_field :date, :value => Slot.findSlotDate(@slot_id)%>
     <%= f.hidden_field :patient_id, :value => @patient.id%>
+    <%= f.hidden_field :doctor_id, :value => session[:current_user_id]%>
   </div></br>
   <div class="form-row">
     <div class="form-group col-md-6">

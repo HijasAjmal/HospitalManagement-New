@@ -1,7 +1,7 @@
 <div class="container border w-50" style="height: 40%; margin-top: 6%;">
   	<% form_tag({:controller => :patients, :action => 'details_view_doctor'}, {:class => 'signin_form'}) do -%>
-   	<div class="text-center"></br></br>
-   		<h4 style="font-size: 32px;"><%=h findDepartmentOfDoctor(session[:current_user_id])%></h4><hr>
+    <div class="text-center"></br></br>
+   		<h4 style="font-size: 32px;"><%= User.findDepartmentOfDoctor(session[:current_user_id])%></h4><hr>
   	</div></hr></br>
   	<div class="form-group col-md-6">
   		<h3>Patients Details Form</h3>

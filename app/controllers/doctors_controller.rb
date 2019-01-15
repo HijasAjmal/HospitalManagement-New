@@ -1,7 +1,7 @@
 require 'securerandom'
 class DoctorsController < ApplicationController
 
-
+filter_access_to :all
   # list all doctors
   def index
     @doctors = Doctor.all
@@ -49,6 +49,7 @@ class DoctorsController < ApplicationController
     @doctor.destroy
     redirect_to ("/doctors/index")
   end
+
 
 
   # create doctor details as pdf (Pdf generate using wkhtmltopdf)

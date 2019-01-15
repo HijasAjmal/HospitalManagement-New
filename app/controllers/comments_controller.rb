@@ -24,12 +24,13 @@ class CommentsController < ApplicationController
   # add new comment to appointment
   def new
     @appointment = Appointment.find(params[:id])
+    @user = User.first(:conditions => {:user_record_id => @appointment.patient_id, :user_record_type => "Patient"})
     if @appointment.comments.create(:patient_condition => params[:patient_status][:id], :medication => params[:medication], :is_recommended => params[:opt][:id]).nil?
       flash[:notice] = "Failed to create the Medication details............Try again"
-      redirect_to :controller => :patients, :action => "details_view_doctor", :user_id => @appointment.patient.users.user_name
+      redirect_to :controller => :patients, :action => "details_view_doctor", :user_id => @user.user_name
     else
       @appointment.update_attributes(:is_diogonised => 1)
-      redirect_to :controller => :patients, :action => "details_view_doctor", :user_id => @appointment.patient.users.user_name
+      redirect_to :controller => :patients, :action => "details_view_doctor", :user_id => @user.user_name
     end
   end
 

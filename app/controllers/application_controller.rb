@@ -6,13 +6,27 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+  before_filter :set_current_user
 
-  # begin
-  #   @user = User.find(session[:current_user_id])
-  #   @user_type = @user.user_record_type
-  #   before_filter { Authorization.current_user = @user_type }
-  # rescue
-  #
+
+  def current_user
+    if session[:current_user_id].present?
+      user = User.find(session[:current_user_id])
+    else
+      nil
+    end
+  end
+
+  protected
+  def set_current_user
+    Authorization.current_user = current_user
+  end
+  # def set_current_user
+  #   if session[:current_user_id].present?
+  #     @user = User.find(session[:current_user_id])
+  #     @user_type = @user.user_record_type
+  #     Authorization.current_user = @user_type
+  #   end
   # end
   #
   # protected

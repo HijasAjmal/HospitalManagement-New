@@ -4,11 +4,11 @@
   <p>
     <div class="container border rounded shadow mb-4 border-secondary w-100 timeslotdvi" style="text-decoration: none;" data-toggle="collapse" href="#collapseExample<%=@index%>" role="button" aria-expanded="false" aria-controls="collapseExample">
       <%= label_tag "Department:" %>
-      <%=h patientFindDepartment(timeslot) %> &nbsp &nbsp &nbsp &nbsp
+      <%= Timeslot.findDepartment(timeslot) %> &nbsp &nbsp &nbsp &nbsp
       <%=h timeslot.start_date_time %> &nbsp &nbsp
       <%=h timeslot.end_date_time %> &nbsp &nbsp
       <%= label_tag "Doctor:" %>
-      <%=h patienFindDoctor(timeslot) %> &nbsp &nbsp
+      <%= Doctor.findDoctor(timeslot) %> &nbsp &nbsp
     </div>
   </p>
   <div class="collapse" id="collapseExample<%=@index%>">

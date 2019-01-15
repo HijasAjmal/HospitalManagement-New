@@ -9,13 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20190110193331) do
+ActiveRecord::Schema.define(:version => 20190115122106) do
 
   create_table "admitted_records", :force => true do |t|
     t.integer  "bed_id"
     t.datetime "date"
     t.datetime "time"
-    t.integer  "is_discharged"
+    t.integer  "is_discharged",   :default => 2
     t.datetime "discharged_date"
     t.datetime "discharged_time"
     t.integer  "patient_id"
@@ -25,11 +25,12 @@ ActiveRecord::Schema.define(:version => 20190110193331) do
 
   create_table "appointments", :force => true do |t|
     t.string   "case"
-    t.string   "date"
-    t.integer  "is_diogonised", :default => 0
-    t.integer  "is_expired",    :default => 0
-    t.integer  "patient_id"
+    t.string   "date",          :limit => 10
+    t.integer  "is_diogonised",               :default => 0
+    t.integer  "is_expired",                  :default => 0
     t.integer  "slot_id"
+    t.integer  "patient_id"
+    t.integer  "doctor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -132,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20190110193331) do
   end
 
   create_table "reports", :force => true do |t|
+    t.string   "title",             :limit => 20
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -142,11 +144,14 @@ ActiveRecord::Schema.define(:version => 20190110193331) do
   end
 
   create_table "rooms", :force => true do |t|
+    t.string   "room_id",       :limit => 5
     t.integer  "no_of_beds"
     t.integer  "department_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "rooms", ["id"], :name => "id", :unique => true
 
   create_table "slots", :force => true do |t|
     t.date     "date"
@@ -158,10 +163,9 @@ ActiveRecord::Schema.define(:version => 20190110193331) do
   end
 
   create_table "timeslots", :force => true do |t|
-    t.date     "date"
-    t.time     "start_time"
-    t.time     "end_time"
-    t.time     "slot_count_constant"
+    t.datetime "start_date_time",     :limit => 6, :null => false
+    t.datetime "end_date_time",       :limit => 6
+    t.datetime "slot_count_constant", :limit => 6
     t.integer  "doctor_id"
     t.datetime "created_at"
     t.datetime "updated_at"

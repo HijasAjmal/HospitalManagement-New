@@ -2,6 +2,7 @@ require 'securerandom'
 class SessionsController < ApplicationController
 
 
+  filter_access_to :all
   # check session nil or not
   def index
     if session[:current_user_id]
@@ -31,6 +32,7 @@ class SessionsController < ApplicationController
     else
       @user = User.first(:conditions => { :user_name => params[:user_name] , :password => params[:password]})
     end
+
 
     if @user.nil?
       flash[:notice] = 'User Name or Password incorrect.....!'
