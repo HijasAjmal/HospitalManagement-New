@@ -20,7 +20,7 @@ class BedsController < ApplicationController
   end
 
   # new bed
-  def new
+  def new ## change to model
     @room = Room.find(params[:room_id][:id])
     @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i+params[:no_of_beds].to_i)
     @no = params[:no_of_beds].to_i
@@ -43,15 +43,13 @@ class BedsController < ApplicationController
 
 
   def update
-      if @bed.update_attributes(params[:bed])
-        redirect_to :controller => :beds
-      end
-
+    if @bed.update_attributes(params[:bed])
+      redirect_to :controller => :beds
+    end
   end
 
   def destroy
-    @bed.destroy
-    redirect_to :controller => :beds
+    redirect_to :controller => :beds if @bed.destroy
   end
 
 

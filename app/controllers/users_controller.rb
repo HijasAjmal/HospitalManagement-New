@@ -1,6 +1,9 @@
 require 'securerandom'
 class UsersController < ApplicationController
 
+
+
+filter_access_to :all
   # list all the users
   def index
     @users = User.all
@@ -8,7 +11,7 @@ class UsersController < ApplicationController
 
 
   # signup method
-  def signup
+  def signup #callbacks
     @user = User.new()
     if User.first(:conditions => {:email => params[:email]}) || Doctor.find(:first, :conditions => {:email => params[:email]}) || Patient.find(:first, :conditions => {:email => params[:email]})
      flash[:notice] = "Email Already Exist in Our Database...!"

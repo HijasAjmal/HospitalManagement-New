@@ -1,0 +1,95 @@
+<div class="container border rounded shadow p-4 mb-4 border-secondary w-50" style="margin-top:5%;">
+<div class="row panel panel-success" style="margin-top:2%;">
+            <div class="panel-heading lead">
+                <div class="row">
+            </div>
+            <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3">
+                                    <center>
+                                        <span class="text-left" style="margin-left: 5px;">
+                                        <%= image_tag Photo.findImage(@user.id), :class => "img-responsive img-thumbnail"%>
+                                    </span></center>
+                                    <div class="panel">
+                                        <table class="table">
+                                            <tbody>
+                                                        <tr>
+                                                        <td class="text-center">
+                                                            <button class="btn btn-success btn-block"><%= link_to 'Change', :controller => :photos, :action => "new", :id => @user.id%></button>
+                                                        </td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="col-lg-9 col-md-9">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#Details" class="text-success"><i class="fa fa-indent"></i> Details</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div id="Details" class="tab-pane  active">
+                                            <div class="table-responsive panel">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                                <td class="text-success"><i class="fa fa-user"></i> First Name</td>
+                                                                <td><%= @doctor.first_name%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Middle Name</td>
+                                                                <td><%= @doctor.middle_name%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Last Name</td>
+                                                                <td><%= @doctor.last_name%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Contact Number</td>
+                                                                <td><%= @doctor.contact_number %></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Email</td>
+                                                                <td><%= @doctor.email%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-list-ol"></i> Date Of Birth</td>
+                                                                <td><%= @doctor.date_of_birth %></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-book"></i>Nationality</td>
+                                                                <td><%= @doctor.nationality %></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-group"></i> Gender</td>
+                                                                <td><%= @doctor.gender%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Qualifications</td>
+                                                                <td><%= @doctor.qualifications%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Experience</td>
+                                                                <td><%= @doctor.experience%></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-success"><i class="fa fa-calendar"></i> Department Name</td>
+                                                                <td><%= @doctor.department.department_name%></td>
+                                                            </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="apbutton" data-toggle="modal" data-target="#exampleModalCenter">
+                                      <%= link_to "Appointments", :controller => :doctors, :action => "appointment_list_for_doctor"%>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- /.table-responsive -->
+            </div>
+        </div>
+      </div>

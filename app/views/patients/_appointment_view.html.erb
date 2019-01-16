@@ -32,10 +32,8 @@
         </tr>
         <tr>
             <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Recommendation To Admin</td>
-            <td><%= collection_select :opt, :id, Option.all, :id, :opt, :class => "control-form"%></td>
+            <td><%= select_tag :is_recommended, options_for_select(Patient::OPTIONS.each{|key, value|}, :class => "control-form") %></td>
         </tr>
-
-
 </tbody>
 </table>
 <% if @flag == 0 %>

@@ -5,9 +5,6 @@
     <div class="selectdep">
     <%= collection_select(:department, :id, Department.all, :id, :department_name, {:prompt => "Select Department"}, { :onchange => "list_doctors(this.value);"})%></div>
     </div>
-
       <div id="doctor" style="width: 50%; height: 25%; margin-top: 35px;">
-
     </div>
-
 </div>

@@ -1,8 +1,11 @@
 <div class="container border w-50" style="height: 40%; margin-top: 6%;">
-  	<% form_for(@bed) do |f| %>
-   	<div class="text-center">
+  <% form_for(@bed) do |f| %>
+   	<div class="text-center"></br></br>
     	<h3>Update Bed</h3>
-  	</div></hr></br>
+  	</div>
+    <!--  -->
+    <hr></br></br></br>
+    <!--  -->
   	<div class="form-row">
     	<div class="form-group col-md-6">
       		<label >Department Name</label>
@@ -12,18 +15,21 @@
       		<label >Room Id</label>
       		<%= text_field_tag :room_id, params[:room_id], :value => @room.room_id, :disabled => true, :class => "form-control"%>
     	</div>
-  </div></br>
-
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label >Bed Status</label>
-      <%= f.collection_select :opt, :id, Bed::OPTIONS, :id, :opt%>
-      <!-- <%= f.text_field :is_engaged, :class => "form-control" %> -->
     </div>
-  </div>
-	<div>
-      <p>1 - Not Available</p>&nbsp <p>2 - Available</p>
-    </div></br>
-  </br></br><%= f.submit 'Update', :name => nil, :class => "btn btn-primary upbedbtn" %>
-<% end %>
+    <!--  -->
+    </br></br></br>
+    <!--  -->
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label >Bed Status::</label>
+        <div class = "selectbedfield">
+          <%= f.select :is_engaged, options_for_select(Bed::OPTIONS.each{|key, value|}) %>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+    </br></br>
+    <!--  -->
+    <%= f.submit 'Update', :name => nil, :class => "btn btn-primary upbedbtn" %>
+  <% end %>
 </div>

@@ -1,13 +1,15 @@
-class User < ActiveRecord::Base
+SSSSclass User < ActiveRecord::Base
   belongs_to :user_record, :polymorphic => true, :dependent => :destroy
   has_many :photos
   has_many :reports
 
-  has_many :roles
   def role_symbols
-    roles.map do |role|
-      role.name.underscore.to_sym
-    end
+    return self.user_record_type.underscore.to_sym.to_a
+  end
+
+  def self.findUser(user)
+    @user = first(:conditions => {:user_record_id => user, :user_record_type => "Patient"})
+    return @user.user_name
   end
 
 

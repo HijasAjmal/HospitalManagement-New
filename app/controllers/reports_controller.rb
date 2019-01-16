@@ -1,5 +1,6 @@
 class ReportsController < ApplicationController
 
+
   # upload new report
   def new
     @report = Report.new

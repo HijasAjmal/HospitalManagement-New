@@ -1,24 +1,17 @@
 <div class="container border rounded shadow p-4 mb-4 border-secondary w-60" style="margin-top:5%;">
-
 <div class="row panel panel-success" style="margin-top:2%;">
             <div class="panel-heading lead">
                 <div class="row">
-
             </div>
             <div class="panel-body">
-
-
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
-
                             <div class="row">
                                 <div class="col-lg-3 col-md-3">
                                     <center>
                                         <span class="text-left" style="margin-left: 5px;">
                                           <%= image_tag Photo.findImage(@user.id), :class => "img-responsive img-thumbnail"%>
-
                                     </span></center>
-
                                     <div class="panel">
                                         <table class="table">
                                             <tbody>
@@ -27,12 +20,9 @@
                                                           <button class="btn btn-success btn-block"><%= link_to 'Change', :controller => :photos, :action => "new", :id => @user.id%></button>
                                                         </td>
                                                     </tr>
-
                                             </tbody>
                                         </table>
                                     </div>
-
-
                                 </div>
                                 <div class="col-lg-9 col-md-9">
                                     <ul class="nav nav-tabs">
@@ -40,14 +30,11 @@
                                         <li><a data-toggle="tab" href="#Appointmenthistory" class="text-success"><i class="fa fa-bookmark-o"></i>Appointment History</a></li>
                                         <li><a data-toggle="tab" href="#Records" class="text-success"><i class="fa fa-home"></i> Records</a></li>
                                     </ul>
-
                                     <div class="tab-content">
                                         <div id="Details" class="tab-pane  active">
-
                                             <div class="table-responsive panel">
                                                 <table class="table">
                                                     <tbody>
-
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-user"></i> Name</td>
                                                                 <td><%=@patients.first_name+" "+@patients.middle_name+" "+@patients.last_name%></td>
@@ -80,7 +67,6 @@
                                                 </table>
                                             </div>
                                         </div>
-
                                         <div id="Appointmenthistory" class="tab-pane fade">
                                             <% if @appointments.empty?%>
                                                 <h3 style="color: red;">No Recent History<h3>
@@ -134,13 +120,10 @@
                                                   <% @index = @index+1%>
                                                   <% end %>
                                               </div>
-
                                           </div>
                                           <% end %>
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -149,7 +132,6 @@
                   <%= link_to "Take Appointment", :controller => :patients, :action => "slot_view"%>
                 </button>
                 <!-- <button class="apbutton"><%= link_to '<span><p>Take Appointment</p></span>', :controller => :timeslots, :action => "index", :style => "text-decoration: none;"%></button> -->
-
             </div>
         </div>
       </div>

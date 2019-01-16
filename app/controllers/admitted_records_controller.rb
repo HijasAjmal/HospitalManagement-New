@@ -11,7 +11,7 @@ class AdmittedRecordsController < ApplicationController
   def new_record
     if params[:room_id]
       @flag = 1
-      @beds = Bed.all(:conditions => {:is_engaged => 2, :room_id => params[:room_id]})
+      @beds = Bed.all(:conditions => {:is_engaged => 0, :room_id => params[:room_id]})
       render :update do |page|
       page.replace_html 'bedlistform' ,:partial =>'bed_list'
       end
@@ -25,7 +25,7 @@ class AdmittedRecordsController < ApplicationController
   # create new record
   def create_record
     @bed = Bed.find(params[:bed_id][:id])
-    if @bed.update_attributes(:is_engaged => 1).nil?
+    unless @bed.update_attributes(:is_engaged => 1)
       flash[:notice] = "Failed to create admitted record.....Try again...!"
       redirect_to("/comments?id=1")
     else
@@ -41,13 +41,13 @@ class AdmittedRecordsController < ApplicationController
 
   # deleting record
   def delete
-    if @admitted_record = AdmittedRecord.delete(params[:id]).nil?
+@admitted_record = AdmittedRecord.find(params[:id])
+    unless @admitted_record.destroy
       flash[:notice] = "Failed to delete the record.........Try again........"
       redirect_to("/comments?id=1")
     else
       @bed = Bed.find(@admitted_record.bed_id)
-      @bed.update_attributes(:is_engaged => 2)
-      @admitted_record.save
+      @bed.update_attributes(:is_engaged => 0)
       redirect_to("/comments?id=1")
     end
   end
@@ -62,20 +62,11 @@ class AdmittedRecordsController < ApplicationController
 
 
 
-  def dischargeRecord
+  def discharge_record
     @record = AdmittedRecord.find(params[:id])
-    @record.update_attributes(:is_discharged => 1, :discharged_date => Time.now.strftime("%Y-%m-%d"), :discharged_time => Time.now.strftime("%H:%M %p"))
+    if @record.update_attributes(:is_discharged => 1, :discharged_date => Time.now.strftime("%Y-%m-%d"), :discharged_time => Time.now.strftime("%H:%M %p"))
     redirect_to :controller => :admitted_records
   end
-
-  def findPatient(msg)
-    @patient = Patient.find(msg)
-    return @patient.first_name+" "+@patient.middle_name+" "+@patient.last_name
   end
 
-
-  def findOption(msg)
-    @option = Option.find(msg)
-    return @option.opt
-  end
 end

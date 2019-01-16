@@ -1,49 +1,70 @@
 <div class="container border w-50" style="height: 50%;">
   <% form_for @appointment, :url => {:id => @slot_id, :action => "create"} do |f| %>
-   <div class="text-center">
-    <h1>New appointment</h1>
-    <%= f.hidden_field :date, :value => Slot.findSlotDate(@slot_id)%>
-    <%= f.hidden_field :patient_id, :value => @patient.id%>
-    <%= f.hidden_field :doctor_id, :value => session[:current_user_id]%>
-  </div></br>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Name</label>
-      <%= text_field_tag :name, params[:name], :value => @patient.first_name+" "+@patient.middle_name+" "+@patient.last_name, :disabled => true, :class => "form-control"%>
+    <div class="text-center">
+      <h1>New appointment</h1>
+      <%= f.hidden_field :date, :value => Slot.findSlotDate(@slot_id)%>
+      <%= f.hidden_field :patient_id, :value => @patient.id%>
+      <%= f.hidden_field :doctor_id, :value => session[:current_user_id]%>
     </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Email</label>
-      <%= text_field_tag :email, params[:email], :value => @patient.email, :disabled => true, :class => "form-control"%>
+    <!--  -->
+    </br>
+    <!--  -->
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Name</label>
+        <%= text_field_tag :name, params[:name], :value => @patient.first_name+" "+@patient.middle_name+" "+@patient.last_name, :disabled => true, :class => "form-control"%>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Email</label>
+        <%= text_field_tag :email, params[:email], :value => @patient.email, :disabled => true, :class => "form-control"%>
+      </div>
     </div>
-  </div></br>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputEmail4">Contact Number</label>
-      <%= text_field_tag :contact_number, params[:contact_number], :value => @patient.contact_number, :disabled => true, :class => "form-control"%>
+    <!--  -->
+    </br>
+    <!--  -->
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Contact Number</label>
+        <%= text_field_tag :contact_number, params[:contact_number], :value => @patient.contact_number, :disabled => true, :class => "form-control"%>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Date Of Birth</label>
+        <%= text_field_tag :date_of_birth, params[:date_of_birth], :value => @patient.date_of_birth, :disabled => true, :class => "form-control"%>
+      </div>
     </div>
-    <div class="form-group col-md-6">
-      <label for="inputPassword4">Date Of Birth</label>
-      <%= text_field_tag :date_of_birth, params[:date_of_birth], :value => @patient.date_of_birth, :disabled => true, :class => "form-control"%>
+    <!--  -->
+    </br>
+    <!--  -->
+    <div class="form-group">
+      <label for="inputAddress">Address</label>
+      <%= text_field_tag :address, params[:address], :value => @patient.address, :disabled => true, :class => "form-control"%>
     </div>
-  </div></br>
-  <div class="form-group">
-    <label for="inputAddress">Address</label>
-    <%= text_field_tag :address, params[:address], :value => @patient.address, :disabled => true, :class => "form-control"%>
-  </div></br>
-  <div class="form-group">
-    <label for="inputAddress2">Case</label>
-    <%= f.text_field :case, :class => "form-control" %>
-  </div></br>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">Gender</label>
-      <%= text_field_tag :gender, params[:gender], :value => @patient.gender, :disabled => true, :class => "form-control"%>
+    <!--  -->
+    </br>
+    <!--  -->
+    <div class="form-group">
+      <label for="inputAddress2">Case</label>
+      <%= f.text_field :case, :class => "form-control" %>
     </div>
-    <div class="form-group col-md-6">
-      <label for="inputState">Blood-Group</label>
-      <%= text_field_tag :blood_group, params[:blood_group], :value => @patient.blood_group, :disabled => true, :class => "form-control"%>
+    <!--  -->
+    </br>
+    <!--  -->
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">Gender</label>
+        <%= text_field_tag :gender, params[:gender], :value => @patient.gender, :disabled => true, :class => "form-control"%>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="inputState">Blood-Group</label>
+        <%= text_field_tag :blood_group, params[:blood_group], :value => @patient.blood_group, :disabled => true, :class => "form-control"%>
+      </div>
     </div>
-  </div></br>
-  <%= f.submit 'Create', :class => "btn btn-primary" %>
-<% end %>
+    <!--  -->
+    </br>
+    <!--  -->
+    <%= f.submit 'Create', :class => "btn btn-primary" %>
+    <% end %>
 </div>

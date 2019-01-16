@@ -47,10 +47,8 @@ filter_access_to :all
       if @appointment.nil?
         @flag = 1
       else
-        @slot = Slot.first(:conditions => {:id => @appointment.slot_id, :date => Time.now.strftime("%Y-%m-%d")})
-        @time_slot = Timeslot.find(@slot.timeslot_id.to_i)
-        if @time_slot.doctor_id == @doctor.id
-          if @slot.date.strftime("%m:%d:%y") == Time.now.strftime("%m:%d:%y") && @slot.time.strftime("%H:%M") > Time.now.strftime("%H:%M")
+        if @appointment.slot.timeslot.doctor_id == @doctor.id
+          if @appointment.slot.date.strftime("%m:%d:%y") == Time.now.strftime("%m:%d:%y") && @appointment.slot.time.strftime("%H:%M") > Time.now.strftime("%H:%M")
             @flag = 1
           else
             @flag = 0
@@ -69,14 +67,13 @@ filter_access_to :all
   end
 
   # update patient frofile form
-  def updateprofile
+  def updateprofile #TODO
     @blood_group = Bloodgroup.find(params[:blood][:id])
-    @gender = Gender.find(params[:gender][:id])
     @date = Date.civil(*params[:event].sort.map(&:last).map(&:to_i))
     @patient = Patient.find(params[:patient])
     @patient.update_attributes(:contact_number => params[:contact_number],
-  :date_of_birth => @date, :blood_group => @blood_group.name, :gender => @gender.name,
-:address => params[:address])
+  :date_of_birth => @date, :blood_group => @blood_group.name, :gender => params[:option],
+:address => params[:address], :profile_status => 1)
     @user = User.first(:conditions => {:user_record_id  => params[:patient], :user_record_type => "Patient"})
     @user.update_attributes(:profile_status => 1)
     redirect_to ("/patients/details_view_patient")
@@ -99,7 +96,7 @@ filter_access_to :all
   end
 
 
-  def search_slots
+  def search_slots#TODO
     @doctor = Doctor.find(params[:id])
     @date = Date.civil(*params[:date].sort.map(&:last).map(&:to_i)).strftime("%Y-%m-%d")
     @time = params[:start_time][:hour]+":"+params[:start_time][:minute]+":00"
@@ -119,15 +116,18 @@ filter_access_to :all
       end
     end
   end
-  # delete time-slot
-  def delete
+
+
+
+  # delete patient by admin
+  def delete#TODO
     @user = User.first(:conditions => {:user_record_id => params[:id], :user_record_type => "Patient"})
     @user.destroy
     redirect_to :controller => :patients
   end
 
   # find documents Uploaded by user id
-  def find_reports(user)
+  def find_reports(user)#TODO
     @reports = Report.all(:conditions => {:user_id => user })
     if @reports.empty?
       @report_status = 1

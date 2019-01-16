@@ -1,6 +1,7 @@
 <div class="container">
   <h2><b>Listing All Records</b></h2>
   <table class="table table-bordered">
+    <!--  -->
     <thead>
       <tr>
         <th>SI:No</th>
@@ -12,6 +13,7 @@
         <th>Discharged Time</th>
       </tr>
     </thead>
+    <!--  -->
     <tbody>
       <% @admitted_records.each do |records| %>
       <tr>
@@ -19,7 +21,7 @@
         <td><%=Patient.findPatient(records.patient_id)%></td>
         <td><%=h records.date%></td>
         <td><%=h records.time%></td>
-        <td><%=h findOption(records.is_discharged)%></td>
+        <td><%=AdmittedRecord.findOption(records.is_discharged)%></td>
         <td><%=h records.discharged_date%></td>
         <td><%=h records.discharged_time%></td>
         <td><%= link_to 'Discharge Patient', :controller => :admitted_records, :action => "discharge_patient", :id => records.id%></td>
@@ -27,5 +29,6 @@
       </tr>
       <% end %>
     </tbody>
+    <!--  -->
   </table>
 </div>

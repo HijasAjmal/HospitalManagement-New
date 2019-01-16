@@ -2,6 +2,7 @@
   <h2><b>Listing All Recommendations</b></h2>
   <h5 style="margin-left: 40%; color: red;"><%= flash[:notice]%></h5>
   <table class="table table-bordered">
+    <!--  -->
     <thead>
       <tr>
         <th>SI:No</th>
@@ -10,17 +11,19 @@
         <th>Recommended</th>
       </tr>
     </thead>
+    <!--  -->
     <tbody>
       <% @recommendations.each do |r| %>
       <tr>
         <td><%=h r.id %></td>
         <td><%= PatientCondition.findPatientCondition(r.patient_condition) %></td>
         <td><%=h r.medication %></td>
-        <td><%=h optionStatus(r.is_recommended) %></td>
+        <td><%= Comment.findOption(r.is_recommended) %></td>
         <td><%= link_to 'Alot the Room', :controller => :admitted_records, :action => "new_record", :id => r.id%></td>
         <td></td>
       </tr>
       <% end %>
     </tbody>
+    <!--  -->
   </table>
 </div>

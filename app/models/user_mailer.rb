@@ -20,7 +20,7 @@ class UserMailer < ActionMailer::Base
     from          "hijasajmal@gmail.com"
     subject       "Password Reset Request"
     sent_on       Time.now
-    body          :user => user, :url => "http://localhost:3000/sessions/change_p/?id="+user.remember_token.to_s
+    body          :user => user, :url => "http://localhost:3000/sessions/change_pwd/?id="+user.remember_token.to_s
   end
 
 end

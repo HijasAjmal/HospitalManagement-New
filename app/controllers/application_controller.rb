@@ -21,18 +21,9 @@ class ApplicationController < ActionController::Base
   def set_current_user
     Authorization.current_user = current_user
   end
-  # def set_current_user
-  #   if session[:current_user_id].present?
-  #     @user = User.find(session[:current_user_id])
-  #     @user_type = @user.user_record_type
-  #     Authorization.current_user = @user_type
-  #   end
-  # end
-  #
-  # protected
-  #
-  # def permission_denied
-  #   flash[:error] = "Sorry, you are not allowed to access that page."
-  #   redirect_to root_url
-  # end
+
+  def permission_denied
+    flash[:notice] = "Sorry, you are not allowed to access that page.";
+    redirect_to ("/")
+  end
 end

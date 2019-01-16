@@ -45,7 +45,7 @@ class SessionsController < ApplicationController
       if @user.user_record_type == "Admin"
         redirect_to("/sessions/dashboard")
       elsif @user.user_record_type == "Doctor"
-        redirect_to("/doctors/patient_details_login")
+        redirect_to("/doctors/profile_view_doctor")
       elsif @user.user_record_type == "Patient"
         redirect_to :controller => :patients, :action => :details_view_patient
       end
@@ -97,7 +97,7 @@ class SessionsController < ApplicationController
   end
 
   # method to change the password
-  def changepwd
+  def change_pwd
     @user = User.first(:conditions => { :remember_token => params[:id]})
     if @user.nil?
       flash[:notice] = 'This link is not valid..!'

@@ -31,7 +31,7 @@ class AppointmentsController < ApplicationController
   end
 
   # create new appointment
-  def create
+  def create ### if condition
     @slot_id = Slot.find(params[:id])
     @appointment = @slot_id.appointment.create(params[:appointment])
     @slot_id.update_attributes(:status => 1)
@@ -39,13 +39,8 @@ class AppointmentsController < ApplicationController
   end
 
   # destroy appointment
-  def destroy
+  def destroy### if condition
     @appointment.destroy
     redirect_to(appointments_url)
-  end
-
-  # list of appointments for doctors
-  def doctor_appointment_list
-  
   end
 end

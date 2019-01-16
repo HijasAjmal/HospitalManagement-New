@@ -2,50 +2,37 @@
     <h3 style="color: red; margin-left: 40%; margin-top: 20%;"> Invalid Patient Id<h3>
 <%else%>
 <div class="container border rounded shadow p-4 mb-4 border-secondary w-50" style="margin-top:5%;">
-
 <div class="row panel panel-success" style="margin-top:2%;">
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
-
                             <div class="row">
                                 <div class="col-lg-3 col-md-3">
                                     <center>
                                         <span class="text-left" style="margin-left: 5px;">
                                         <%= image_tag Photo.findImage(@user.id), :class => "img-responsive img-thumbnail"%>
-
                                     </span></center>
-
                                     <div class="panel">
                                         <table class="table">
                                             <tbody>
                                                         <tr>
                                                         <td class="text-center">
-
                                                         </td>
                                                     </tr>
-
                                             </tbody>
                                         </table>
                                     </div>
-
-
                                 </div>
-
                                 <div class="col-lg-9 col-md-9">
                                     <ul class="nav nav-tabs">
                                         <li class="active"><a data-toggle="tab" href="#Details" class="text-success"><i class="fa fa-indent"></i> Details</a></li>
                                         <li><a data-toggle="tab" href="#Appointmentdetails" class="text-success"><i class="fa fa-bookmark-o"></i> Appointment Details</a></li>
                                         <li><a data-toggle="tab" href="#Reports" class="text-success"><i class="fa fa-home"></i> Reports</a></li>
-                                        <li><a data-toggle="tab" href="#General" class="text-success"><i class="fa fa-info"></i> General Info</a></li>
                                     </ul>
-
                                     <div class="tab-content">
                                         <div id="Details" class="tab-pane  active">
-
                                             <div class="table-responsive panel">
                                                 <table class="table">
                                                     <tbody>
-
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-user"></i> First Name</td>
                                                                 <td><%=@patient.first_name %></td>
@@ -93,10 +80,8 @@
                                                       <p>Upload Reports Last, After Uploading Report Patient Profile will be Hide</p><br>
                                             </address>
                                               </div>
-
                                                 <button class="btn btn-success btn-block"><%= link_to 'Add Report', :controller => :reports, :action => "new", :id => @user.id%></button>
                                             </div>
-
                                         </div>
                                         <div id="Appointmentdetails" class="tab-pane fade">
                                             <div class="table-responsive panel">
@@ -137,68 +122,23 @@
                                                                         </tr>
                                                                         <tr>
                                                                             <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Recommendation To Admin</td>
-                                                                            <td><%= collection_select :opt, :id, Option.all, :id, :opt, :class => "control-form"%></td>
+                                                                            <td><%= select_tag :option, options_for_select(Patient::OPTIONS.each{|key, value|}, :class => "control-form") %></td>
                                                                         </tr>
-
-
                                                                 </tbody>
                                                                 </table>
                                                                 <% if @flag == 0 %>
-                                                                <%= submit_tag "Update Record", :name => nil, :class => "btn btn-primary upbedbtn"%>
+                                                                <%= submit_tag "Create Record", :name => nil, :class => "btn btn-primary upbedbtn"%>
                                                                 <% end %>
                                                                 <% end %>
                                                     <% end %>
-
                                             </div>
                                         </div>
-
-                                        <div id="General" class="tab-pane fade">
-                                            <div class="table-responsive panel">
-                                                <table class="table">
-                                                    <tbody>
-                                                                <tr>
-                                                                <td class="text-success"><i class="fa fa-university"></i> Last School</td>
-                                                                <td>Pawan Mall's School</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-calendar"></i> Date of Admission</td>
-                                                                <td>March 4, 2009</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-home"></i> Birth Place</td>
-                                                                <td>Delhi</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-calendar"></i> Academic Year</td>
-                                                                <td>2015-2016</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-medkit"></i> Medical Condition</td>
-                                                                <td>Normal</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="fa fa-thumbs-up"></i> Active/Inactive</td>
-                                                                <td>Student is Active</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-success"><i class="glyphicon glyphicon-time"></i> Last Editing</td>
-                                                                <td>2015-08-20 09:41:56</td>
-                                                            </tr>
-
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 <!-- /.table-responsive -->
-
             </div>
         </div>
       </div>

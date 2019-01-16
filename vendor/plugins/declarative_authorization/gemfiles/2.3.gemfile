@@ -5,4 +5,3 @@ gem 'sqlite3'
 gem 'ruby_parser'
 gem 'rdoc'
 gemspec :path => '..'
-

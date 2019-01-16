@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
 
 
   # create photo document
-  def create
+  def create#callback
     @user = User.find(session[:current_user_id])
     @user.photos.destroy_all
     @user.photos.create(params[:photo])

@@ -12,7 +12,6 @@
           </th>
           <th><a href="rooms.csv" style="text-decoration: none; width: 5px; border-radius: 11px;"><button type="button" class="btn bednewbtn">CSV Report</button></a>
                 <!-- <%= link_to 'CSV Report', :controller => ("rooms.csv")%> -->
-
           </th>
         </tr>
       </thead>
@@ -55,7 +54,6 @@
                 <%= collection_select(:category, :id, Department.all, :id, :department_name,{:include_blank => 'Select Department'}, {:class => "optionfield"}) %></br></br>
               </div>
       </div>
-
       <%= text_field_tag :room_id, params[:room_id], :placeholder => "Room Id", :required => true %></br></br>
 
       <%= text_field_tag :no_of_beds, params[:no_of_beds], :placeholder => "No: of Beds", :required => true %></br></br>

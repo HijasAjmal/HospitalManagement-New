@@ -23,16 +23,18 @@ filter_access_to :all
     @doctor = @user.user_record
   end
 
-
+  def profile_view_doctor
+    @user = User.find(session[:current_user_id])
+    @doctor = @user.user_record
+  end
 
   # update doctor profile with full details
   def update_profile
     @doctor = Doctor.find(params[:doctor])
-    @gender = Gender.find(params[:gender][:id])
     @nationality = Country.find(params[:nationality][:id])
     @user = User.first(:conditions => {:user_record_id => params[:doctor], :user_record_type => "Doctor"})
     if @doctor.update_attributes(:contact_number => params[:contact_number], :photo => params[:photo],
-    :date_of_birth => params[:date_of_birth], :nationality => @nationality.country_name, :gender => @gender.name,
+    :date_of_birth => params[:date_of_birth], :nationality => @nationality.country_name, :gender => params[:option],
     :qualifications => params[:qualifications], :experience => params[:experience]).nil?
       flash[:notice] = "Failed to create your profile, Try again..........."
       redirect_to :controller => :sessions, :action => "signin"
@@ -43,11 +45,17 @@ filter_access_to :all
   end
 
 
+  def appointment_list_for_doctor
+    @appointments = Appointment.all(:conditions => {:date => Time.now.strftime("%Y-%m-%d"), :doctor_id => current_user.user_record_id})
+  end
+
+
   # delete doctor by admin
   def delete
     @doctor = User.first(:conditions => {:user_record_id => params[:id], :user_record_type => "Doctor"})
-    @doctor.destroy
+    if @doctor.destroy
     redirect_to ("/doctors/index")
+  end
   end
 
 

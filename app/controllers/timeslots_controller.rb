@@ -35,7 +35,7 @@ class TimeslotsController < ApplicationController
 
 
   # create new time slot
-  def create
+  def create #callback
     @doctor = Doctor.find(params[:doctor][:id])
     @timeslot = @doctor.timeslots.create(params[:timeslot])
     @timeslot = Timeslot.find(@timeslot.id)

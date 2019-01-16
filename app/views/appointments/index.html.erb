@@ -1,6 +1,8 @@
 <div class="container">
   <h2><b>Listing appointments</b></h2>
+  <!--  -->
   <table class="table table-bordered">
+  <!--  -->
     <thead>
       <tr>
         <th>SI No</th>
@@ -8,6 +10,7 @@
         <th>Patient</th>
       </tr>
     </thead>
+    <!--  -->
     <tbody>
       <% @appointments.each do |appointment| %>
         <td><%=h appointment.id %></td>
@@ -17,6 +20,6 @@
       </tr>
       <% end %>
     </tbody>
+    <!--  -->
   </table>
 </div>
-<br />

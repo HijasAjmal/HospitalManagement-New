@@ -1,5 +1,6 @@
 class DepartmentsController < ApplicationController
 
+
   # display all departments
   def index
     @departments = Department.all

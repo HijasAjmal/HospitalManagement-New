@@ -3,11 +3,12 @@ class RoomsController < ApplicationController
 
 
   before_filter :first_rule,
-    :only => [:edit, :destroy, :updateRoom]
+    :only => [:destroy, :updateRoom]
 
   def first_rule
-    @bed = Bed.find(params[:id])
+     @room = Room.find(params[:id])
   end
+
 
 
   # list all rooms
@@ -52,7 +53,7 @@ class RoomsController < ApplicationController
 
 
   # update room  details
-  def updateRoom
+  def update_room
     @room = Room.find(params[:id])
     @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i+params[:no_of_beds].to_i)
     @no_of_beds = params[:no_of_beds].to_i
@@ -70,8 +71,7 @@ class RoomsController < ApplicationController
   end
 
 
-  def showRooms
-    # show room details
+  def show_rooms
     @rooms = Room.all(:conditions => {:department_id => params[:id]})
     render :action => "index"
   end

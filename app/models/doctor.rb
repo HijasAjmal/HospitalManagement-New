@@ -1,5 +1,5 @@
 class Doctor < ActiveRecord::Base
-  validates_presence_of :user_id
+  # validates_presence_of :first_name, :last_name, :email, :department
   has_many :users, :as => :user_record
   has_many :timeslots
   has_one :department
@@ -10,7 +10,11 @@ class Doctor < ActiveRecord::Base
   has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :url => "/system/:style/.png"
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\z/
 
-  def self.findDoctor(timeslot)
+
+  GENDER = {1 => "Male", 2 => "Female", 3 => "Other" }
+
+
+  def self.findDoctor(timeslot) #change
     @doctor = find(timeslot.doctor_id)
     return @doctor.first_name+" "+@doctor.middle_name+" "+@doctor.last_name
   end

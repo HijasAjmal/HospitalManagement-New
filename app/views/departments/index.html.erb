@@ -2,6 +2,7 @@
   <h2><b>All Departments</b></h2>
   <%= link_to "Add Department", "/departments/create_department"%>
   <table class="table table-bordered">
+    <!--  -->
     <thead>
       <tr>
         <th></th>
@@ -10,18 +11,20 @@
         <th>Total NO: Beds</th>
       </tr>
     </thead>
+    <!--  -->
     <tbody>
       <% @no = 1%>
       <% @departments.each do |d| %>
       <tr>
         <td><%= @no %></td>
         <td><%=d.department_name %></td>
-        <td><%=link_to Room.count(:conditions => {:department_id => d.id}), :controller => :rooms, :action => "showRooms", :id => d.id%></td>
+        <td><%=link_to Room.count(:conditions => {:department_id => d.id}), :controller => :rooms, :action => "show_rooms", :id => d.id%></td>
         <td><%= Room.sum(:no_of_beds, :conditions => {:department_id => d.id})%></td>
         <% @no += 1%>
         <td><%=link_to 'Delete', :action => "delete", :id => d.id%></td>
       </tr>
       <% end %>
     </tbody>
+    <!--  -->
   </table>
 </div>

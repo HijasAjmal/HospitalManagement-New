@@ -6,11 +6,11 @@ class Room < ActiveRecord::Base
 
 
   def self.to_csv
-    @rooms = Room.all
+    @rooms = all
     FasterCSV.generate do |csv|
       csv << ["id", "total_no_of_beds", "department_id", "Engaged", "Available"]
       @rooms.each do |r|
-        csv << [r.id, r.no_of_beds,r.department_id, Bed.count(:id, :conditions => {:is_engaged => 1, :room_id => r.id}), Bed.count(:id, :conditions => {:is_engaged => 2, :room_id => r.id})]
+        csv << [r.id, r.no_of_beds,r.department_id, Bed.count(:id, :conditions => {:is_engaged => 1, :room_id => r.id}), Bed.count(:id, :conditions => {:is_engaged => 0, :room_id => r.id})]
       end
     end
    end

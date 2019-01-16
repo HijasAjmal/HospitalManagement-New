@@ -3,7 +3,10 @@
     <label >Bed No:</label>
     <%= collection_select :bed_id, :id, @beds, :id, :id, :class => "dropdownmenu"%>
   </div>
-</div></br></br>
+</div>
+<!--  -->
+</br></br>
+<!--  -->
 <div class="form-row">
   <div class="form-group col-md-6">
     <label >Date</label>
@@ -13,5 +16,8 @@
     <label >Time</label>
     <%= text_field_tag :time, params[:time], :value => Time.now.strftime("%H:%M%p"), :disabled => true, :class => "form-control" %>
   </div>
-</div></br></br>
+</div>
+<!--  -->
+</br></br>
+<!--  -->
 </br></br><%= submit_tag "Create Record", :name => nil, :class => "btn btn-primary recbtn" %>

@@ -29,5 +29,5 @@ class Slot < ActiveRecord::Base
   	return @slot.time.strftime("%H:%M%p")
   end
 
-  
+
 end

@@ -1,6 +1,8 @@
 <div class="container">
   <h2><b>Bed Report</b></h2>
+  <!--  -->
   <table class="table table-bordered">
+    <!--  -->
     <thead>
       <tr>
         <th>SI No</th>
@@ -8,15 +10,16 @@
         <th>Room No</th>
       </tr>
     </thead>
+    <!--  -->
     <tbody>
       <% @beds.each do |bed| %>
       <tr>
         <td><%=h bed.id %></td>
-        <td><%=h findBedOption(bed.is_engaged)%></td>
+        <td><%=Bed.findOption(bed.is_engaged)%></td>
         <td><%=h bed.room_id %></td>
       </tr>
       <% end %>
     </tbody>
+    <!--  -->
   </table>
 </div>
-<br />

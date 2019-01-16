@@ -1,8 +1,8 @@
 <%= stylesheet_link_tag 'form_styles' %>
-
 <div class="container">
   <h2><b>Listing All Patients</b></h2>
   <table class="table table-bordered">
+    <!--  -->
     <thead>
       <tr>
         <th>Firstname</th>
@@ -11,6 +11,7 @@
         <th>Email</th>
       </tr>
     </thead>
+    <!--  -->
     <tbody>
       <% @patients.each do |p| %>
       <tr>
@@ -23,5 +24,6 @@
       </tr>
       <% end %>
     </tbody>
+    <!--  -->
   </table>
 </div>

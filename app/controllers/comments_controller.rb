@@ -7,11 +7,12 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
   end
 
+
   # list all comments
-  def index
+  def index ## change condition
     if params[:id] == "1"
       @admin = 1
-      @recommendations = Comment.all(:conditions => {:is_recommended => 1, :recommendation_status => 2})
+      @recommendations = Comment.all(:conditions => {:is_recommended => 1, :recommendation_status => 0})
     else
       @comments = Comment.all
     end
@@ -22,14 +23,14 @@ class CommentsController < ApplicationController
   end
 
   # add new comment to appointment
-  def new
+  def new ## change condition
     @appointment = Appointment.find(params[:id])
     @user = User.first(:conditions => {:user_record_id => @appointment.patient_id, :user_record_type => "Patient"})
-    if @appointment.comments.create(:patient_condition => params[:patient_status][:id], :medication => params[:medication], :is_recommended => params[:opt][:id]).nil?
+    if @appointment.comments.create(:patient_condition => params[:patient_status][:id], :medication => params[:medication], :is_recommended => params[:option]).nil?
       flash[:notice] = "Failed to create the Medication details............Try again"
       redirect_to :controller => :patients, :action => "details_view_doctor", :user_id => @user.user_name
     else
-      @appointment.update_attributes(:is_diogonised => 1)
+      @appointment.update_attributes(:is_diogonised => 0)
       redirect_to :controller => :patients, :action => "details_view_doctor", :user_id => @user.user_name
     end
   end
