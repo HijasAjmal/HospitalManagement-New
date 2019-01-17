@@ -24,10 +24,9 @@ class PatientsController < ApplicationController
 
   # creat patient profile view for patient
   def details_view_patient
-    @user = User.find(session[:current_user_id])
-    @patients = @user.user_record
-    @appointments = Appointment.all(:conditions => {:patient_id => @patients.id})
-    find_reports(@user.id)
+    @patient = current_user.user_record
+    @appointments = Appointment.all(:conditions => {:patient_id => @patient.id})
+    find_reports(current_user.id)
   end
 
 
@@ -35,31 +34,24 @@ class PatientsController < ApplicationController
   # create patient profile view for doctor
   def details_view_doctor
     @comment = Comment.new
-      @user = User.first(:conditions => {:user_name => params[:user_id].to_s, :user_record_type => "Patient"})
-      if @user.nil?
-          redirect_to :controller => :doctors, :action => "patient_details_login", :error => "ops! something went wrong.."
-        else
+    @user = User.first(:conditions => {:user_name => params[:user_id].to_s, :user_record_type => "Patient"})
+    if @user.nil?
+      redirect_to :controller => :doctors, :action => "patient_details_login", :error => "ops! something went wrong.."
+    else
       @patient = @user.user_record
-      @doctor = User.find(session[:current_user_id]).user_record
-    begin
+      @doctor = current_user.user_record
       @appointment = Appointment.first(:conditions => {:patient_id => @patient.id, :date => Time.now.strftime("%Y-%m-%d")})
-    rescue
-    end
       if @appointment.nil?
         @flag = 1
-      else
-        if @appointment.slot.timeslot.doctor_id == @doctor.id
-          if @appointment.slot.date.strftime("%m:%d:%y") == Time.now.strftime("%m:%d:%y") && @appointment.slot.time.strftime("%H:%M") > Time.now.strftime("%H:%M")
-            @flag = 1
-          else
-            @flag = 0
-          end
+      elsif @appointment.slot.timeslot.doctor_id == @doctor.id
+        if @appointment.slot.date.strftime("%m:%d:%y") == Time.now.strftime("%m:%d:%y") && @appointment.slot.time.strftime("%H:%M") > Time.now.strftime("%H:%M")
+          @flag = 1
+        else
+          @flag = 0
         end
       end
     end
   end
-
-
 
   # create patient profile form
   def patient_profile_form
@@ -122,9 +114,13 @@ class PatientsController < ApplicationController
 
   # delete patient by admin
   def delete#TODO
-    @user = User.first(:conditions => {:user_record_id => params[:id], :user_record_type => "Patient"})
-    @user.destroy
-    redirect_to :controller => :patients
+    if User.destroy(:conditions => {:user_record_id => params[:id], :user_record_type => "Patient"})
+      flash[:notice] = "Deleted Patient record successfully..."
+      redirect_to :controller => :patients
+    else
+      flash[:notice] = "Failed to delete patient record..."
+      redirect_to :controller => :patients
+    end
   end
 
   # find documents Uploaded by user id

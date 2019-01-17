@@ -32,7 +32,7 @@ authorization do
   role :patient do
     has_permission_on [:sessions], :to => [:index, :signin, :new, :create, :show, :destroy, :confirm, :forget, :changepwd]
     has_permission_on [:patients], :to => [:details_view_patient, :patient_profile_form, :updateprofile, :slot_view, :search_slots, :find_reports]
-    has_permission_on [:appointments], :to => [:new]
+    has_permission_on [:appointments], :to => [:new, :create]
     has_permission_on [:photos], :to => [:new, :create]
     has_permission_on [:reports], :to => [:new, :create]
   end

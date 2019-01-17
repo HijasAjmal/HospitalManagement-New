@@ -21,7 +21,7 @@ class AppointmentsController < ApplicationController
   # new appointment
   def new
     @appointment = Appointment.new
-    @patient = User.find(session[:current_user_id]).user_record
+    @patient = current_user.user_record
     @slot_id = params[:id]
   end
 

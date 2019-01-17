@@ -21,14 +21,6 @@ class RoomsController < ApplicationController
       end
   end
 
-
-  # new room
-  def new
-    @room = Room.new
-    @departments = Department.all
-  end
-
-
   # editing room details
   def edit
     @room_beds = Bed.count(:id, :conditions => {:room_id => params[:id]})
@@ -54,15 +46,25 @@ class RoomsController < ApplicationController
   # update room  details
   def update_room
     @room = Room.find(params[:id])
-    @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i+params[:no_of_beds].to_i)
-    redirect_to :controller => :rooms
+    if @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i+params[:no_of_beds].to_i)
+      flash[:notice] = "Room Updated...."
+      redirect_to :controller => :rooms
+    else
+      flash[:notice] = "Failed to update room...."
+      redirect_to :controller => :rooms
+    end
   end
 
 
   # destroy room
   def destroy
-    @room.destroy
-    redirect_to :controller => :rooms
+    if @room.destroy
+      flash[:notice] = "Room deleted successfully..."
+      redirect_to :controller => :rooms
+    else
+      flash[:notice] = "Failed to delete room..."
+      redirect_to :controller => :rooms
+    end
   end
 
 

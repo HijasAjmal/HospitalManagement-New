@@ -18,15 +18,12 @@ class TimeslotsController < ApplicationController
   def new
     @timeslot = Timeslot.new
     if params[:department_id]
-      @flag = 1
       @doctors = Doctor.all(:conditions => {:department_id => params[:department_id]})
       @timeslot = Timeslot.new
       render :update do |page|
-      page.replace_html 'doctor' ,:partial =>'doctor_list'
+        page.replace_html 'doctor' ,:partial =>'doctor_list'
       end
-
     end
-
   end
 
 
@@ -39,34 +36,25 @@ class TimeslotsController < ApplicationController
   # create new time slot
   def create #callback
     @doctor = Doctor.find(params[:doctor][:id])
-    @timeslot = @doctor.timeslots.create(params[:timeslot])
-    @timeslot = Timeslot.find(@timeslot.id)
-    @date_time = @timeslot.start_date_time
-    @count = @timeslot.slot_count_constant.strftime("%M").to_i
-    @slots = @timeslot.slots.create(:date => @timeslot.start_date_time.strftime("%Y-%m-%d"), :time => @timeslot.start_date_time.strftime("%H:%M"))
-    # creating slots
-    loop do
-      if @timeslot.start_date_time == @timeslot.end_date_time
-        break
-      else
-        @date_time = @date_time+@count*60
-        p @date_time
-        if @date_time > @timeslot.end_date_time
-          break
-        else
-          @slots = @timeslot.slots.create(:date => @date_time.strftime("%Y-%m-%d"), :time => @date_time.strftime("%H:%M"))
-        end
-      end
+    if @doctor.timeslots.create(params[:timeslot])
+      flash[:notice] = "Timeslot Created successfully...."
+      redirect_to :controller => :timeslots
+    else
+      flash[:notice] = "Failed to Create successfully...."
+      redirect_to :controller => :timeslots
     end
-    redirect_to :controller => :timeslots, :action => "index"
   end
 
 
   # destroy time slot
   def destroy
-    @timeslot = Timeslot.find(params[:id])
-    @timeslot.destroy
-    redirect_to :controller => :timeslots
+    if Timeslot.destroy(params[:id])
+      flash[:notice] = "Timeslot Deleted successfully..."
+      redirect_to :controller => :timeslots
+    else
+      flash[:notice] = "Failed Timeslot Deleted successfully..."
+      redirect_to :controller => :timeslots
+    end
   end
 
 end

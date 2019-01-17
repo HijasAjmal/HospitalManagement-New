@@ -10,10 +10,16 @@ class PhotosController < ApplicationController
 
   # create photo document
   def create#callback
-    @user = User.find(session[:current_user_id])
-    @user.photos.destroy_all
-    @user.photos.create(params[:photo])
-    redirect_to :controller => :sessions
+    @user = current_user
+    if @user.photos.destroy_all
+      if @user.photos.create(params[:photo])
+        flash[:notice] = "Photo Uploaded successfully..."
+        redirect_to :controller => :sessions
+      end
+    else
+      flash[:notice] = "Failed to Upload Photo..."
+      redirect_to :controller => :sessions
+    end
   end
 
 end

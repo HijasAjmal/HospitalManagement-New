@@ -10,7 +10,12 @@ class ReportsController < ApplicationController
 
   # upload procedure
   def create
-    @report = Report.create(params[:report])
-    redirect_to :controller => :sessions
+    if @report = Report.create(params[:report])
+      flash[:notice] = "Report uploaded successfully..."
+      redirect_to :controller => :sessions
+    else
+      flash[:notice] = "Failed to upload report..."
+      redirect_to :controller => :sessions
+    end
   end
 end

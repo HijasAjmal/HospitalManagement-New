@@ -4,7 +4,7 @@
       <h1>New appointment</h1>
       <%= f.hidden_field :date, :value => @appointment.find_slot_date(@slot_id)%>
       <%= f.hidden_field :patient_id, :value => @patient.id%>
-      <%= f.hidden_field :doctor_id, :value => session[:current_user_id]%>
+      <%= f.hidden_field :doctor_id, :value => Slot.find(@slot_id).timeslot.doctor.id%>
     </div>
     <!--  -->
     </br>

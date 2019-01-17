@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   filter_access_to :all
   # check session nil or not
   def index
-    if session[:current_user_id]
+    if current_user
       redirect_to :controller => :sessions, :action => "signin"
     end
   end
