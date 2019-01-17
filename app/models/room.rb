@@ -3,7 +3,7 @@ class Room < ActiveRecord::Base
   belongs_to :department
   has_many :beds, :dependent => :destroy
   validates_presence_of :no_of_beds
-
+  after_update :create_bed, :if => :no_of_beds_changed?
 
   def self.to_csv
     @rooms = all
@@ -13,5 +13,19 @@ class Room < ActiveRecord::Base
         csv << [r.id, r.no_of_beds,r.department_id, Bed.count(:id, :conditions => {:is_engaged => 1, :room_id => r.id}), Bed.count(:id, :conditions => {:is_engaged => 0, :room_id => r.id})]
       end
     end
+   end
+
+
+   def create_bed
+     count = no_of_beds - no_of_beds_was
+     count.times do
+       self.beds.create()
+     end
+   end
+
+   def create_bed_new(count)
+     count.times do
+       self.beds.create()
+     end
    end
 end

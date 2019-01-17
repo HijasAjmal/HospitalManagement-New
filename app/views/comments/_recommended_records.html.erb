@@ -13,14 +13,14 @@
     </thead>
     <!--  -->
     <tbody>
-      <% @recommendations.each do |r| %>
+      <% @recommendations.each do |recommendation| %>
       <tr>
-        <td><%=h r.id %></td>
-        <td><%= PatientCondition.findPatientCondition(r.patient_condition) %></td>
-        <td><%=h r.medication %></td>
-        <td><%= Comment.findOption(r.is_recommended) %></td>
-        <td><%= link_to 'Alot the Room', :controller => :admitted_records, :action => "new_record", :id => r.id%></td>
-        <td></td>
+        <td><%=h recommendation.id %></td>
+        <td><%= PatientCondition.findPatientCondition(recommendation.patient_condition) %></td>
+        <td><%=h recommendation.medication %></td>
+        <td><%= recommendation.find_option(recommendation.is_recommended) %></td>
+        <td><%= link_to 'Alot the Room', :controller => :admitted_records, :action => "new_record", :id => recommendation.id%></td>
+        <td><%= link_to 'Destroy', :confirm => 'Are you sure?', :action => "delete_comment", :id => recommendation.id %></td>
       </tr>
       <% end %>
     </tbody>

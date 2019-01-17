@@ -1,7 +1,7 @@
 class PatientsController < ApplicationController
 
 
-filter_access_to :all
+  filter_access_to :all
   # list all patients
   def index
       @patients = Patient.all
@@ -34,6 +34,7 @@ filter_access_to :all
 
   # create patient profile view for doctor
   def details_view_doctor
+    @comment = Comment.new
       @user = User.first(:conditions => {:user_name => params[:user_id].to_s, :user_record_type => "Patient"})
       if @user.nil?
           redirect_to :controller => :doctors, :action => "patient_details_login", :error => "ops! something went wrong.."

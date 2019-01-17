@@ -1,6 +1,8 @@
 class DepartmentsController < ApplicationController
 
 
+
+  filter_access_to :all
   # display all departments
   def index
     @departments = Department.all
@@ -9,13 +11,23 @@ class DepartmentsController < ApplicationController
 
   # create new department
   def create
-    Department.create(:department_name => params[:department_name])
-    redirect_to("/departments")
+    if Department.create(:department_name => params[:department_name])
+      flash[:notice] = "Department created successfully...."
+      redirect_to("/departments")
+    else
+      flash[:notice] = "Failed to create Department...."
+      redirect_to("/departments")
+    end
   end
 
   # delete department
   def delete
-    Department.destroy(params[:id])
-    redirect_to("/departments")
+    if Department.destroy(params[:id])
+      flash[:notice] = "Department deleted successfully...."
+      redirect_to("/departments")
+    else
+      flash[:notice] = "Failed to delete Department...."
+      redirect_to("/departments")
+    end
   end
 end

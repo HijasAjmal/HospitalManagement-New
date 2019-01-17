@@ -3,8 +3,9 @@ class Timeslot < ActiveRecord::Base
   has_many :slots, :dependent => :destroy
 
 
-  def self.findDepartment(timeslot)
-    @timeslot = find(timeslot.id)
-    return @timeslot.doctor.department.department_name
+
+  def find_doctor(timeslot) #change###
+    @doctor = Doctor.find(timeslot.doctor_id)
+    return @doctor.first_name+" "+@doctor.middle_name+" "+@doctor.last_name
   end
 end

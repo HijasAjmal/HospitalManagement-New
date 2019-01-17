@@ -8,7 +8,7 @@
 <p>
   <div class="container border rounded shadow mb-4 border-secondary w-100 timeslotdvi" style="text-decoration: none;" data-toggle="collapse" href="#collapseExample<%=@index%>" role="button" aria-expanded="false" aria-controls="collapseExample">
     <%= label_tag "Department:" %>
-    <%= Timeslot.findDepartment(timeslot) %> &nbsp &nbsp &nbsp &nbsp
+    <%= timeslot.doctor.department.department_name %> &nbsp &nbsp &nbsp &nbsp
 
     <%=h timeslot.start_date_time %> &nbsp &nbsp
     <%=h timeslot.end_date_time %> &nbsp &nbsp
@@ -19,7 +19,7 @@
     </div>
     <% end %></br>
     <%= label_tag "Doctor:" %>
-    <%= Doctor.findDoctor(timeslot) %> &nbsp &nbsp
+    <%= timeslot.find_doctor(timeslot) %> &nbsp &nbsp
   </div>
 </p>
 <div class="collapse" id="collapseExample<%=@index%>">

@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
 
 
+  filter_access_to :all
   # upload new report
   def new
     @report = Report.new

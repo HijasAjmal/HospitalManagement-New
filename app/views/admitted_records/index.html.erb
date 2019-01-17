@@ -15,16 +15,16 @@
     </thead>
     <!--  -->
     <tbody>
-      <% @admitted_records.each do |records| %>
+      <% @admitted_records.each do |record| %>
       <tr>
-        <td><%=h records.id %></td>
-        <td><%=Patient.findPatient(records.patient_id)%></td>
-        <td><%=h records.date%></td>
-        <td><%=h records.time%></td>
-        <td><%=AdmittedRecord.findOption(records.is_discharged)%></td>
-        <td><%=h records.discharged_date%></td>
-        <td><%=h records.discharged_time%></td>
-        <td><%= link_to 'Discharge Patient', :controller => :admitted_records, :action => "discharge_patient", :id => records.id%></td>
+        <td><%=h record.id %></td>
+        <td><%=record.find_patient(record.patient_id)%></td>
+        <td><%=h record.date%></td>
+        <td><%=h record.time%></td>
+        <td><%=record.find_option(record.is_discharged)%></td>
+        <td><%=h record.discharged_date%></td>
+        <td><%=h record.discharged_time%></td>
+        <td><%= link_to 'Discharge Patient', :controller => :admitted_records, :action => "discharge_patient", :id => record.id%></td>
         <td></td>
       </tr>
       <% end %>

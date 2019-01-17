@@ -1,6 +1,7 @@
 authorization do
   role :admin do
     has_permission_on [:sessions], :to => [:dashboard, :index, :signin, :new, :create, :show, :destroy, :confirm, :forget, :changepwd]
+    has_permission_on [:users], :to => [:index, :signup]
     has_permission_on [:doctors], :to => [:index, :show, :doctor_profile_form, :delete, :doctor_list]
     has_permission_on [:patients], :to => [:index, :details_view_admin, :delete]
     has_permission_on [:departments], :to => [:index, :create, :delete]
@@ -15,6 +16,7 @@ authorization do
 
   role :guest do
     has_permission_on [:sessions], :to => [:index, :signin, :confirm, :forget, :changepwd]
+    has_permission_on [:users], :to => [:index, :signup]
   end
 
   role :doctor do

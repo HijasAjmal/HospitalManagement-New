@@ -77,13 +77,13 @@
                                                         <p>
                                                             <div class="container border rounded shadow mb-4 border-secondary w-100 fontsize" style="text-decoration: none; height: 10%" data-toggle="collapse" href="#collapseExample<%=@index%>" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                                 <%= label_tag "Dept:" %>
-                                                                <%= Slot.depFindByAppointment(appointment) %> &nbsp &nbsp
+                                                                <%= appointment.dep_find_by_appointment(appointment) %> &nbsp &nbsp
                                                                 <%= label_tag "Dr:" %>
-                                                                <%= Slot.docFindByAppointment(appointment) %> &nbsp &nbsp
+                                                                <%= appointment.doc_find_by_appointment(appointment) %> &nbsp &nbsp
                                                                 <%= label_tag "Date:" %>
-                                                                <%= Slot.dateFindByAppointment(appointment) %> &nbsp &nbsp</br>
+                                                                <%= appointment.date_find_by_appointment(appointment) %> &nbsp &nbsp</br>
                                                                 <%= label_tag "Time:" %>
-                                                                <%= Slot.timeFindAppointment(appointment) %> &nbsp &nbsp
+                                                                <%= appointment.time_find_by_appointment(appointment) %> &nbsp &nbsp
                                                                 <% if appointment.is_diogonised == 1%>
                                                                     <% @status = "Diognised"%>
                                                                 <% else%>
@@ -114,7 +114,7 @@
                                                               <%=h report.created_at.strftime("%Y/%m/%d") %> &nbsp &nbsp</br>
                                                               <%= label_tag "File Name:" %>
                                                               <%=h report.file_file_name %> &nbsp &nbsp
-                                                              <%= link_to 'Download', Patient.findFile(report.file.url)%>
+                                                              <%= link_to 'Download', report.find_file(report.file.url)%>
                                                           </div>
                                                       </p>
                                                   <% @index = @index+1%>

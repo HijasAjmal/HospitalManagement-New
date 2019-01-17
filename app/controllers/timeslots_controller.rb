@@ -1,5 +1,7 @@
 class TimeslotsController < ApplicationController
 
+
+  filter_access_to :all
   # list all the timeslots
   def index
       @user = User.find(session[:current_user_id])

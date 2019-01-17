@@ -15,7 +15,7 @@
       <% @beds.each do |bed| %>
       <tr>
         <td><%=h bed.id %></td>
-        <td><%=Bed.findOption(bed.is_engaged)%></td>
+        <td><%=bed.get_option(bed.is_engaged)%></td>
         <td><%=h bed.room_id %></td>
       </tr>
       <% end %>

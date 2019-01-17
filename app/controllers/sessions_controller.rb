@@ -27,8 +27,8 @@ class SessionsController < ApplicationController
 
   # signin method
   def signin
-    if session[:current_user_id]
-      @user = User.find(session[:current_user_id])
+    if current_user
+      @user = current_user
     else
       @user = User.first(:conditions => { :user_name => params[:user_name] , :password => params[:password]})
     end

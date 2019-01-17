@@ -1,24 +1,41 @@
-<% if @admin == 1%>
+<% if @recommendations.present?%>
    <%= render :partial => "recommended_records"%>
 <%else%>
-  <h1>Listing comments</h1>
-  <!--  -->
-  <table>
-    <tr>
-      <th>Patient condition</th>
-      <th>Medication</th>
-    </tr>
-    <% @comments.each do |comment| %>
-    <tr>
-      <td><%=h comment.patient_condition %></td>
-      <td><%=h comment.medication %></td>
-      <td><%= link_to 'Show', comment %></td>
-      <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-      <td><%= link_to 'Destroy', comment, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-  <% end %>
-  </table>
-  <!--  -->
-  <br/>
-  <%= link_to 'New comment', new_comment_path %>
+  <div class="container">
+    <h2><b>Listing All Recommendations</b></h2>
+    <h5 style="margin-left: 40%; color: red;"><%= flash[:notice]%></h5>
+    <table class="table table-bordered">
+      <!--  -->
+      <thead>
+        <tr>
+          <th>SI:No</th>
+          <th>Patient condition</th>
+          <th>Medication</th>
+          <th>Recommended</th>
+        </tr>
+      </thead>
+      <!--  -->
+      <% if @comments.nil?%>
+        <h5 style="margin-left: 40%; color: red;">No recommendations</h5>
+      <% else %>
+        <tbody>
+          <% @comments.each do |comment| %>
+          <tr>
+            <td><%=h comment.id %></td>
+            <td><%= PatientCondition.find_patient_condition(comment.patient_condition) %></td>
+            <td><%=h comment.medication %></td>
+            <td><%= comment.find_option(comment.is_recommended) %></td>
+            <% if comment.is_recommended == 1 %>
+              <td><%= link_to 'Alot the Room', :controller => :admitted_records, :action => "new_record", :id => comment.id%></td>
+            <% else %>
+              <td></td>
+            <% end %>
+            <td><%= link_to 'Destroy', comment, :confirm => 'Are you sure?', :method => :delete %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      <% end %>
+      <!--  -->
+    </table>
+  </div>
 <%end%>

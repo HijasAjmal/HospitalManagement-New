@@ -2,6 +2,7 @@ require 'csv'
 class RoomsController < ApplicationController
 
 
+  filter_access_to :all
   before_filter :first_rule,
     :only => [:destroy, :updateRoom]
 
@@ -21,11 +22,6 @@ class RoomsController < ApplicationController
   end
 
 
-  # def reports
-  #   redirect_to :controller => :rooms
-  # end
-
-
   # new room
   def new
     @room = Room.new
@@ -43,12 +39,15 @@ class RoomsController < ApplicationController
 
   # create new room
   def create
-    @room = Room.create(:room_id => params[:room_id], :no_of_beds => params[:no_of_beds], :department_id => params[:category][:id])
-    @no_of_beds = params[:no_of_beds].to_i
-    @no_of_beds.times do
-      @room.beds.create()
+    @room = Room.new
+    if @room.update_attributes(:room_id => params[:room_id], :no_of_beds => params[:no_of_beds], :department_id => params[:category][:id])
+      flash[:notice] = "Room Created successfully............."
+      @room.create_bed_new(params[:no_of_beds].to_i)
+      redirect_to :controller => :rooms
+    else
+      flash[:notice] = "Faild to Create Room............."
+      redirect_to :controller => :rooms
     end
-    redirect_to :controller => :rooms
   end
 
 
@@ -56,10 +55,6 @@ class RoomsController < ApplicationController
   def update_room
     @room = Room.find(params[:id])
     @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i+params[:no_of_beds].to_i)
-    @no_of_beds = params[:no_of_beds].to_i
-    @no_of_beds.times do
-      @room.beds.create()
-    end
     redirect_to :controller => :rooms
   end
 

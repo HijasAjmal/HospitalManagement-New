@@ -5,6 +5,8 @@ class Doctor < ActiveRecord::Base
   has_one :department
   belongs_to :department
   has_many :patients, :through => :appointments
+  after_update :set_profile
+  after_create :set_doctor_credentials
 
   attr_accessor :photo_file_name, :photo_content_type, :photo_file_size, :photo_updated_at
   has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :url => "/system/:style/.png"
@@ -13,9 +15,13 @@ class Doctor < ActiveRecord::Base
 
   GENDER = {1 => "Male", 2 => "Female", 3 => "Other" }
 
-
-  def self.findDoctor(timeslot) #change
-    @doctor = find(timeslot.doctor_id)
-    return @doctor.first_name+" "+@doctor.middle_name+" "+@doctor.last_name
+  def set_profile
+    @user = User.first(:conditions => {:user_record_id => self.id})
+    @user.update_attributes(:profile_status => 1)
   end
+
+  def set_doctor_credentials
+    User.update_user_credential(self)
+  end
+
 end

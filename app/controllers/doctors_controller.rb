@@ -7,39 +7,34 @@ filter_access_to :all
     @doctors = Doctor.all
   end
 
-
-
   # show details of doctors
   def show
     @doctors = Doctor.find(params[:id])
     @user = @doctors.users
   end
 
-
-
   # create doctor profile
-  def doctor_profile_form
-    @user = User.find(session[:current_user_id])
+  def doctor_profile_form## user##
+    @user = User.find(current_user.id)
     @doctor = @user.user_record
   end
 
-  def profile_view_doctor
-    @user = User.find(session[:current_user_id])
+  def profile_view_doctor ## user##
+    @user = User.find(current_user.id)
     @doctor = @user.user_record
   end
 
   # update doctor profile with full details
-  def update_profile
+  def update_profile## condition##
     @doctor = Doctor.find(params[:doctor])
-    @nationality = Country.find(params[:nationality][:id])
     @user = User.first(:conditions => {:user_record_id => params[:doctor], :user_record_type => "Doctor"})
     if @doctor.update_attributes(:contact_number => params[:contact_number], :photo => params[:photo],
-    :date_of_birth => params[:date_of_birth], :nationality => @nationality.country_name, :gender => params[:option],
+    :date_of_birth => params[:date_of_birth], :nationality => Country.find_country_code(params[:country][:id]), :gender => params[:option],
     :qualifications => params[:qualifications], :experience => params[:experience]).nil?
       flash[:notice] = "Failed to create your profile, Try again..........."
       redirect_to :controller => :sessions, :action => "signin"
     else
-      @user.update_attributes(:profile_status => 1)
+      flash[:notice] = "Profile Updated..........."
       redirect_to("/")
     end
   end
@@ -54,8 +49,12 @@ filter_access_to :all
   def delete
     @doctor = User.first(:conditions => {:user_record_id => params[:id], :user_record_type => "Doctor"})
     if @doctor.destroy
-    redirect_to ("/doctors/index")
-  end
+      flash[:notice] = "Deleted successfully..........."
+      redirect_to ("/doctors/index")
+    else
+      flash[:notice] = "Failed to Delete..........."
+      redirect_to ("/doctors/index")
+    end
   end
 
 

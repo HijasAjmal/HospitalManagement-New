@@ -4,31 +4,19 @@ class Patient < ActiveRecord::Base
   has_many :users, :as => :user_record
   has_many :admittedrecords
   has_many :doctors, :through => :appointments
-
   after_update :set_profile_status
+  after_create :set_patient_credentials
 
-  def self.findPatient(msg)
-    @patient = find(msg)
-    return @patient.first_name+" "+@patient.middle_name+" "+@patient.last_name
-  end
-
-  def self.findFile(url)
-		@url = url.to_s
-		@new_url = @url.split('?')
-		return @new_url[0]
-	end
+  GENDER = {1 => "Male", 2 => "Female", 3 => "Other" }
 
   OPTIONS = {"No" => 0, "Yes" => 1}
 
 
-  def self.findOption(msg)#
-    return OPTIONS.index(msg)
-  end
-
   def set_profile_status
     self.user.profile_completed if profile_status
   end
-  GENDER = {1 => "Male", 2 => "Female", 3 => "Other" }
 
-
+  def set_patient_credentials
+    User.update_user_credential(self)
+  end
 end

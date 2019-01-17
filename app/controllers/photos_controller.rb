@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
 
 
+  filter_access_to :all
   # Upload new photo
   def new
     @photo = Photo.new
