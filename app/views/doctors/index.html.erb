@@ -21,15 +21,15 @@
       </tr>
     </thead>
     <tbody>
-      <% @doctors.each do |d| %>
+      <% @doctors.each do |doctor| %>
       <tr>
-        <td><%=d.first_name %></td>
-        <td><%=d.last_name %></td>
-        <td><%=d.contact_number %></td>
-        <td><%=d.email %></td>
-        <td><%=d.department.department_name %></td>
-        <td><%=link_to 'Details', :action => "show", :id => d.id%></td>
-        <td><%=link_to 'Delete', :action => "delete", :id => d.id%></td>
+        <td><%=doctor.first_name %></td>
+        <td><%=doctor.last_name %></td>
+        <td><%=doctor.contact_number %></td>
+        <td><%=doctor.email %></td>
+        <td><%=doctor.department.department_name %></td>
+        <td><%=link_to 'Details', :action => "show", :id => doctor.id%></td>
+        <td><%=link_to 'Delete', :action => "delete", :id => doctor.id%></td>
       </tr>
       <% end %>
     </tbody>

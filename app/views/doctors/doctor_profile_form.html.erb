@@ -6,14 +6,14 @@
           <div class="row">
             <div class="col-lg-3 col-md-3">
               <center>
-                <span class="text-left" style="margin-left: 5px;"><%= image_tag Photo.findImage(@user.id), :class => "img-responsive img-thumbnail"%></span>
+                <span class="text-left" style="margin-left: 5px;"><%= image_tag Photo.findImage(@doctor.users.id), :class => "img-responsive img-thumbnail"%></span>
               </center>
               <div class="panel">
                 <table class="table">
                   <tbody>
                     <tr>
                       <td class="text-center">
-                        <button class="btn btn-success btn-block"><%= link_to 'Change', :controller => :photos, :action => "new", :id => @user.id%></button>
+                        <button class="btn btn-success btn-block"><%= link_to 'Change', :controller => :photos, :action => "new", :id => @doctor.users.id%></button>
                       </td>
                     </tr>
                   </tbody>

@@ -34,40 +34,39 @@
                                                     <tbody>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-user"></i> First Name</td>
-                                                                <td><%=@patient.first_name %></td>
+                                                                <td><%= @user.user_record.first_name %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Middle Name</td>
-                                                                <td><%=@patient.middle_name %></td>
+                                                                <td><%= @user.user_record.middle_name %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Last Name</td>
-                                                                <td><%=@patient.last_name %></td>
+                                                                <td><%= @user.user_record.last_name %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Contact Number</td>
-                                                                <td><%=@patient.contact_number %></td>
+                                                                <td><%= @user.user_record.contact_number %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Email</td>
-                                                                <td><%=@patient.email %></td>
+                                                                <td><%= @user.user_record.email %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Date Of Birth</td>
-                                                                <td><%=@patient.date_of_birth %></td>
+                                                                <td><%= @user.user_record.date_of_birth %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-book"></i> Bloodgroup</td>
-                                                                <%= p @patient %>
-                                                                <td><%=@patient.blood_group %></td>
+                                                                <td><%= @user.user_record.blood_group %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-group"></i> Gender</td>
-                                                                <td><%=@patient.gender %></td>
+                                                                <td><%= @user.user_record.gender %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-calendar"></i> Address</td>
-                                                                <td><%=@patient.address %></td>
+                                                                <td><%= @user.user_record.address %></td>
                                                             </tr>
                                                     </tbody>
                                                 </table>

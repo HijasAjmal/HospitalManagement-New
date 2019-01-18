@@ -3,11 +3,21 @@ class RoomsController < ApplicationController
 
 
   filter_access_to :all
+
   before_filter :first_rule,
-    :only => [:destroy, :updateRoom]
+    :only => [:destroy, :update_room]
+
+  after_filter :last_rule,
+    :only => [:create, :update_room, :destroy]
+
 
   def first_rule
      @room = Room.find(params[:id])
+  end
+
+
+  def last_rule
+     redirect_to :controller => :rooms
   end
 
 
@@ -35,10 +45,8 @@ class RoomsController < ApplicationController
     if @room.update_attributes(:room_id => params[:room_id], :no_of_beds => params[:no_of_beds], :department_id => params[:category][:id])
       flash[:notice] = "Room Created successfully............."
       @room.create_bed_new(params[:no_of_beds].to_i)
-      redirect_to :controller => :rooms
     else
       flash[:notice] = "Faild to Create Room............."
-      redirect_to :controller => :rooms
     end
   end
 
@@ -48,10 +56,8 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     if @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i+params[:no_of_beds].to_i)
       flash[:notice] = "Room Updated...."
-      redirect_to :controller => :rooms
     else
       flash[:notice] = "Failed to update room...."
-      redirect_to :controller => :rooms
     end
   end
 
@@ -60,10 +66,8 @@ class RoomsController < ApplicationController
   def destroy
     if @room.destroy
       flash[:notice] = "Room deleted successfully..."
-      redirect_to :controller => :rooms
     else
       flash[:notice] = "Failed to delete room..."
-      redirect_to :controller => :rooms
     end
   end
 

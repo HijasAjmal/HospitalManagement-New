@@ -98,7 +98,7 @@
                                             <% end %>
                                         </div>
                                         <div id="Records" class="tab-pane fade">
-                                            <% if @report_status == 1%>
+                                            <% if @repors.nil?%>
                                                 <h3 style="color: red;">No Recent Reports<h3>
                                             <% else %>
                                               <div class="table-responsive panel">

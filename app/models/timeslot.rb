@@ -30,4 +30,15 @@ class Timeslot < ActiveRecord::Base
       end
     end
   end
+
+  #find slots Status
+  def find_slots(timeslot)
+    @time_slots = timeslot.slots
+    @time_slots.each do |slot|
+      if slot.status == 0
+        return true
+        break
+      end
+    end
+  end
 end

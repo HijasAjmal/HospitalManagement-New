@@ -1,5 +1,4 @@
 class Doctor < ActiveRecord::Base
-  # validates_presence_of :first_name, :last_name, :email, :department
   has_many :users, :as => :user_record
   has_many :timeslots
   has_one :department
@@ -16,12 +15,13 @@ class Doctor < ActiveRecord::Base
   GENDER = {1 => "Male", 2 => "Female", 3 => "Other" }
 
   def set_profile
-    @user = User.first(:conditions => {:user_record_id => self.id})
+    @user = User.first(:conditions => {:user_record_id => self.id, :user_record_type => "Doctor"})
     @user.update_attributes(:profile_status => 1)
   end
 
   def set_doctor_credentials
     User.update_user_credential(self)
   end
+
 
 end

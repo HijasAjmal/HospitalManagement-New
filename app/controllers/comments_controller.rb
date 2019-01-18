@@ -30,23 +30,21 @@ class CommentsController < ApplicationController
     @user = User.first(:conditions => {:user_record_id => @appointment.patient_id, :user_record_type => "Patient"})
     if @appointment.comments.create(:patient_condition => params[:patient_status][:id], :medication => params[:medication], :is_recommended => params[:option])
       flash[:notice] = "Record created successfully............"
-      redirect_to :controller => :patients, :action => "details_view_doctor", :user_id => @user.user_name
     else
       flash[:notice] = "Failed to create the Medication details............Try again"
-      redirect_to :controller => :patients, :action => "details_view_doctor", :user_id => @user.user_name
     end
+    redirect_to :controller => :patients, :action => "details_view_doctor", :user_id => @user.user_name
   end
 
 
   # delete comment
-  def delete_comment
+  def delete_comment## condition ##
     if Comment.destroy(params[:id])
       flash[:notice] = "Deleted successfully...."
-      redirect_to :controller => :comments
     else
       flash[:notice] = "Failed to Delete record...."
-      redirect_to :controller => :comments
     end
+    redirect_to :controller => :comments
   end
 
   # edit comment

@@ -11,23 +11,23 @@ class DepartmentsController < ApplicationController
 
   # create new department
   def create
-    if Department.create(:department_name => params[:department_name])
+    @department = Department.new(:department_name => params[:department_name])
+    if @department.save
       flash[:notice] = "Department created successfully...."
-      redirect_to("/departments")
     else
       flash[:notice] = "Failed to create Department...."
-      redirect_to("/departments")
     end
+    redirect_to :controller => :departments
   end
 
   # delete department
-  def delete
-    if Department.destroy(params[:id])
+  def delete###
+    @department = Department.find(params[:id])
+    if @department.destroy
       flash[:notice] = "Department deleted successfully...."
-      redirect_to("/departments")
     else
       flash[:notice] = "Failed to delete Department...."
-      redirect_to("/departments")
     end
+    redirect_to :controller => :departments
   end
 end

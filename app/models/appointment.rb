@@ -3,6 +3,12 @@ class Appointment < ActiveRecord::Base
 	has_many :comments
 	belongs_to :patient
 	belongs_to :doctor
+	after_create :set_slot_status
+
+
+	def set_slot_status
+		self.slot.update_attributes(:status => 1)
+	end
 
 	def find_slot_date(msg)
 		@slot = Slot.find(msg)
@@ -29,4 +35,9 @@ class Appointment < ActiveRecord::Base
   	@slot = Slot.find(appointment.slot_id)
   	return @slot.time.strftime("%H:%M%p")
   end
+
+	def find_user(patient_id)
+		@user = User.first(:conditions => {:user_record_id => patient_id, :user_record_type => "Patient"})
+		return @user.user_name
+	end
 end

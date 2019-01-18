@@ -5,8 +5,15 @@ class BedsController < ApplicationController
   before_filter :first_rule,
     :only => [:edit, :show, :destroy, :update]
 
+  after_filter :last_rule,
+    :only => [:new, :update, :destroy]
+
   def first_rule
     @bed = Bed.find(params[:id])
+  end
+
+  def last_rule
+    redirect_to :controller => :beds
   end
 
   # list all beds
@@ -26,10 +33,8 @@ class BedsController < ApplicationController
     @no = params[:no_of_beds].to_i
     if @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i+params[:no_of_beds].to_i)
       flash[:notice] = "Created bed successfully..."
-      redirect_to :controller => :beds
     else
       flash[:notice] = "Faild to creat bed..."
-      redirect_to :controller => :beds
     end
   end
 
@@ -38,21 +43,12 @@ class BedsController < ApplicationController
     @room = Room.find(@bed.room_id)
   end
 
-  # #create beds
-  # def create
-  #   @bed = Bed.new(params[:bed])
-  #   redirect_to :controller => :beds
-  # end
-
-
   # update bed
   def update
     if @bed.update_attributes(params[:bed])
       flash[:notice] = "Bed Updated successfully..."
-      redirect_to :controller => :beds
     else
       flash[:notice] = "Faild to update Bed..."
-      redirect_to :controller => :beds
     end
   end
 
@@ -60,10 +56,8 @@ class BedsController < ApplicationController
   def destroy
     if @bed.destroy
       flash[:notice] = "Deleted successfully..."
-      redirect_to :controller => :beds
     else
       flash[:notice] = "Failed to Delete..."
-      redirect_to :controller => :beds
     end
   end
 

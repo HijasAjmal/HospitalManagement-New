@@ -12,10 +12,9 @@ class ReportsController < ApplicationController
   def create
     if @report = Report.create(params[:report])
       flash[:notice] = "Report uploaded successfully..."
-      redirect_to :controller => :sessions
     else
       flash[:notice] = "Failed to upload report..."
-      redirect_to :controller => :sessions
     end
+    redirect_to :controller => :sessions
   end
 end

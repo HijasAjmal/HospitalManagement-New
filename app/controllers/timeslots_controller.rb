@@ -38,23 +38,22 @@ class TimeslotsController < ApplicationController
     @doctor = Doctor.find(params[:doctor][:id])
     if @doctor.timeslots.create(params[:timeslot])
       flash[:notice] = "Timeslot Created successfully...."
-      redirect_to :controller => :timeslots
     else
       flash[:notice] = "Failed to Create successfully...."
-      redirect_to :controller => :timeslots
     end
+    redirect_to :controller => :timeslots
   end
 
 
   # destroy time slot
   def destroy
-    if Timeslot.destroy(params[:id])
+    @timeslot = Timeslot.find(params[:id])
+    if @timeslot.destroy
       flash[:notice] = "Timeslot Deleted successfully..."
-      redirect_to :controller => :timeslots
     else
       flash[:notice] = "Failed Timeslot Deleted successfully..."
-      redirect_to :controller => :timeslots
     end
+    redirect_to :controller => :timeslots
   end
 
 end

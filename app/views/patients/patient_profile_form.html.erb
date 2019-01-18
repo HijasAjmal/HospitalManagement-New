@@ -36,7 +36,7 @@
                                             <div class="table-responsive panel">
                                                 <table class="table">
                                                     <tbody>
-                                                      <% form_tag({:action => "updateprofile"}, {:class => 'signin_form'}) do -%>
+                                                      <% form_tag({:action => "update_profile"}, {:class => 'signin_form'}) do -%>
                                                         <%= hidden_field_tag :patient,  @patient.id  %>
                                                         <tr>
                                                                 <td class="text-success"><i class="fa fa-user"></i> First Name</td>
@@ -65,11 +65,11 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-book"></i> Blood Group</td>
-                                                                <td><%= collection_select :blood, :id, Bloodgroup.all, :id, :name, :include_blank => true, :required => true%></td>
+                                                                <td><%= collection_select :blood, :id, BloodGroup.all, :id, :name, :include_blank => true, :required => true%></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-group"></i> Gender</td>
-                                                                <td><%= collection_select :gender, :id, Gender.all, :id, :name, :include_blank => true, :required => true%></td>
+                                                                <td><%= select_tag :gender, options_for_select(Patient::GENDER.values, :class => "control-form") %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-calendar"></i> Address</td>

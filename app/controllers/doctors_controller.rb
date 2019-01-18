@@ -10,33 +10,27 @@ filter_access_to :all
   # show details of doctors
   def show
     @doctors = Doctor.find(params[:id])
-    @user = @doctors.users
   end
 
   # create doctor profile
   def doctor_profile_form## user##
-    @user = User.find(current_user.id)
-    @doctor = @user.user_record
+    @doctor = current_user.user_record
   end
 
   def profile_view_doctor ## user##
-    @user = User.find(current_user.id)
-    @doctor = @user.user_record
+    @doctor = current_user.user_record
   end
 
   # update doctor profile with full details
   def update_profile## condition##
-    @doctor = Doctor.find(params[:doctor])
-    @user = User.first(:conditions => {:user_record_id => params[:doctor], :user_record_type => "Doctor"})
-    if @doctor.update_attributes(:contact_number => params[:contact_number], :photo => params[:photo],
-    :date_of_birth => params[:date_of_birth], :nationality => Country.find_country_code(params[:country][:id]), :gender => params[:option],
-    :qualifications => params[:qualifications], :experience => params[:experience]).nil?
-      flash[:notice] = "Failed to create your profile, Try again..........."
-      redirect_to :controller => :sessions, :action => "signin"
-    else
+    if current_user.user_record.update_attributes(:contact_number => params[:contact_number], :photo => params[:photo],
+    :date_of_birth => params[:date_of_birth], :nationality => params[:country][:id], :gender => params[:option],
+    :qualifications => params[:qualifications], :experience => params[:experience])
       flash[:notice] = "Profile Updated..........."
-      redirect_to("/")
+    else
+      flash[:notice] = "Failed to create your profile, Try again..........."
     end
+    redirect_to :controller => :sessions, :action => "signin"
   end
 
 
@@ -50,11 +44,10 @@ filter_access_to :all
     @doctor = User.first(:conditions => {:user_record_id => params[:id], :user_record_type => "Doctor"})
     if @doctor.destroy
       flash[:notice] = "Deleted successfully..........."
-      redirect_to ("/doctors/index")
     else
       flash[:notice] = "Failed to Delete..........."
-      redirect_to ("/doctors/index")
     end
+    redirect_to :controller => :doctors, :action => "index"
   end
 
 

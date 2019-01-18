@@ -13,10 +13,13 @@ class Patient < ActiveRecord::Base
 
 
   def set_profile_status
-    self.user.profile_completed if profile_status
+    @patient = User.first(:conditions => {:user_record_id => self.id, :user_record_type => "Patient"})
+    @patient.update_attributes(:profile_status => 1)
   end
 
   def set_patient_credentials
     User.update_user_credential(self)
   end
+
+
 end

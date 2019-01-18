@@ -35,7 +35,6 @@ class AppointmentsController < ApplicationController
     @slot_id = Slot.find(params[:id])
     if @slot_id.appointment.create(params[:appointment])
       flash[:notice] = "Appointment created successfully......."
-      @slot_id.update_attributes(:status => 1)
       redirect_to("/")
     else
       flash[:notice] = "Faild to create Appointment...Try again..."
@@ -47,10 +46,9 @@ class AppointmentsController < ApplicationController
   def destroy### if condition###
     if @appointment.destroy
       flash[:notice] = "Appointment deleted successfully......."
-      redirect_to(appointments_url)
     else
       flash[:notice] = "Faild to delete Appointment......."
-      redirect_to(appointments_url)
     end
+    redirect_to(appointments_url)
   end
 end
