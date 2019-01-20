@@ -26,7 +26,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label >Room Id</label>
-          <%= collection_select(:room, :id, @comment.appointment.slot.timeslot.doctor.department.rooms, :id, :id, {:include_blank => 'SELECT ROOM'}, {:onchange => "list_bed(this.value);"})%>
+          <%= collection_select(:room, :id, @comment.appointment.slot.timeslot.doctor.department.rooms, :id, :room_id, {:include_blank => 'SELECT ROOM'}, {:onchange => "list_bed(this.value);"})%>
         </div>
       </div>
 

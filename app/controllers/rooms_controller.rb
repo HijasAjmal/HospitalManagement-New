@@ -7,20 +7,9 @@ class RoomsController < ApplicationController
   before_filter :first_rule,
     :only => [:destroy, :update_room]
 
-  after_filter :last_rule,
-    :only => [:create, :update_room, :destroy]
-
-
   def first_rule
      @room = Room.find(params[:id])
   end
-
-
-  def last_rule
-     redirect_to :controller => :rooms
-  end
-
-
 
   # list all rooms
   def index
@@ -39,14 +28,20 @@ class RoomsController < ApplicationController
   end
 
 
+  def new
+    @room = Room.new
+  end
+
+
   # create new room
   def create
-    @room = Room.new
-    if @room.update_attributes(:room_id => params[:room_id], :no_of_beds => params[:no_of_beds], :department_id => params[:category][:id])
+    @room = Room.new(params[:room])
+    if @room.save
       flash[:notice] = "Room Created successfully............."
-      @room.create_bed_new(params[:no_of_beds].to_i)
+      redirect_to :controller => :rooms
     else
       flash[:notice] = "Faild to Create Room............."
+      render :action => "new"
     end
   end
 
@@ -59,6 +54,7 @@ class RoomsController < ApplicationController
     else
       flash[:notice] = "Failed to update room...."
     end
+    redirect_to :controller => :rooms
   end
 
 
@@ -69,6 +65,7 @@ class RoomsController < ApplicationController
     else
       flash[:notice] = "Failed to delete room..."
     end
+    redirect_to :controller => :rooms
   end
 
 

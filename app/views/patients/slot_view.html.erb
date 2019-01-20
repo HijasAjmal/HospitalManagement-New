@@ -1,9 +1,15 @@
-<div class="container border w-50" style="height: 50%; margin-top: 6%;">
-	<h4 style="margin-left: 38%; font-weight: bold; margin-top: 5%; font-size: 25px;">Search Time Slots</h4></br><hr>
-	<label class="labeltext">Department:</label>
-	<%= collection_select(:department, :id, Department.all, :id, :department_name,{:prompt => "Select Department"}, {:onchange => "list_doctors_patient(this.value);", :class => "selectfield"})%>
-  	<div id="doctor_list_patient">
-  	</div>
-   	<div id="dateform">
-  	</div>
+<div class="container my-5" style="width:35%; border-radius:10px;">
+  <div class="card-body bg-secondary rounded">
+    <h5 class="card-title text-center">Search Time Slots</h5><hr>
+      <div class="form-group">
+				<label >Department:</label>
+        <%= collection_select(:department, :id, Department.all, :id, :department_name,{:prompt => "Select Department"}, {:onchange => "list_doctors_patient(this.value);", :class => "control-form"})%>
+      </div>
+      <div class="form-group" id="doctor_list_patient">
+
+      </div>
+      <div class="form-group" id="dateform">
+
+      </div>
+  </div>
 </div>

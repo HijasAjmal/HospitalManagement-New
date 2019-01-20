@@ -1,34 +1,41 @@
-<div class="container">
-  <h2><b>Listing All Records</b></h2>
-  <table class="table table-bordered">
-    <!--  -->
-    <thead>
-      <tr>
-        <th>SI:No</th>
-        <th>Patient Name</th>
-        <th>Admitted date</th>
-        <th>Admitted Time</th>
-        <th>Is_Discharged</th>
-        <th>Discharged Date</th>
-        <th>Discharged Time</th>
-      </tr>
+<div class="bs-example">
+  </br></br>
+  <h2 class="text-left"><b>Listing All Records</b></h2>
+  <div class="row mx-md-n5">
+    <button type="button" class="btn btn-secondary" style="margin-top:-40px;margin-left:90%;height:30px;border-radius: 16px; color:black;font-size:12px;width: 85px;">
+      <%= link_to "CSV Report", ("rooms.csv"), :style => "color:white; text-decoration:none;"%></button>
+  </div><hr>
+  <table class="table table-striped" style="margin-top: 1%;">
+    <thead class="thead-dark">
+      <th>SI:No</th>
+      <th>Patient Name</th>
+      <th>Admitted date</th>
+      <th>Admitted Time</th>
+      <th>Is_Discharged</th>
+      <th>Discharged Date</th>
+      <th>Discharged Time</th>
+    </tr>
     </thead>
-    <!--  -->
     <tbody>
-      <% @admitted_records.each do |record| %>
-      <tr>
-        <td><%=h record.id %></td>
-        <td><%=record.find_patient(record.patient_id)%></td>
-        <td><%=h record.date%></td>
-        <td><%=h record.time%></td>
-        <td><%=record.find_option(record.is_discharged)%></td>
-        <td><%=h record.discharged_date%></td>
-        <td><%=h record.discharged_time%></td>
-        <td><%= link_to 'Discharge Patient', :controller => :admitted_records, :action => "discharge_patient", :id => record.id%></td>
-        <td></td>
-      </tr>
+      <% if @admitted_records.empty?%>
+        <p class="alert">No Records</p>
+      <% else %>
+        <% @admitted_records.each do |record| %>
+        <tr>
+          <td><%=h record.id %></td>
+          <td><%=record.find_patient(record.patient_id)%></td>
+          <td><%=h record.date%></td>
+          <td><%=h record.time%></td>
+          <td><%=record.find_option(record.is_discharged)%></td>
+          <td><%=h record.discharged_date%></td>
+          <td><%=h record.discharged_time%></td>
+          <% if record.find_option(record.is_discharged) != "Yes" %>
+            <td><%= link_to 'Discharge Patient', :controller => :admitted_records, :action => "discharge_patient", :id => record.id%></td>
+          <% end %>
+          <td></td>
+        </tr>
+        <% end %>
       <% end %>
     </tbody>
-    <!--  -->
   </table>
 </div>

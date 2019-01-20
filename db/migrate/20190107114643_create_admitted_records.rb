@@ -7,6 +7,7 @@ class CreateAdmittedRecords < ActiveRecord::Migration
       t.integer :is_discharged, :default => 0
       t.datetime :discharged_date, :default => 0
       t.datetime :discharged_time, :default => 0
+      t.int :doctor_id
       t.belongs_to :patient, :index => true
       t.timestamps
     end

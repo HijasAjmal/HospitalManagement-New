@@ -1,10 +1,8 @@
-<div class="container border w-50" style="height: 50%; margin-top: 6%;">
-  	<% form_tag({:action => 'discharge_record', :id => params[:id]}, {:class => 'user_r'}) do -%>
-     	<div class="text-center">
-      	<h3>Create Record</h3>
-    	</div>
-      <!--  -->
-      <hr></br>
+</br></br></br>
+<div class="container my-5" style="width:35%; border-radius:10px;">
+  <div class="card-body bg-secondary rounded">
+    <h5 class="card-title text-center">Create Record</h5><hr>
+    <% form_tag({:action => 'discharge_record', :id => params[:id]}, {:class => 'user_r'}) do -%>
       <!--  -->
     	<div class="form-row">
       	<div class="form-group col-md-6">
@@ -19,19 +17,18 @@
       <!--  -->
       </br></br>
       <!--  -->
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label >Discharging Date</label>
-          <%= text_field_tag :date, params[:date], :value => Time.now.strftime("%Y-%m-%d"), :disabled => true%>
-        </div>
-        <div class="form-group col-md-6">
-          <label >Discharging Time</label>
-          <%= text_field_tag :time, params[:time], :value => Time.now.strftime("%H:%M %p"), :disabled => true%>
-        </div>
+      <div class="form-group">
+        <label >Discharging Date</label>
+        <%= text_field_tag :date, params[:date], :value => Time.now.strftime("%Y-%m-%d"), :disabled => true%>
+      </div>
+      <div class="form-group">
+        <label >Discharging Time</label>
+        <%= text_field_tag :time, params[:time], :value => Time.now.strftime("%H:%M %p"), :disabled => true%>
       </div>
       <!--  -->
-      </br></br></br>
+      </br></br>
       <!--  -->
-      <%= submit_tag "Create Record", :name => nil, :class => "btn btn-primary recbtn" %>
+      <%= submit_tag "Create Record", :name => nil, :class => "btn btn-primary " %>
     <% end %>
+  </div>
 </div>

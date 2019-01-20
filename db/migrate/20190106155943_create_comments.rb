@@ -5,7 +5,7 @@ class CreateComments < ActiveRecord::Migration
       t.string :medication
       t.string :doctor_id
       t.integer :is_recommended, :default => 0
-      t.integer :recommendation_status, :default => 2
+      t.integer :recommendation_status, :default => 0
       t.belongs_to :appointment, :index => true
       t.timestamps
     end

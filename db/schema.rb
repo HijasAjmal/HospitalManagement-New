@@ -9,13 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20190115122106) do
+ActiveRecord::Schema.define(:version => 20190110193331) do
 
   create_table "admitted_records", :force => true do |t|
     t.integer  "bed_id"
     t.datetime "date"
     t.datetime "time"
-    t.integer  "is_discharged",   :default => 2
+    t.integer  "is_discharged",   :default => 0
     t.datetime "discharged_date"
     t.datetime "discharged_time"
     t.integer  "patient_id"
@@ -25,24 +25,24 @@ ActiveRecord::Schema.define(:version => 20190115122106) do
 
   create_table "appointments", :force => true do |t|
     t.string   "case"
-    t.string   "date",          :limit => 10
-    t.integer  "is_diogonised",               :default => 0
-    t.integer  "is_expired",                  :default => 0
+    t.string   "date"
+    t.integer  "is_diogonised", :default => 0
+    t.integer  "is_expired",    :default => 0
+    t.integer  "patient_id_id"
+    t.integer  "doctor_id_id"
     t.integer  "slot_id"
-    t.integer  "patient_id"
-    t.integer  "doctor_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "beds", :force => true do |t|
-    t.integer  "is_engaged", :default => 2
+    t.integer  "is_engaged", :default => 0
     t.integer  "room_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "bloodgroups", :force => true do |t|
+  create_table "blood_groups", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -51,8 +51,9 @@ ActiveRecord::Schema.define(:version => 20190115122106) do
   create_table "comments", :force => true do |t|
     t.integer  "patient_condition"
     t.string   "medication"
+    t.string   "doctor_id"
     t.integer  "is_recommended",        :default => 0
-    t.integer  "recommendation_status", :default => 2
+    t.integer  "recommendation_status", :default => 0
     t.integer  "appointment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -87,18 +88,6 @@ ActiveRecord::Schema.define(:version => 20190115122106) do
     t.datetime "updated_at"
   end
 
-  create_table "genders", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "options", :force => true do |t|
-    t.string   "opt"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "patient_conditions", :force => true do |t|
     t.string   "status"
     t.datetime "created_at"
@@ -115,8 +104,8 @@ ActiveRecord::Schema.define(:version => 20190115122106) do
     t.string   "address"
     t.string   "gender"
     t.string   "blood_group"
-    t.integer  "is_admitted",    :default => 2
-    t.integer  "is_discharged",  :default => 2
+    t.integer  "is_admitted",    :default => 0
+    t.integer  "is_discharged",  :default => 0
     t.integer  "appointment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -133,7 +122,6 @@ ActiveRecord::Schema.define(:version => 20190115122106) do
   end
 
   create_table "reports", :force => true do |t|
-    t.string   "title",             :limit => 20
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -144,14 +132,11 @@ ActiveRecord::Schema.define(:version => 20190115122106) do
   end
 
   create_table "rooms", :force => true do |t|
-    t.string   "room_id",       :limit => 5
-    t.integer  "no_of_beds"
+    t.integer  "no_of_beds",    :default => 0
     t.integer  "department_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "rooms", ["id"], :name => "id", :unique => true
 
   create_table "slots", :force => true do |t|
     t.date     "date"
@@ -163,9 +148,9 @@ ActiveRecord::Schema.define(:version => 20190115122106) do
   end
 
   create_table "timeslots", :force => true do |t|
-    t.datetime "start_date_time",     :limit => 6, :null => false
-    t.datetime "end_date_time",       :limit => 6
-    t.datetime "slot_count_constant", :limit => 6
+    t.datetime "start_date_time"
+    t.datetime "end_date_time"
+    t.time     "slot_count_constant"
     t.integer  "doctor_id"
     t.datetime "created_at"
     t.datetime "updated_at"

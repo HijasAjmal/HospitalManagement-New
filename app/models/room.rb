@@ -1,9 +1,12 @@
 require 'fastercsv'
 class Room < ActiveRecord::Base
+  validates_presence_of :room_id, :department_id
+  validates_presence_of :no_of_beds
+  validates_numericality_of :no_of_beds
   belongs_to :department
   has_many :beds, :dependent => :destroy
-  validates_presence_of :no_of_beds
-  after_update :create_bed, :if => :no_of_beds_changed?
+  # after_update :create_bed, :if => :no_of_beds_changed?
+  after_save :create_bed_new
 
   def self.to_csv
     @rooms = all
@@ -16,14 +19,15 @@ class Room < ActiveRecord::Base
    end
 
 
-   def create_bed
-     count = no_of_beds - no_of_beds_was
-     count.times do
-       self.beds.create()
-     end
-   end
+   # def create_bed
+   #   count = no_of_beds - no_of_beds_was
+   #   count.times do
+   #     self.beds.create()
+   #   end
+   # end
 
-   def create_bed_new(count)
+   def create_bed_new
+     count = self.no_of_beds.to_i
      count.times do
        self.beds.create()
      end

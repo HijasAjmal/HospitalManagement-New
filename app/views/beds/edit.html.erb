@@ -19,17 +19,17 @@
     <!--  -->
     </br></br></br>
     <!--  -->
-    <div class="form-row">
+    <div class="form-row" style="margin-left:20%; margin-top:-5%;">
       <div class="form-group col-md-6">
         <label >Bed Status::</label>
-        <div class = "selectbedfield">
+        <div class = "group-form" style="margin-left:60%; margin-top:-10%;">
           <%= f.select :is_engaged, options_for_select(Bed::OPTIONS.each{|key, value|}) %>
         </div>
       </div>
     </div>
     <!--  -->
-    </br></br>
+    </br></br></br>
     <!--  -->
-    <%= f.submit 'Update', :name => nil, :class => "btn btn-primary upbedbtn" %>
+    <%= f.submit 'Update', :name => nil, :class => "btn btn-primary", :style =>"margin-top:-12%;" %>
   <% end %>
 </div>

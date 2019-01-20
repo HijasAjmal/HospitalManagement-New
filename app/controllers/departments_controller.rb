@@ -8,16 +8,20 @@ class DepartmentsController < ApplicationController
     @departments = Department.all
   end
 
+  def new
+    @department = Department.new
+  end
 
   # create new department
-  def create
-    @department = Department.new(:department_name => params[:department_name])
+  def create_department
+    @department = Department.new(params[:department])
     if @department.save
       flash[:notice] = "Department created successfully...."
+      redirect_to :controller => :departments
     else
       flash[:notice] = "Failed to create Department...."
+      render :action => "new"
     end
-    redirect_to :controller => :departments
   end
 
   # delete department

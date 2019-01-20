@@ -1,12 +1,5 @@
 class AdmittedRecordsController < ApplicationController
 
-  after_filter :last_rule,
-    :only => [:create_record, :delete]
-
-    def last_rule
-      redirect_to("/comments?id=1")
-    end
-
   filter_access_to :all
   # display all records
   def index
@@ -34,12 +27,13 @@ class AdmittedRecordsController < ApplicationController
     else
       @comment = Comment.find(params[:id])
       @comment.update_attributes(:recommendation_status => 1)
-      if AdmittedRecord.create(:doctor_id => @comment.appointment.doctor.id, :bed_id => params[:bed_id][:id], :date => DateTime.now.strftime('%m/%d/%Y'), :time => Time.now.strftime("%H:%M%p"), :patient_id => params[:patient_id])
+      if AdmittedRecord.create(:doctor_id => @comment.appointment.doctor_id, :bed_id => params[:bed_id][:id], :date => DateTime.now.strftime('%m/%d/%Y'), :time => Time.now.strftime("%H:%M%p"), :patient_id => params[:patient_id])
         flash[:notice] = "Record Created successfully........."
       else
         flash[:notice] = "Faild to create record........."
       end
     end
+    redirect_to("/comments?id=1")
   end
 
   # deleting record
@@ -50,6 +44,7 @@ class AdmittedRecordsController < ApplicationController
     else
       flash[:notice] = "Record deleted successfully........"
     end
+    redirect_to("/comments?id=1")
   end
 
   # discharged patient

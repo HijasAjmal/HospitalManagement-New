@@ -1,4 +1,4 @@
-<div class="container border rounded shadow p-4 mb-4 border-secondary w-60" style="margin-top:5%;">
+<div class="container border rounded shadow p-4 mb-4 border-secondary w-80" style="margin-top:5%;">
 <div class="row panel panel-success" style="margin-top:2%;">
             <div class="panel-heading lead">
                 <div class="row">
@@ -26,10 +26,10 @@
                                 </div>
                                 <div class="col-lg-9 col-md-9">
                                     <ul class="nav nav-tabs">
-                                        <li class="active"><a data-toggle="tab" href="#Details" class="text-success"><i class="fa fa-indent"></i> Details</a></li>
-                                        <li><a data-toggle="tab" href="#Appointmenthistory" class="text-success"><i class="fa fa-bookmark-o"></i>Appointment History</a></li>
-                                        <li><a data-toggle="tab" href="#Records" class="text-success"><i class="fa fa-home"></i> Records</a></li>
-                                    </ul>
+                                        <li class="active"><a data-toggle="tab" href="#Details" class="text-success"><i class="fa fa-indent"></i> Details</a></li> &nbsp &nbsp &nbsp
+                                        <li><a data-toggle="tab" href="#Appointmenthistory" class="text-success"><i class="fa fa-bookmark-o"></i>Appointment History</a></li> &nbsp &nbsp &nbsp
+                                        <li><a data-toggle="tab" href="#Records" class="text-success"><i class="fa fa-home"></i> Records</a></li> &nbsp &nbsp  &nbsp
+                                    </ul><hr>
                                     <div class="tab-content">
                                         <div id="Details" class="tab-pane  active">
                                             <div class="table-responsive panel">
@@ -128,7 +128,7 @@
                         </div>
                     </div>
                 <!-- /.table-responsive -->
-                <button type="button" class="apbutton" data-toggle="modal" data-target="#exampleModalCenter">
+                <button type="button" class="apbutton btn group-form" data-toggle="modal" data-target="#exampleModalCenter">
                   <%= link_to "Take Appointment", :controller => :patients, :action => "slot_view"%>
                 </button>
                 <!-- <button class="apbutton"><%= link_to '<span><p>Take Appointment</p></span>', :controller => :timeslots, :action => "index", :style => "text-decoration: none;"%></button> -->

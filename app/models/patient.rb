@@ -1,6 +1,8 @@
 require "open-uri"
 class Patient < ActiveRecord::Base
-  validates_presence_of :first_name, :last_name, :email
+  validates_presence_of :first_name, :last_name
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_uniqueness_of :email
   has_many :users, :as => :user_record
   has_many :admittedrecords
   has_many :doctors, :through => :appointments

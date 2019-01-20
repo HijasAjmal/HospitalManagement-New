@@ -1,2 +1,2 @@
-<label class="labeltext">Doctor:</label>
- <%= collection_select(:doctors, :id, @doctors, :id, :first_name, {:include_blank => "Select Doctor"}, {:onchange => "showDateForm(this.value);", :class => "selectdoctorfield"})%>
+<label>Doctor:</label>
+ <%= collection_select(:doctors, :id, @doctors, :id, :first_name, {:include_blank => "Select Doctor"}, {:onchange => "showDateForm(this.value);", :class => "control-form"})%>

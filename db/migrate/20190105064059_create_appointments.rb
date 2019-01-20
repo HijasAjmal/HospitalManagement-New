@@ -5,8 +5,8 @@ class CreateAppointments < ActiveRecord::Migration
       t.string :date
       t.integer :is_diogonised, :default => 0
       t.integer :is_expired, :default => 0
-      t.belongs_to :patient_id
-      t.belongs_to :doctor_id
+      t.belongs_to :patient
+      t.belongs_to :doctor
       t.belongs_to :slot, :index => true
       t.timestamps
     end

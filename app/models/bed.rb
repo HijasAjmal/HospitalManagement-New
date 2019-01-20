@@ -1,4 +1,5 @@
 class Bed < ActiveRecord::Base
+	
 	belongs_to :room
 
 	OPTIONS = {"No" => 0, "Yes" => 1}

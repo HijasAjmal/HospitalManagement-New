@@ -8,10 +8,10 @@
 require 'open-uri'
 require 'active_record/fixtures'
 
-Bloodgroup.delete_all
+BloodGroup.delete_all
 blood_groups = ["A+", "O+", "B+","AB+", "A-", "O-", "B-", "AB-"]
 blood_groups.each do |name|
-  Bloodgroup.create(:name => name)
+  BloodGroup.create(:name => name)
 end
 
 PatientCondition.delete_all
@@ -20,23 +20,8 @@ patient_conditions.each do |patientcondition|
    PatientCondition.create(:status => patientcondition)
  end
 
-
-Gender.delete_all
-gender = ["Male", "Female", "Other"]
-gender.each do |gender|
-   Gender.create(:name => gender)
- end
-
-
- Option.delete_all
- options = ["Yes", "No"]
-options.each do |option|
-   Option.create(:opt => option)
- end
-
-
  Country.delete_all
- open("/home/virus/Downloads/Ten/db/country_list.txt") do |countries|
+ open("/home/virus/HospitalManagement/Ten/db/country_list.txt") do |countries|
   countries.read.each_line do |country|
      code, name = country.chomp.split("|")
      Country.create!(:country_name => name, :code => code)

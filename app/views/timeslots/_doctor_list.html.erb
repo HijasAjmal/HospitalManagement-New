@@ -1,23 +1,20 @@
 <% form_for(@timeslot) do |f| %>
   <%= f.error_messages %>
-  <div class="form-row">
-    <div class="form-group col-md-6" style="margin-left: 30%;">
-      <%= collection_select(:doctor, :id, @doctors, :id, :first_name, {:prompt => "Select Doctor"},{:class => "selectdoc"})%></br>
-    </div>
+  <div class="form-group">
+    <%= collection_select(:doctor, :id, @doctors, :id, :first_name, {:prompt => "Select Doctor"},{:class => "form-control"})%></br>
   </div>
-<div class="form-row w-33" style="margin-top: 10px; width: 206%; margin-left: -48%;">
-  <div class="form-group col-md-6 datepick">
+  <div class="form-group">
     <%= f.label :start_date %><br/>
     <%= f.datetime_select :start_date_time, {:class => "selectdep"} %>
   </div>
-  <div class="form-group col-md-6 datepick">
+  <div class="form-group">
     <%= f.label :end_date %><br/>
     <%= f.datetime_select :end_date_time, {:class => "selectdep"} %>
-  </div><br/><br/><br/><br/><br/><br/>
-  <div class="form-group col-md-6 datepick" style="margin-left: 40%; ">
-    <%= f.label :slot_count_constant %><br/>
-    <%= f.time_select :slot_count_constant, {:class => "selectdep"} %><br/><br/>
-  </div>
   </div><br/><br/>
-  <%= f.submit 'Create', :name => nil, :class => "btn btn-primary upbedbtn" %>
-<% end %>
+  <div class="form-group">
+    <%= f.label :slot_count_constant %><br/>
+    <%= f.time_select :slot_count_constant, {:class => "selectdep"} %><br/>
+  </div>
+  <br/><br/>
+  <%= f.submit "Create", :name => nil, :class => "btn btn-primary", :style=>"margin-top:-28px;margin-left: 8%; height: 5%; width: 50%; font-size: 15px; padding: 0;" %>
+  <% end %>

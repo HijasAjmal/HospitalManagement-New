@@ -1,0 +1,20 @@
+</br></br></br>
+<div class="container my-5" style="width:35%; border-radius:10px;">
+  <div class="card-body bg-secondary rounded">
+    <h5 class="card-title text-center">Create Room</h5><hr>
+    <% form_for @room, :url => {:controller => :rooms, :action => 'create', :class => "form-signin"} do |f| -%>
+    <%= f.error_messages %>
+      <div class="form-group">
+        <%= f.select :department_id, options_from_collection_for_select(Department.all, :id, :department_name), :prompt => "Select Department" %>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :room_id, :placeholder => "Room Id" %></br></br>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :no_of_beds, :placeholder => "No: of Beds" %></br></br>
+      </div>
+
+      <%= f.submit "Create", :name => nil, :class => "btn btn-primary", :style=>"margin-left: 48%; height: 5%; width: 50%; font-size: 15px; padding: 0;" %>
+    <% end %>
+  </div>
+</div>

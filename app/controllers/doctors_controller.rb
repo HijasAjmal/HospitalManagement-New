@@ -24,7 +24,7 @@ filter_access_to :all
   # update doctor profile with full details
   def update_profile## condition##
     if current_user.user_record.update_attributes(:contact_number => params[:contact_number], :photo => params[:photo],
-    :date_of_birth => params[:date_of_birth], :nationality => params[:country][:id], :gender => params[:option],
+    :date_of_birth => params[:date_of_birth], :country_id => params[:country][:id], :gender => params[:option],
     :qualifications => params[:qualifications], :experience => params[:experience])
       flash[:notice] = "Profile Updated..........."
     else

@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
 
   # list all comments
   def index ## change condition###
-    if current_user.user_record_type == "Admin"
+    if find_user_type == "Admin"
       @recommendations = Comment.all(:conditions => {:is_recommended => 1, :recommendation_status => 0})
     else
       @comments = Comment.all

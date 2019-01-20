@@ -2,19 +2,13 @@ class BedsController < ApplicationController
 
 
   filter_access_to :all
-  before_filter :first_rule,
-    :only => [:edit, :show, :destroy, :update]
+  before_filter :first_rule, :only => [:edit, :show, :destroy, :update]
 
-  after_filter :last_rule,
-    :only => [:new, :update, :destroy]
 
   def first_rule
     @bed = Bed.find(params[:id])
   end
 
-  def last_rule
-    redirect_to :controller => :beds
-  end
 
   # list all beds
   def index
@@ -27,6 +21,7 @@ class BedsController < ApplicationController
 
   end
 
+
   # new bed
   def new ## change to model
     @room = Room.find(params[:room_id][:id])
@@ -36,6 +31,7 @@ class BedsController < ApplicationController
     else
       flash[:notice] = "Faild to creat bed..."
     end
+    redirect_to :controller => :beds
   end
 
   # edit bed
@@ -50,6 +46,7 @@ class BedsController < ApplicationController
     else
       flash[:notice] = "Faild to update Bed..."
     end
+    redirect_to :controller => :beds
   end
 
   # destrot bed
@@ -59,6 +56,7 @@ class BedsController < ApplicationController
     else
       flash[:notice] = "Failed to Delete..."
     end
+    redirect_to :controller => :beds
   end
 
   # generating bed report as pdf

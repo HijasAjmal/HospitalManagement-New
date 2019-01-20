@@ -10,23 +10,45 @@ class UsersController < ApplicationController
   end
 
 
+  def patient_registration_form
+    @patient = Patient.new
+  end
+
+
+  def admin_registration_form
+    @admin = User.new
+  end
+
+
+  def doctor_registration_form
+    @doctor = Doctor.new
+    @departments = Department.all
+  end
+
+
   # signup method
   def signup #callbacks
-    if User.first(:conditions => {:email => params[:email]}) || Doctor.find(:first, :conditions => {:email => params[:email]}) || Patient.find(:first, :conditions => {:email => params[:email]})
-     flash[:notice] = "Email Already Exist in Our Database...!"
-     redirect_to :controller => :sessions
-    elsif params[:id] == "3"
-       Patient.create(:first_name => params[:first_name], :middle_name => params[:middle_name],
-      :last_name => params[:last_name],:email => params[:email])
-      redirect_to("/")
+    if params[:id] == "3"
+      @patient = Patient.new(params[:patient])
+      unless @patient.save
+        render :action => "patient_registration_form"
+      else
+        redirect_to("/")
+       end
     elsif params[:id] == "2"
-      Doctor.create(:first_name => params[:first_name], :middle_name => params[:middle_name],
-      :last_name => params[:last_name], :email => params[:email], :department_id => params[:category][:id])
-      redirect_to("/doctors/index")
+      @doctor = Doctor.new(params[:doctor])
+      unless @doctor.save
+        render :action => "doctor_registration_form"
+      else
+        redirect_to("/doctors/index")
+      end
     elsif params[:id] == "1"
-      @user = User.create(:first_name => params[:first_name], :middle_name => params[:middle_name],
-        :last_name => params[:last_name], :email => params[:email])
-      redirect_to("/sessions/show")
+      @admin = User.new(params[:admin])
+      unless @admin.save
+        render :action => "admin_registration_form"
+      else
+        redirect_to("/sessions/show")
+      end
     end
   end
 end

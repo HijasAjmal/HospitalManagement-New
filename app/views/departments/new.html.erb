@@ -1,0 +1,12 @@
+<div class="container my-5" style="width:35%; border-radius:10px;">
+  <div class="card-body bg-secondary rounded">
+    <h5 class="card-title text-center">Admin Registration</h5><hr>
+    <% form_for @department, :url => {:controller => :departments, :action => 'create_department', :class => "form-signin"} do |f| -%>
+    <%= f.error_messages %>
+      <div class="form-group">
+        <%= f.text_field :department_name, :placeholder => "Department Name", :class => "form-control"%>
+      </div>
+      <%= f.submit "Create Department", :name => nil, :class => "btn btn-primary", :style=>"margin-left: 48%; height: 5%; width: 50%; font-size: 15px; padding: 0;" %>
+    <% end %>
+  </div>
+</div>

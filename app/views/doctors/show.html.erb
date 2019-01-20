@@ -60,7 +60,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-book"></i>Nationality</td>
-                                                                <td><%= text_field_tag :nationality, params[:nationality], :value => @doctors.nationality, :disabled => true%></td>
+                                                                <td><%= text_field_tag :nationality, params[:nationality], :value => @doctors.country.country_name, :disabled => true%></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-group"></i> Gender</td>

@@ -26,4 +26,8 @@ class ApplicationController < ActionController::Base
     flash[:notice] = "Sorry, you are not allowed to access that page.";
     redirect_to ("/")
   end
+
+  def find_user_type
+    return current_user.user_record_type
+  end
 end

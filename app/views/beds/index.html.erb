@@ -1,59 +1,64 @@
-  <div class="container">
-    <h2><b>Listing All Beds</b></h2>
-    <table class="table table-bordered">
-      <!--  -->
-      <thead>
+<div class="bs-example">
+  </br></br>
+  <h2 class="text-left"><b>Listing All Beds</b></h2>
+  <div class="row mx-md-n5">
+    <button type="button" class="btn btn-secondary" style="margin-top:-40px;margin-left:90%;height:30px;border-radius: 16px; color:black;font-size:12px;width: 85px;">
+      <%= link_to "CSV Report", ("rooms.csv"), :style => "color:white; text-decoration:none;"%></button>
+    <!-- <button type="button" id="add_new_dbtn" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter" >Add new Bed</button> &nbsp -->
+  </div><hr>
+  <table class="table table-striped" style="margin-top: 1%;">
+    <thead class="thead-dark">
+      <tr>
+        <th>SI No</th>
+        <th>Engaged</th>
+        <th>Room ID</th>
+        <th>Department</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @beds.empty?%>
+          <p class="alert">NO available Beds</p>
+      <% else %>
+        <% @beds.each do |bed| %>
         <tr>
-          <th>SI No</th>
-          <th>Engaged</th>
-          <th>Room No</th>
-          <th><button type="button" class="btn bednewbtn" data-toggle="modal" data-target="#exampleModalCenter">Add New Bed</button>
-          </th>
+          <td><%=h bed.id %></td>
+          <td><%=bed.get_option(bed.is_engaged)%></td>
+          <td><%=h bed.room.room_id %></td>
+          <td><%=h bed.room.department.department_name %></td>
+          <td><%= link_to 'Edit', edit_bed_path(bed) %></td>
+          <td><%= link_to 'Destroy', bed, :confirm => 'Are you sure?', :method => :delete %></td>
         </tr>
-      </thead>
-      <!--  -->
-      <tbody>
-        <% if @beds.nil?%>
-            <h3 style="margin-left: 40%; color: red;">NO available Beds</h3>
-        <% else %>
-          <% @beds.each do |bed| %>
-          <tr>
-            <td><%=h bed.id %></td>
-            <td><%=bed.get_option(bed.is_engaged)%></td>
-            <td><%=h bed.room_id %></td>
-        	<td><%= link_to 'Edit', edit_bed_path(bed) %></td>
-        	<td><%= link_to 'Destroy', bed, :confirm => 'Are you sure?', :method => :delete %></td>
-          </tr>
-          <% end %>
         <% end %>
-      </tbody>
-      <!--  -->
-    </table>
-  </div>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
 
 
 <!-- Modal1 -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content" height="34px">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Details</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-           <% form_tag({:controller => :beds, :action => 'new'}, {:class => 'user_r'}) do -%>
-           <div class="form-row">
-              <div class="form-group">
-                <%= collection_select :room_id , :id, Room.all, :id, :room_id, {:include_blank => "Select Room"}, {:class => "form-control w-100"} %>  </br></br></br>
-              </div>
+      <div class="modal-header">
+        <h5 class="modal-title" style="margin-left:45%; font-weight:bold;" id="exampleModalCenterTitle">Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% form_tag({:controller => :beds, :action => 'new'}, {:class => 'user_r'}) do -%>
+        <div class="form-row">
+          <div class="form-group" style="margin-left:38%; font-weight:bold;">
+            <%= collection_select :room_id , :id, Room.all, :id, :room_id, {:include_blank => "Select Room"}, {:class => "form-control w-100", :required => true} %>  </br>
           </div>
-          <%= text_field_tag :no_of_beds, params[:no_of_beds], :placeholder => "No: of Beds", :required => true %></br></br>
-          <!--  -->
-          </br></br>
-          <!--  -->
-          <%= submit_tag "Create", :name => nil, :class => "btn btn-primary" %>
+          <div class="form-group" style="margin-left:34%; font-weight:bold;">
+            <%= text_field_tag :no_of_beds, params[:no_of_beds], :placeholder => "No: of Beds", :type => :integer, :required => true %></br></br>
+          </div>
+        </div >
+        </br>
+        <!--  -->
+        <%= submit_tag "Create", :name => nil, :class => "btn btn-primary", :style => "margin-left:8%;" %>
         <% end %>
       </div>
     </div>

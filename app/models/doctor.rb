@@ -1,8 +1,12 @@
 class Doctor < ActiveRecord::Base
+  validates_presence_of :first_name, :last_name, :department_id
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_uniqueness_of :email
   has_many :users, :as => :user_record
   has_many :timeslots
   has_one :department
   belongs_to :department
+  belongs_to :country
   has_many :patients, :through => :appointments
   after_update :set_profile
   after_create :set_doctor_credentials
