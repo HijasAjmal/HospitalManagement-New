@@ -4,22 +4,22 @@
         <div class="card card-signin my-5 bg-secondary" style="width:75%; border-radius:10px; margin-left:11%;">
           <div class="card-body" style="height: 48%; width: 99%;">
             <h5 class="card-title text-center">Sign In</h5>
-            <% form_tag({:controller => :sessions, :action => 'signin'}, {:class => 'form-signin'}) do-%>
+            <% form_tag({ :controller => :sessions, :action => 'signin' }, { :class => 'form-signin' }) do -%>
               <div class="form-label-group">
-                <%= text_field_tag :user_name, params[:user_name], :placeholder => "User Name", :class => "form-control", :style => "height:12%;"%></br>
+                <%= text_field_tag :user_name, params[:user_name], :placeholder => "User Name", :class => "form-control", :style => "height:12%;" %></br>
               </div>
 
               <div class="form-label-group">
-                <%= password_field_tag :password, params[:password], :placeholder => "Password", :required => true, :class => "form-control", :style => "height:12%;"%></br>
+                <%= password_field_tag :password, params[:password], :placeholder => "Password", :required => true, :class => "form-control", :style => "height:12%;" %></br>
               </div>
 
               <div class="custom-control custom-checkbox mb-3">
                 <a data-toggle="modal" data-target="#exampleModal" style="text-decoration: none; margin-left:-23px; color:blue; float:left;">Forget Password?</a>
               </div>
-              <%= submit_tag "Sign In", :name => nil, :class => "btn btn-lg btn-primary btn-block text-uppercase", :style=>"margin-left: 25%; height: 11%; width: 50%; margin-top: -9px; font-size: 15px; padding: 0;"%>
+              <%= submit_tag "Sign In", :name => nil, :class => "btn btn-lg btn-primary btn-block text-uppercase", :style=>"margin-left: 25%; height: 11%; width: 50%; margin-top: -9px; font-size: 15px; padding: 0;" %>
               <hr class="my-4">
               <button type="button" name="button" class="btn btn-primary text-uppercase" style="margin-left: 63%; height: 85%; width: 50%; margin-top: -9px; font-size: 9px;">
-                <%= link_to 'Patient Registration', :controller => :users, :action => "patient_registration_form", :style => "color:white; text-decoration:none;"%>
+                <%= link_to 'Patient Registration', :controller => :users, :action => "patient_registration_form", :style => "color:white; text-decoration:none;" %>
               </button>
             <% end %>
           </div>
@@ -44,9 +44,9 @@
       </div>
       <div class="modal-body">
         <% form_tag :action => 'forget' do -%>
-              <%= text_field_tag :email, params[:email], :placeholder => "Email", :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}', :class => "form-control", :style => "height:5%;"%>
+              <%= text_field_tag :email, params[:email], :placeholder => "Email", :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}', :class => "form-control", :style => "height:5%;" %>
             </br></br>
-            <%= submit_tag "Send the link to email", :name => nil, :class => "btn btn-primary", :style => "height: 30px;width: 80%;padding:0px;"%>
+            <%= submit_tag "Send the link to email", :name => nil, :class => "btn btn-primary", :style => "height: 30px;width: 80%;padding:0px;" %>
         <% end %>
       </div>
     </div>

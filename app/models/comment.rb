@@ -3,7 +3,7 @@ class Comment < ActiveRecord::Base
 	after_create :set_appointment_status
 
 
-	OPTIONS = {"No" => 0, "Yes" => 1}
+	OPTIONS = { "No" => 0, "Yes" => 1 }
 
 
   def find_option(msg)

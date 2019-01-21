@@ -18,7 +18,7 @@ class TimeslotsController < ApplicationController
   def new
     @timeslot = Timeslot.new
     if params[:department_id]
-      @doctors = Doctor.all(:conditions => {:department_id => params[:department_id]})
+      @doctors = Doctor.all(:conditions => { :department_id => params[:department_id] })
       @timeslot = Timeslot.new
       render :update do |page|
         page.replace_html 'doctor' ,:partial =>'doctor_list'

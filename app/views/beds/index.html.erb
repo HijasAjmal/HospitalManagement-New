@@ -2,9 +2,6 @@
   </br></br>
   <h2 class="text-left"><b>Listing All Beds</b></h2>
   <div class="row mx-md-n5">
-    <button type="button" class="btn btn-secondary" style="margin-top:-40px;margin-left:90%;height:30px;border-radius: 16px; color:black;font-size:12px;width: 85px;">
-      <%= link_to "CSV Report", ("rooms.csv"), :style => "color:white; text-decoration:none;"%></button>
-    <!-- <button type="button" id="add_new_dbtn" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter" >Add new Bed</button> &nbsp -->
   </div><hr>
   <table class="table table-striped" style="margin-top: 1%;">
     <thead class="thead-dark">
@@ -16,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      <% if @beds.empty?%>
+      <% if @beds.empty? %>
           <p class="alert">NO available Beds</p>
       <% else %>
         <% @beds.each do |bed| %>
@@ -47,10 +44,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <% form_tag({:controller => :beds, :action => 'new'}, {:class => 'user_r'}) do -%>
+        <% form_tag({ :controller => :beds, :action => 'new' }, { :class => 'user_r' }) do -%>
         <div class="form-row">
           <div class="form-group" style="margin-left:38%; font-weight:bold;">
-            <%= collection_select :room_id , :id, Room.all, :id, :room_id, {:include_blank => "Select Room"}, {:class => "form-control w-100", :required => true} %>  </br>
+            <%= collection_select :room_id , :id, Room.all, :id, :room_id, { :include_blank => "Select Room" }, { :class => "form-control w-100", :required => true } %>  </br>
           </div>
           <div class="form-group" style="margin-left:34%; font-weight:bold;">
             <%= text_field_tag :no_of_beds, params[:no_of_beds], :placeholder => "No: of Beds", :type => :integer, :required => true %></br></br>

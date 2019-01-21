@@ -3,9 +3,9 @@
   <h2 class="text-left"><b>All Departments</b></h2>
   <div class="row mx-md-n5">
     <button type="button" class="btn btn-secondary" style="margin-top:-40px;margin-left:90%;height:30px;border-radius: 16px; color:black;font-size:12px;width: 85px;">
-      <%= link_to "Pdf Report", :action => "doctor_list", :style => "color:white; text-decoration:none;"%></button>
-      <button type="button" id="add_new_dbtn" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">
-        <%= link_to 'Add Department', :action => "new", :style => "color:white; text-decoration:none;"%></button> &nbsp
+      <%= link_to "Pdf Report", :action => "department_list", :style => "color:white; text-decoration:none;" %></button>
+      <button type="button" id="add_new_dbtn" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter" style="margin-top:-40px;margin-left:80%;height:30px;border-radius: 16px; color:black;font-size:10px;width: 85px;">
+        <%= link_to 'Add Department', :action => "new", :style => "color:white; text-decoration:none;" %></button> &nbsp
   </div><hr>
   <table class="table table-striped" style="margin-top: 1%;">
     <thead class="thead-dark">
@@ -17,18 +17,18 @@
       </tr>
     </thead>
     <tbody>
-      <% if @departments.empty?%>
+      <% if @departments.empty? %>
         <p class="alert">Department list empty...<p>
       <% else %>
-        <% @no = 1%>
-        <% @departments.each do |d| %>
+        <% @index = 1%>
+        <% @departments.each do |department| %>
         <tr>
-          <td><%= @no %></td>
-          <td><%=d.department_name %></td>
-          <td><%=link_to Room.count(:conditions => {:department_id => d.id}), :controller => :rooms, :action => "show_rooms", :id => d.id%></td>
-          <td><%= Room.sum(:no_of_beds, :conditions => {:department_id => d.id})%></td>
-          <% @no += 1%>
-          <td><%=link_to 'Delete', :action => "delete", :id => d.id%></td>
+          <td><%= @index %></td>
+          <td><%= department.department_name %></td>
+          <td><%= link_to Room.count(:conditions => { :department_id => department.id }), :controller => :rooms, :action => "show_rooms", :id => department.id %></td>
+          <td><%= Room.sum(:no_of_beds, :conditions => { :department_id => department.id }) %></td>
+          <% @index += 1 %>
+          <td><%= link_to 'Delete', :action => "delete", :id => department.id %></td>
         </tr>
         <% end %>
       <% end %>

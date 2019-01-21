@@ -18,15 +18,15 @@ class User < ActiveRecord::Base
     @user_type = @user.user_record
     @user.update_attributes(:first_name => @user_type.first_name,
       :middle_name => @user_type.middle_name, :last_name => @user_type.last_name,
-      :email => @user_type.email, :user_name => @user_type.first_name+"@U"+@user_type.id.to_s,
-      :password => @user_type.id.to_s+"123",
+      :email => @user_type.email, :user_name => @user_type.first_name + "@U" + @user_type.id.to_s,
+      :password => @user_type.id.to_s + "123",
       :confirmation_token => SecureRandom.hex(10) )
     UserMailer.deliver_welcome_email(@user_type, @user)
   end
 
   def set_admin_credential
     if self.user_record_type == "Admin"
-      self.update_attributes(:user_name => "A00"+self.id.to_s, :password => self.first_name+"@A"+self.id.to_s, :user_record_type => "Admin", :confirmed => 1, :profile_status => 1)
+      self.update_attributes(:user_name => "A00" + self.id.to_s, :password => self.first_name + "@A" + self.id.to_s, :user_record_type => "Admin", :confirmed => 1, :profile_status => 1)
       UserMailer.deliver_admin_email(self)
     end
   end

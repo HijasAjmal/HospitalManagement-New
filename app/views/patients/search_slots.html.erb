@@ -1,27 +1,27 @@
 </br></br></br>
-  <% if @timeslots.nil?%>
+  <% if @timeslots.nil? %>
   <div class="container border border-0 " style="width: 50%;margin-top: 8%; background-color: lightgoldenrodyellow;">
     <div class=" container zoom sorrymsg">
       <h3 class="zoom">No Available Timeslots.........Sorry........</h3>
     </div>
   </div>
 <% else %>
-  <% @index = 0%>
+  <% @index = 0 %>
   <% @timeslots.each do |timeslot| %>
   <p>
     <div class="container border rounded shadow w-100 timeslotdvi" style="text-decoration: none; height:25%;" aria-expanded="false" aria-controls="collapseExample">
       <% @slots = timeslot.find_slots(timeslot)%>
       <%if @slots == true %>
         <% @slots = timeslot.slots%>
-        <% @slots.each do |i|%>
-          <% if i.status == 0%>
-            <% @color = "btn-success"%>
-            <% @button_status = "enabled"%>
+        <% @slots.each do |slot|%>
+          <% if slot.status == 0%>
+            <% @color = "btn-success" %>
+            <% @button_status = "enabled" %>
           <% else%>
-            <% @color = "btn-secondary"%>
-            <% @button_status = "disabled"%>
+            <% @color = "btn-secondary" %>
+            <% @button_status = "disabled" %>
           <% end %>
-          <button type="button" <%= @button_status%> class="btn <%= @color%>"><%=link_to_if @button_status == "enabled", i.time.strftime("%H:%M"), :controller => :appointments, :action => "new", :id => i.id %>&nbsp &nbsp</button>
+          <button type="button" <%= @button_status%> class="btn <%= @color %>"><%= link_to_if @button_status == "enabled", slot.time.strftime("%H:%M"), :controller => :appointments, :action => "new", :id => slot.id %>&nbsp &nbsp</button>
         <% end %>
       <% else %>
       <div class="container border border-0 " style="width: 50%;margin-top: 8%; background-color: lightgoldenrodyellow;">
@@ -32,6 +32,6 @@
       <% end %>
     </div>
   </p>
-  <% @index = @index+1%>
+  <% @index = @index+1 %>
   <% end %>
 <% end %>

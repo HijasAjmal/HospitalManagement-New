@@ -3,9 +3,9 @@
   <h2 class="text-left"><b>Listing All Doctors</b></h2>
   <div class="row mx-md-n5">
     <button type="button" class="btn btn-secondary" style="margin-top:-40px;margin-left:90%;height:30px;border-radius: 16px; color:black;font-size:12px;width: 85px;">
-      <%= link_to "Pdf Report", :action => "doctor_list", :style => "color:white; text-decoration:none;"%></button>
+      <%= link_to "Pdf Report", :action => "doctor_list", :style => "color:white; text-decoration:none;" %></button>
     <button type="button" id="add_new_dbtn" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">
-      <%= link_to 'Add new doctor', :controller => :users, :action => "doctor_registration_form", :style => "color:white; text-decoration:none;"%></button> &nbsp
+      <%= link_to 'Add new doctor', :controller => :users, :action => "doctor_registration_form", :style => "color:white; text-decoration:none;" %></button> &nbsp
   </div><hr>
   <table class="table table-striped" style="margin-top: 1%;">
     <thead class="thead-dark">
@@ -18,18 +18,18 @@
       </tr>
     </thead>
     <tbody>
-      <% if @doctors.empty?%>
+      <% if @doctors.empty? %>
         <p class="alert">Doctors record empty...</p>
       <% else %>
         <% @doctors.each do |doctor| %>
         <tr>
-          <td><%=doctor.first_name %></td>
-          <td><%=doctor.last_name %></td>
-          <td><%=doctor.contact_number %></td>
-          <td><%=doctor.email %></td>
-          <td><%=doctor.department.department_name %></td>
-          <td><%=link_to 'Details', :action => "show", :id => doctor.id%></td>
-          <td><%=link_to 'Delete', :action => "delete", :id => doctor.id%></td>
+          <td><%= doctor.first_name %></td>
+          <td><%= doctor.last_name %></td>
+          <td><%= doctor.contact_number %></td>
+          <td><%= doctor.email %></td>
+          <td><%= doctor.department.department_name %></td>
+          <td><%= link_to 'Details', :action => "show", :id => doctor.id %></td>
+          <td><%= link_to 'Delete', :action => "delete", :id => doctor.id %></td>
         </tr>
         <% end %>
       <% end %>

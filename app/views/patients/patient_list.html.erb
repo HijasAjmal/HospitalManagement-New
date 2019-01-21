@@ -1,0 +1,23 @@
+<div class="bs-example">
+  </br></br>
+  <h2 class="text-left"><b>All Patients</b></h2>
+  <table class="table table-striped" style="margin-top: 1%;">
+    <thead class="thead-dark">
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Contact</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <% @patients.each do |patient| %>
+    <tr>
+      <td><%=patient.first_name %></td>
+      <td><%=patient.last_name %></td>
+      <td><%=patient.contact_number %></td>
+      <td><%=patient.email %></td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

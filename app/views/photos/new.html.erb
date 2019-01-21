@@ -2,10 +2,10 @@
 <div class="container my-5" style="width:35%; border-radius:10px;">
   <div class="card-body bg-secondary rounded">
     <h5 class="card-title text-center">Admin Registration</h5><hr>
-    <% form_for @photo, :url => photos_path, :html => {:multipart => true} do |f| %>
+    <% form_for @photo, :url => photos_path, :html => { :multipart => true } do |f| %>
       <div class="form-group">
         <%= f.error_messages %>
-        <%= f.file_field :photo%>
+        <%= f.file_field :photo %>
       </div>
       <%= f.submit "Uplaod Photo", :name => nil, :class => "btn btn-primary", :style=>"margin-left: 48%; height: 5%; width: 50%; font-size: 15px; padding: 0;" %>
     <% end %>

@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(:version => 20190110193331) do
     t.string   "date"
     t.integer  "is_diogonised", :default => 0
     t.integer  "is_expired",    :default => 0
-    t.integer  "patient_id_id"
-    t.integer  "doctor_id_id"
+    t.integer  "patient_id"
+    t.integer  "doctor_id"
     t.integer  "slot_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20190110193331) do
   end
 
   create_table "reports", :force => true do |t|
+    t.string   "title"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -132,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20190110193331) do
   end
 
   create_table "rooms", :force => true do |t|
+    t.string   "room_id"
     t.integer  "no_of_beds",    :default => 0
     t.integer  "department_id"
     t.datetime "created_at"

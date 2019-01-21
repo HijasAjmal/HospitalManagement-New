@@ -7,7 +7,7 @@ class Timeslot < ActiveRecord::Base
 
   def find_doctor(timeslot) #change###
     @doctor = Doctor.find(timeslot.doctor_id)
-    return @doctor.first_name+" "+@doctor.middle_name+" "+@doctor.last_name
+    return @doctor.first_name + " " + @doctor.middle_name + " " + @doctor.last_name
   end
 
   # creating slots
@@ -20,8 +20,7 @@ class Timeslot < ActiveRecord::Base
       if @timeslot.start_date_time == @timeslot.end_date_time
         break
       else
-        @date_time = @date_time+@count*60
-        p @date_time
+        @date_time = @date_time + @count * 60
         if @date_time > @timeslot.end_date_time
           break
         else

@@ -3,7 +3,7 @@
   <h2 class="text-left"><b>Listing All Patients</b></h2>
   <div class="row mx-md-n5">
     <button type="button" class="btn btn-secondary" style="margin-top:-40px;margin-left:90%;height:30px;border-radius: 16px; color:black;font-size:12px;width: 85px;">
-      <%= link_to "Pdf Report", :action => "doctor_list", :style => "color:white; text-decoration:none;"%></button>
+      <%= link_to "Pdf Report", :action => "patient_list", :style => "color:white; text-decoration:none;" %></button>
   </div><hr>
   <table class="table table-striped" style="margin-top: 1%;">
     <thead class="thead-dark">
@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <% if @patients.empty?%>
+      <% if @patients.empty? %>
           <p class="alert">Patinet Record empty...</p>
       <% else %>
         <% @patients.each do |patient| %>
@@ -24,8 +24,8 @@
           <td><%=patient.last_name %></td>
           <td><%=patient.contact_number %></td>
           <td><%=patient.email %></td>
-          <td><%=link_to 'Details', :action => "details_view_admin", :id => patient.id%></td>
-          <td><%=link_to 'Delete', :action => "delete", :id => patient.id%></td>
+          <td><%=link_to 'Details', :action => "details_view_admin", :id => patient.id %></td>
+          <td><%=link_to 'Delete', :action => "delete", :id => patient.id %></td>
         </tr>
         <% end %>
       <% end %>

@@ -16,8 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :rooms
 
 
-   # map.resources :doctors
-
+  # map.resources :doctors
   # The priority is based upon order of creation: first created -> highest priority.
   # Sample of regular route:
 

@@ -20,8 +20,8 @@ development:
   reconnect: false
   database: HospitalManagement_development
   pool: 5
-  username: virus
-  password: .virusdb
+  username: foradian
+  password: foradian
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and

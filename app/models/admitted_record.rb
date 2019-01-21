@@ -3,7 +3,7 @@ class AdmittedRecord < ActiveRecord::Base
   after_destroy :update_bed_status
   after_update :set_discharge_status, :if => :discharged_date_changed?
 
-  OPTIONS = {"No" => 0, "Yes" => 1}
+  OPTIONS = { "No" => 0, "Yes" => 1 }
 
 
   def find_option(msg)
@@ -13,7 +13,7 @@ class AdmittedRecord < ActiveRecord::Base
 
   def find_patient(msg)
     @patient = Patient.find(msg)
-    return @patient.first_name+" "+@patient.middle_name+" "+@patient.last_name
+    return @patient.first_name + " " + @patient.middle_name + " " + @patient.last_name
   end
 
   def update_bed_status

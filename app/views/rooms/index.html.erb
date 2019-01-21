@@ -3,9 +3,9 @@
   <h2 class="text-left"><b>Listing All Rooms</b></h2>
   <div class="row mx-md-n5">
     <button type="button" class="btn btn-secondary" style="margin-top:-40px;margin-left:90%;height:30px;border-radius: 16px; color:black;font-size:12px;width: 85px;">
-      <%= link_to "CSV Report", ("rooms.csv"), :style => "color:white; text-decoration:none;"%></button>
+      <%= link_to "CSV Report", ("rooms.csv"), :style => "color:white; text-decoration:none;" %></button>
     <button type="button" id="add_new_dbtn" class="btn btn-secondary" >
-      <%= link_to 'Add new Room', :controller => :rooms, :action => "new", :style => "color:white; text-decoration:none;"%></button> &nbsp
+      <%= link_to 'Add new Room', :controller => :rooms, :action => "new", :style => "color:white; text-decoration:none;" %></button> &nbsp
   </div><hr>
   <table class="table table-striped" style="margin-top: 1%;">
     <thead class="thead-dark">
@@ -16,14 +16,14 @@
       </tr>
     </thead>
     <tbody>
-      <% if @rooms.empty?%>
+      <% if @rooms.empty? %>
         <p class="alert">NO available Rooms...</p>
       <% else %>
         <% @rooms.each do |room| %>
         <tr>
-          <td><%=h room.room_id %></td>
-          <td><%=h room.department.department_name %></td>
-          <td><%=h room.no_of_beds %></td>
+          <td><%= h room.room_id %></td>
+          <td><%= h room.department.department_name %></td>
+          <td><%= h room.no_of_beds %></td>
           <!-- <td><%= link_to 'Edit', edit_room_path(room) %></td> -->
           <td><%= link_to 'Destroy', room, :confirm => 'Are you sure?', :method => :delete %></td>
         </tr>

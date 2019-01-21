@@ -10,7 +10,7 @@
                                 <div class="col-lg-3 col-md-3">
                                     <center>
                                         <span class="text-left" style="margin-left: 5px;">
-                                        <%= image_tag Photo.findImage(@doctors.users.id), :class => "img-responsive img-thumbnail"%>
+                                        <%= image_tag Photo.findImage(@doctors.users.id), :class => "img-responsive img-thumbnail" %>
                                       </span>
                                     </center>
                                     <div class="panel">
@@ -36,47 +36,47 @@
                                                     <tbody>
                                                         <tr>
                                                                 <td class="text-success"><i class="fa fa-user"></i> First Name</td>
-                                                                <td><%= text_field_tag :first_name, params[:first_name], :value => @doctors.first_name, :disabled => true%></td>
+                                                                <td><%= text_field_tag :first_name, params[:first_name], :value => @doctors.first_name, :disabled => true %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Middle Name</td>
-                                                                <td><%= text_field_tag :middle_name, params[:middle_name], :value => @doctors.middle_name, :disabled => true%></td>
+                                                                <td><%= text_field_tag :middle_name, params[:middle_name], :value => @doctors.middle_name, :disabled => true %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Last Name</td>
-                                                                <td><%= text_field_tag :last_name, params[:last_name], :value => @doctors.last_name, :disabled => true%></td>
+                                                                <td><%= text_field_tag :last_name, params[:last_name], :value => @doctors.last_name, :disabled => true %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Contact Number</td>
-                                                                <td><%= text_field_tag :contact_number, params[:contact_number], :value => @doctors.contact_number, :disabled => true%></td>
+                                                                <td><%= text_field_tag :contact_number, params[:contact_number], :value => @doctors.contact_number, :disabled => true %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Email</td>
-                                                                <td><%= text_field_tag :email, params[:email], :value => @doctors.email, :disabled => true%></td>
+                                                                <td><%= text_field_tag :email, params[:email], :value => @doctors.email, :disabled => true %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Date Of Birth</td>
-                                                                <td><%= text_field_tag :date_of_birth, params[:date_of_birth], :value => @doctors.date_of_birth, :disabled => true%></td>
+                                                                <td><%= text_field_tag :date_of_birth, params[:date_of_birth], :value => @doctors.date_of_birth, :disabled => true %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-book"></i>Nationality</td>
-                                                                <td><%= text_field_tag :nationality, params[:nationality], :value => @doctors.country.country_name, :disabled => true%></td>
+                                                                <td><%= text_field_tag :nationality, params[:nationality], :value => @doctors.country.country_name, :disabled => true %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-group"></i> Gender</td>
-                                                                <td><%= text_field_tag :gender, params[:gender], :value => @doctors.gender, :disabled => true%></td>
+                                                                <td><%= text_field_tag :gender, params[:gender], :value => @doctors.gender, :disabled => true %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-calendar"></i> Qualifications</td>
-                                                                <td><%= text_field_tag :qualifications, params[:qualifications], :value => @doctors.qualifications, :disabled => true%></td>
+                                                                <td><%= text_field_tag :qualifications, params[:qualifications], :value => @doctors.qualifications, :disabled => true %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-calendar"></i> Experience</td>
-                                                                <td><%= text_field_tag :experience, params[:experience], :value => @doctors.experience, :disabled => true%></td>
+                                                                <td><%= text_field_tag :experience, params[:experience], :value => @doctors.experience, :disabled => true %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-calendar"></i> Department Name</td>
-                                                                <td><%= text_field_tag :department_id, params[:department_id], :value => @doctors.department.department_name, :disabled => true%></td>
+                                                                <td><%= text_field_tag :department_id, params[:department_id], :value => @doctors.department.department_name, :disabled => true %></td>
                                                             </tr>
                                                     </tbody>
                                                 </table>

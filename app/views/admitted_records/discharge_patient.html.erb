@@ -2,16 +2,16 @@
 <div class="container my-5" style="width:35%; border-radius:10px;">
   <div class="card-body bg-secondary rounded">
     <h5 class="card-title text-center">Create Record</h5><hr>
-    <% form_tag({:action => 'discharge_record', :id => params[:id]}, {:class => 'user_r'}) do -%>
+    <% form_tag({ :action => 'discharge_record', :id => params[:id] }, { :class => 'user_r' }) do -%>
       <!--  -->
     	<div class="form-row">
       	<div class="form-group col-md-6">
         		<label >Department Name</label>
-        		<%= text_field_tag :department_name, params[:department_name], :value => @bed.room.department.department_name, :disabled => true, :class => "form-control"%>
+        		<%= text_field_tag :department_name, params[:department_name], :value => @bed.room.department.department_name, :disabled => true, :class => "form-control" %>
       	</div>
       	<div class="form-group col-md-6">
         		<label >Patient Name</label>
-        		<%= text_field_tag :patient, params[:patient], :value => @record.patient.first_name+" "+@record.patient.middle_name+" "+@record.patient.last_name, :disabled => true, :class => "form-control" %>
+        		<%= text_field_tag :patient, params[:patient], :value => @record.patient.first_name + " " + @record.patient.middle_name + " " + @record.patient.last_name, :disabled => true, :class => "form-control" %>
       	</div>
       </div>
       <!--  -->
@@ -19,11 +19,11 @@
       <!--  -->
       <div class="form-group">
         <label >Discharging Date</label>
-        <%= text_field_tag :date, params[:date], :value => Time.now.strftime("%Y-%m-%d"), :disabled => true%>
+        <%= text_field_tag :date, params[:date], :value => Time.now.strftime("%Y-%m-%d"), :disabled => true %>
       </div>
       <div class="form-group">
         <label >Discharging Time</label>
-        <%= text_field_tag :time, params[:time], :value => Time.now.strftime("%H:%M %p"), :disabled => true%>
+        <%= text_field_tag :time, params[:time], :value => Time.now.strftime("%H:%M %p"), :disabled => true %>
       </div>
       <!--  -->
       </br></br>

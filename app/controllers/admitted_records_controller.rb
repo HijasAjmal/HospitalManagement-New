@@ -10,7 +10,9 @@ class AdmittedRecordsController < ApplicationController
   def new_record
     if params[:room_id]
       print params[:room_id]
-      @beds = Bed.all(:conditions => {:is_engaged => 0, :room_id => params[:room_id]})
+      @beds = Bed.all(:conditions => {
+                    :is_engaged => 0,
+                    :room_id => params[:room_id] })
       render :update do |page|
         page.replace_html 'bedlistform' ,:partial =>'bed_list'
       end
@@ -27,7 +29,12 @@ class AdmittedRecordsController < ApplicationController
     else
       @comment = Comment.find(params[:id])
       @comment.update_attributes(:recommendation_status => 1)
-      if AdmittedRecord.create(:doctor_id => @comment.appointment.doctor_id, :bed_id => params[:bed_id][:id], :date => DateTime.now.strftime('%m/%d/%Y'), :time => Time.now.strftime("%H:%M%p"), :patient_id => params[:patient_id])
+      if AdmittedRecord.create(
+                    :doctor_id => @comment.appointment.doctor_id,
+                    :bed_id => params[:bed_id][:id],
+                    :date => DateTime.now.strftime('%m/%d/%Y'),
+                    :time => Time.now.strftime("%H:%M%p"),
+                    :patient_id => params[:patient_id])
         flash[:notice] = "Record Created successfully........."
       else
         flash[:notice] = "Faild to create record........."
@@ -56,7 +63,9 @@ class AdmittedRecordsController < ApplicationController
   # update record while discharging
   def discharge_record
     @record = AdmittedRecord.find(params[:id])
-    if @record.update_attributes(:discharged_date => Time.now.strftime("%Y-%m-%d"), :discharged_time => Time.now.strftime("%H:%M %p"))
+    if @record.update_attributes(
+                  :discharged_date => Time.now.strftime("%Y-%m-%d"),
+                  :discharged_time => Time.now.strftime("%H:%M %p"))
       flash[:notice] = "Record Updated successfully......"
     else
       flash[:notice] = "Fialed to Update Admitted Record...."

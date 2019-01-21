@@ -9,17 +9,17 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-
+  # patient registration form
   def patient_registration_form
     @patient = Patient.new
   end
 
-
+  # admin registration form
   def admin_registration_form
     @admin = User.new
   end
 
-
+  # doctor registration form
   def doctor_registration_form
     @doctor = Doctor.new
     @departments = Department.all

@@ -2,13 +2,13 @@
 <div class="container my-5" style="width:35%; border-radius:10px;">
   <div class="card-body bg-secondary rounded">
     <h5 class="card-title text-center">Add report</h5><hr>
-    <% form_for @report, :url => reports_path, :html => {:multipart => true}, :id => @user do |f| %>
+    <% form_for @report, :url => reports_path, :html => { :multipart => true }, :id => @user do |f| %>
       <div class="form-group">
 				<%= f.error_messages %>
-	      <%= f.hidden_field :user_id, :value => @user%>
+	      <%= f.hidden_field :user_id, :value => @user %>
 				<label>Titile:</label>
-				<%= f.text_field :title, :class => "control-form"%></br></br></br>
-	      <%= f.file_field :file%>
+				<%= f.text_field :title, :class => "control-form" %></br></br></br>
+	      <%= f.file_field :file %>
       </div>
       <%= f.submit "Uplaod Report", :name => nil, :class => "btn btn-primary", :style=>"margin-left: 48%; height: 5%; width: 50%; font-size: 15px; padding: 0;" %>
     <% end %>

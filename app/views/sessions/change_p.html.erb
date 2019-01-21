@@ -1,11 +1,11 @@
 <h2>change password</h2>
 
-<%= user_id = params[:id]%>
+<%= user_id = params[:id] %>
 <% form_tag :action => 'changepwd', :id => user_id do -%>
     <h4>New Password</h4>
-      <%= password_field_tag :password, params[:password], :required => true%>
+      <%= password_field_tag :password, params[:password], :required => true %>
     <h4>Confirm Password</h4>
-      <%= password_field_tag :s_password, params[:s_password], :required => true%>
-    </br></br><%= submit_tag "Update Password", :name => nil%>
+      <%= password_field_tag :s_password, params[:s_password], :required => true %>
+    </br></br><%= submit_tag "Update Password", :name => nil %>
 <% end %>
 </br>

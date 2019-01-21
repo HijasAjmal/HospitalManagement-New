@@ -13,9 +13,9 @@
     <tbody>
       <% @rooms.each do |room| %>
       <tr>
-        <td><%=h room.id %></td>
-        <td><%=h room.department_id %></td>
-        <td><%=h room.no_of_beds %></td>
+        <td><%= h room.id %></td>
+        <td><%= h room.department_id %></td>
+        <td><%= h room.no_of_beds %></td>
       </tr>
     <% end %>
     </tbody>

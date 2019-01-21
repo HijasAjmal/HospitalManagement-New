@@ -26,7 +26,7 @@ class BedsController < ApplicationController
   def new ## change to model
     @room = Room.find(params[:room_id][:id])
     @no = params[:no_of_beds].to_i
-    if @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i+params[:no_of_beds].to_i)
+    if @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i + params[:no_of_beds].to_i)
       flash[:notice] = "Created bed successfully..."
     else
       flash[:notice] = "Faild to creat bed..."
@@ -59,12 +59,4 @@ class BedsController < ApplicationController
     redirect_to :controller => :beds
   end
 
-  # generating bed report as pdf
-  def bed_report
-    @beds = Bed.all
-    render :pdf => "bed_report", :header => { :right => '[page] of [topage]'}, :margin => {
-                  :top => 40,
-                  :bottom => 0
-               }
-  end
 end

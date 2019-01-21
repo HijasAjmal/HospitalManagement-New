@@ -21,7 +21,7 @@ patient_conditions.each do |patientcondition|
  end
 
  Country.delete_all
- open("/home/virus/HospitalManagement/Ten/db/country_list.txt") do |countries|
+ open("/home/foradian/RailProjects/Ten/db/country_list.txt") do |countries|
   countries.read.each_line do |country|
      code, name = country.chomp.split("|")
      Country.create!(:country_name => name, :code => code)

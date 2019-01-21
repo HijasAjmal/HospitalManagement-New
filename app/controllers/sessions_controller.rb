@@ -30,7 +30,9 @@ class SessionsController < ApplicationController
     if current_user
       @user = current_user
     else
-      @user = User.first(:conditions => { :user_name => params[:user_name] , :password => params[:password]})
+      @user = User.first(:conditions => {
+                    :user_name => params[:user_name],
+                    :password => params[:password] })
     end
 
 
@@ -63,13 +65,13 @@ class SessionsController < ApplicationController
 
   # show all admin records
   def show
-    @admin = User.all(:conditions =>{:user_record_type => "Admin"})
+    @admins = User.all( :conditions =>{:user_record_type => "Admin" })
   end
 
 
   # confirm new account with email confirmation_token
   def confirm
-    @user = User.first(:conditions => { :confirmation_token => params[:id]})
+    @user = User.first(:conditions => { :confirmation_token => params[:id] })
     if @user.nil?
       flash[:notice] = 'This link is not valid..!'
       signin()
@@ -84,7 +86,7 @@ class SessionsController < ApplicationController
 
   # request method for forget password
   def forget
-    @user = User.first(:conditions => { :email => params[:email]})
+    @user = User.first(:conditions => { :email => params[:email] })
     if @user.nil?
       flash[:notice] = 'This email is not exist in our database..!'
       redirect_to("/")
@@ -98,7 +100,7 @@ class SessionsController < ApplicationController
 
   # method to change the password
   def change_pwd
-    @user = User.first(:conditions => { :remember_token => params[:id]})
+    @user = User.first(:conditions => { :remember_token => params[:id] })
     if @user.nil?
       flash[:notice] = 'This link is not valid..!'
       redirect_to("/")

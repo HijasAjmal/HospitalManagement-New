@@ -16,10 +16,10 @@ class Doctor < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\z/
 
 
-  GENDER = {1 => "Male", 2 => "Female", 3 => "Other" }
+  GENDER = { 1 => "Male", 2 => "Female", 3 => "Other" }
 
   def set_profile
-    @user = User.first(:conditions => {:user_record_id => self.id, :user_record_type => "Doctor"})
+    @user = User.first(:conditions => { :user_record_id => self.id, :user_record_type => "Doctor" })
     @user.update_attributes(:profile_status => 1)
   end
 

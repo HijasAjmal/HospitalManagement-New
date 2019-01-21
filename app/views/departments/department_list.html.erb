@@ -1,0 +1,21 @@
+<div class="bs-example">
+  </br></br>
+  <h2 class="text-left"><b>All Departments</b></h2>
+  <table class="table table-striped" style="margin-top: 1%;">
+    <thead class="thead-dark">
+      <tr>
+        <th>SI No</th>
+        <th>Department Name</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <% @departments.each do |department| %>
+    <tr>
+      <td><%=department.id %></td>
+      <td><%=department.department_name %></td>
+      <td><%=department.created_at %></td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

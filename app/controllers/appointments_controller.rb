@@ -51,4 +51,13 @@ class AppointmentsController < ApplicationController
     end
     redirect_to(appointments_url)
   end
+
+  # create Departments details as pdf (Pdf generate using wkhtmltopdf)
+  def appointment_list
+    @appointments = Appointments.all
+    render :pdf => "appointment_list", :header => { :right => '[page] of [topage]' }, :margin => {
+                  :top => 40,
+                  :bottom => 0
+               }
+  end
 end

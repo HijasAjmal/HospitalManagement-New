@@ -16,18 +16,18 @@ class RoomsController < ApplicationController
     @rooms = Room.all
       respond_to do |format|
         format.html
-        format.csv {send_data Room.to_csv, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=Bed_availability_in_rooms.csv"}
+        format.csv { send_data Room.to_csv, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=Bed_availability_in_rooms.csv" }
       end
   end
 
   # editing room details
   def edit
-    @room_beds = Bed.count(:id, :conditions => {:room_id => params[:id]})
+    @room_beds = Bed.count(:id, :conditions => { :room_id => params[:id] })
     @room = Room.find(params[:id])
     @department = @room.department
   end
 
-
+  # new room
   def new
     @room = Room.new
   end
@@ -49,7 +49,7 @@ class RoomsController < ApplicationController
   # update room  details
   def update_room
     @room = Room.find(params[:id])
-    if @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i+params[:no_of_beds].to_i)
+    if @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i + params[:no_of_beds].to_i)
       flash[:notice] = "Room Updated...."
     else
       flash[:notice] = "Failed to update room...."
@@ -68,9 +68,9 @@ class RoomsController < ApplicationController
     redirect_to :controller => :rooms
   end
 
-
+  # show the details of rooms
   def show_rooms
-    @rooms = Room.all(:conditions => {:department_id => params[:id]})
+    @rooms = Room.all(:conditions => { :department_id => params[:id] })
     render :action => "index"
   end
 
@@ -78,7 +78,7 @@ class RoomsController < ApplicationController
   # generate pdf report of room by using (wkhtmltopdf)
   def room_report
     @rooms = Room.all
-    render :pdf => "room_report", :header => { :right => '[page] of [topage]'}, :margin => {
+    render :pdf => "room_report", :header => { :right => '[page] of [topage]' }, :margin => {
                   :top => 40,
                   :bottom => 0
                }

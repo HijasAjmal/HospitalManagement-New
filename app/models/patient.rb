@@ -9,13 +9,13 @@ class Patient < ActiveRecord::Base
   after_update :set_profile_status
   after_create :set_patient_credentials
 
-  GENDER = {1 => "Male", 2 => "Female", 3 => "Other" }
+  GENDER = { 1 => "Male", 2 => "Female", 3 => "Other" }
 
-  OPTIONS = {"No" => 0, "Yes" => 1}
+  OPTIONS = { "No" => 0, "Yes" => 1 }
 
 
   def set_profile_status
-    @patient = User.first(:conditions => {:user_record_id => self.id, :user_record_type => "Patient"})
+    @patient = User.first(:conditions => { :user_record_id => self.id, :user_record_type => "Patient" })
     @patient.update_attributes(:profile_status => 1)
   end
 

@@ -22,7 +22,7 @@ class Appointment < ActiveRecord::Base
 
 	def doc_find_by_appointment(appointment)
     @slot = Slot.find(appointment.slot_id)
-  	return @slot.timeslot.doctor.first_name+" "+@slot.timeslot.doctor.middle_name+" "+@slot.timeslot.doctor.last_name
+  	return @slot.timeslot.doctor.first_name + " " + @slot.timeslot.doctor.middle_name + " " + @slot.timeslot.doctor.last_name
   end
 
   def date_find_by_appointment(appointment)
@@ -37,7 +37,7 @@ class Appointment < ActiveRecord::Base
   end
 
 	def find_user(patient_id)
-		@user = User.first(:conditions => {:user_record_id => patient_id, :user_record_type => "Patient"})
+		@user = User.first(:conditions => { :user_record_id => patient_id, :user_record_type => "Patient" })
 		return @user.user_name
 	end
 end

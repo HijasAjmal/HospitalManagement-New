@@ -8,6 +8,7 @@ class DepartmentsController < ApplicationController
     @departments = Department.all
   end
 
+  # new department
   def new
     @department = Department.new
   end
@@ -33,5 +34,15 @@ class DepartmentsController < ApplicationController
       flash[:notice] = "Failed to delete Department...."
     end
     redirect_to :controller => :departments
+  end
+
+
+  # create Departments details as pdf (Pdf generate using wkhtmltopdf)
+  def department_list
+    @departments = Department.all
+    render :pdf => "department_list", :header => { :right => '[page] of [topage]' }, :margin => {
+                  :top => 40,
+                  :bottom => 0
+               }
   end
 end

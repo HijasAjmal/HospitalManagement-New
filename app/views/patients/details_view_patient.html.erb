@@ -10,14 +10,14 @@
                                 <div class="col-lg-3 col-md-3">
                                     <center>
                                         <span class="text-left" style="margin-left: 5px;">
-                                          <%= image_tag Photo.findImage(@patient.users.id), :class => "img-responsive img-thumbnail"%>
+                                          <%= image_tag Photo.findImage(@patient.users.id), :class => "img-responsive img-thumbnail" %>
                                     </span></center>
                                     <div class="panel">
                                         <table class="table">
                                             <tbody>
                                                         <tr>
                                                         <td class="text-center">
-                                                          <button class="btn btn-success btn-block"><%= link_to 'Change', :controller => :photos, :action => "new", :id => @patient.users.id%></button>
+                                                          <button class="btn btn-success btn-block"><%= link_to 'Change', :controller => :photos, :action => "new", :id => @patient.users.id %></button>
                                                         </td>
                                                     </tr>
                                             </tbody>
@@ -37,45 +37,45 @@
                                                     <tbody>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-user"></i> Name</td>
-                                                                <td><%=@patient.first_name+" "+@patient.middle_name+" "+@patient.last_name%></td>
+                                                                <td><%=@patient.first_name + " " + @patient.middle_name + " " + @patient.last_name %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Contact Number</td>
-                                                                <td><%=@patient.contact_number %></td>
+                                                                <td><%= @patient.contact_number %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Email</td>
-                                                                <td><%=@patient.email %></td>
+                                                                <td><%= @patient.email %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Date Of Birth</td>
-                                                                <td><%=@patient.date_of_birth %></td>
+                                                                <td><%= @patient.date_of_birth %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-book"></i> Blood Group</td>
-                                                                <td><%=@patient.blood_group %></td>
+                                                                <td><%= @patient.blood_group %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-group"></i> Gender</td>
-                                                                <td><%=@patient.gender %></td>
+                                                                <td><%= @patient.gender %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-calendar"></i> Address</td>
-                                                                <td><%=@patient.address %></td>
+                                                                <td><%= @patient.address %></td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
                                         <div id="Appointmenthistory" class="tab-pane fade">
-                                            <% if @appointments.empty?%>
+                                            <% if @appointments.empty? %>
                                                 <h3 style="color: red;">No Recent History<h3>
                                             <% else %>
                                                 <div class="table-responsive panel">
-                                                    <% @index = 0%>
+                                                    <% @index = 0 %>
                                                     <% @appointments.each do |appointment| %>
                                                         <p>
-                                                            <div class="container border rounded shadow mb-4 border-secondary w-100 fontsize" style="text-decoration: none; height: 10%" data-toggle="collapse" href="#collapseExample<%=@index%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                            <div class="container border rounded shadow mb-4 border-secondary w-100 fontsize" style="text-decoration: none; height: 10%" data-toggle="collapse" href="#collapseExample<%= @index %>" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                                 <%= label_tag "Dept:" %>
                                                                 <%= appointment.dep_find_by_appointment(appointment) %> &nbsp &nbsp
                                                                 <%= label_tag "Dr:" %>
@@ -84,28 +84,28 @@
                                                                 <%= appointment.date_find_by_appointment(appointment) %> &nbsp &nbsp</br>
                                                                 <%= label_tag "Time:" %>
                                                                 <%= appointment.time_find_by_appointment(appointment) %> &nbsp &nbsp
-                                                                <% if appointment.is_diogonised == 1%>
-                                                                    <% @status = "Diognised"%>
+                                                                <% if appointment.is_diogonised == 1 %>
+                                                                    <% @status = "Diognised" %>
                                                                 <% else%>
-                                                                    <% @status = "Not Diognised"%>
+                                                                    <% @status = "Not Diognised" %>
                                                                 <% end %>
                                                                 <%= label_tag "Status: "+@status %>
                                                             </div>
                                                         </p>
-                                                    <% @index = @index+1%>
+                                                    <% @index = @index+1 %>
                                                     <% end %>
                                                 </div>
                                             <% end %>
                                         </div>
                                         <div id="Records" class="tab-pane fade">
-                                            <% if @repors.nil?%>
+                                            <% if @repors.nil? %>
                                                 <h3 style="color: red;">No Recent Reports<h3>
                                             <% else %>
                                               <div class="table-responsive panel">
-                                                  <% @index = 0%>
+                                                  <% @index = 0 %>
                                                   <% @reports.each do |report| %>
                                                       <p>
-                                                          <div class="container border rounded shadow mb-4 border-secondary w-100 fontsize" style="text-decoration: none; height: 10%" data-toggle="collapse" href="#collapseExample<%=@index%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                          <div class="container border rounded shadow mb-4 border-secondary w-100 fontsize" style="text-decoration: none; height: 10%" data-toggle="collapse" href="#collapseExample<%= @index %>" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                               <%= label_tag "Title:" %>
                                                               <%=h report.title %> &nbsp &nbsp
                                                               <%= label_tag "File Type:" %>
@@ -114,10 +114,10 @@
                                                               <%=h report.created_at.strftime("%Y/%m/%d") %> &nbsp &nbsp</br>
                                                               <%= label_tag "File Name:" %>
                                                               <%=h report.file_file_name %> &nbsp &nbsp
-                                                              <%= link_to 'Download', report.find_file(report.file.url)%>
+                                                              <%= link_to 'Download', report.find_file(report.file.url) %>
                                                           </div>
                                                       </p>
-                                                  <% @index = @index+1%>
+                                                  <% @index = @index+1 %>
                                                   <% end %>
                                               </div>
                                           </div>
@@ -129,7 +129,7 @@
                     </div>
                 <!-- /.table-responsive -->
                 <button type="button" class="apbutton btn group-form" data-toggle="modal" data-target="#exampleModalCenter">
-                  <%= link_to "Take Appointment", :controller => :patients, :action => "slot_view"%>
+                  <%= link_to "Take Appointment", :controller => :patients, :action => "slot_view" %>
                 </button>
                 <!-- <button class="apbutton"><%= link_to '<span><p>Take Appointment</p></span>', :controller => :timeslots, :action => "index", :style => "text-decoration: none;"%></button> -->
             </div>

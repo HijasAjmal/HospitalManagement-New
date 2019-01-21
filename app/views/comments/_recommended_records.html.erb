@@ -3,10 +3,6 @@
   </br></br>
   <h2 class="text-left"><b>Listing All Recommendations</b></h2>
   <div class="row mx-md-n5">
-    <button type="button" class="btn btn-secondary" style="margin-top:-40px;margin-left:90%;height:30px;border-radius: 16px; color:black;font-size:12px;width: 85px;">
-      <%= link_to "Pdf Report", :action => "doctor_list", :style => "color:white; text-decoration:none;"%></button>
-    <!-- <button type="button" id="add_new_dbtn" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">
-      <%= link_to 'Add new doctor', :controller => :users, :action => "doctor_registration_form", :style => "color:white; text-decoration:none;"%></button> &nbsp -->
   </div><hr>
   <table class="table table-striped" style="margin-top: 1%;">
     <thead class="thead-dark">
@@ -24,7 +20,7 @@
         <td><%= PatientCondition.find_patient_condition(recommendation.patient_condition) %></td>
         <td><%=h recommendation.medication %></td>
         <td><%= recommendation.find_option(recommendation.is_recommended) %></td>
-        <td><%= link_to 'Alot the Room', :controller => :admitted_records, :action => "new_record", :id => recommendation.id%></td>
+        <td><%= link_to 'Alot the Room', :controller => :admitted_records, :action => "new_record", :id => recommendation.id %></td>
         <td><%= link_to 'Destroy', :confirm => 'Are you sure?', :action => "delete_comment", :id => recommendation.id %></td>
       </tr>
       <% end %>

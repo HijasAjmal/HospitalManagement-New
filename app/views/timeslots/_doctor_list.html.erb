@@ -1,19 +1,19 @@
 <% form_for(@timeslot) do |f| %>
   <%= f.error_messages %>
   <div class="form-group">
-    <%= collection_select(:doctor, :id, @doctors, :id, :first_name, {:prompt => "Select Doctor"},{:class => "form-control"})%></br>
+    <%= collection_select(:doctor, :id, @doctors, :id, :first_name, { :prompt => "Select Doctor" },{ :class => "form-control" }) %></br>
   </div>
   <div class="form-group">
     <%= f.label :start_date %><br/>
-    <%= f.datetime_select :start_date_time, {:class => "selectdep"} %>
+    <%= f.datetime_select :start_date_time, { :class => "selectdep" } %>
   </div>
   <div class="form-group">
     <%= f.label :end_date %><br/>
-    <%= f.datetime_select :end_date_time, {:class => "selectdep"} %>
+    <%= f.datetime_select :end_date_time, { :class => "selectdep" } %>
   </div><br/><br/>
   <div class="form-group">
     <%= f.label :slot_count_constant %><br/>
-    <%= f.time_select :slot_count_constant, {:class => "selectdep"} %><br/>
+    <%= f.time_select :slot_count_constant, { :class => "selectdep" } %><br/>
   </div>
   <br/><br/>
   <%= f.submit "Create", :name => nil, :class => "btn btn-primary", :style=>"margin-top:-28px;margin-left: 8%; height: 5%; width: 50%; font-size: 15px; padding: 0;" %>

@@ -10,14 +10,14 @@
                                 <div class="col-lg-3 col-md-3">
                                     <center>
                                         <span class="text-left" style="margin-left: 5px;">
-                                        <%= image_tag Photo.findImage(@doctor.users.id), :class => "img-responsive img-thumbnail"%>
+                                        <%= image_tag Photo.findImage(@doctor.users.id), :class => "img-responsive img-thumbnail" %>
                                     </span></center>
                                     <div class="panel">
                                         <table class="table">
                                             <tbody>
                                                         <tr>
                                                         <td class="text-center">
-                                                            <button class="btn btn-success btn-block"><%= link_to 'Change', :controller => :photos, :action => "new", :id => @doctor.users.id%></button>
+                                                            <button class="btn btn-success btn-block"><%= link_to 'Change', :controller => :photos, :action => "new", :id => @doctor.users.id %></button>
                                                         </td>
                                                     </tr>
                                             </tbody>
@@ -35,15 +35,15 @@
                                                     <tbody>
                                                         <tr>
                                                                 <td class="text-success"><i class="fa fa-user"></i> First Name</td>
-                                                                <td><%= @doctor.first_name%></td>
+                                                                <td><%= @doctor.first_name %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Middle Name</td>
-                                                                <td><%= @doctor.middle_name%></td>
+                                                                <td><%= @doctor.middle_name %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Last Name</td>
-                                                                <td><%= @doctor.last_name%></td>
+                                                                <td><%= @doctor.last_name %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Contact Number</td>
@@ -51,7 +51,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Email</td>
-                                                                <td><%= @doctor.email%></td>
+                                                                <td><%= @doctor.email %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-list-ol"></i> Date Of Birth</td>
@@ -63,19 +63,19 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-group"></i> Gender</td>
-                                                                <td><%= @doctor.gender%></td>
+                                                                <td><%= @doctor.gender %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-calendar"></i> Qualifications</td>
-                                                                <td><%= @doctor.qualifications%></td>
+                                                                <td><%= @doctor.qualifications %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-calendar"></i> Experience</td>
-                                                                <td><%= @doctor.experience%></td>
+                                                                <td><%= @doctor.experience %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-calendar"></i> Department Name</td>
-                                                                <td><%= @doctor.department.department_name%></td>
+                                                                <td><%= @doctor.department.department_name %></td>
                                                             </tr>
                                                     </tbody>
                                                 </table>
@@ -83,7 +83,7 @@
                                         </div>
                                     </div>
                                     <button type="button" class="apbutton" data-toggle="modal" data-target="#exampleModalCenter">
-                                      <%= link_to "Appointments", :controller => :doctors, :action => "appointment_list_for_doctor"%>
+                                      <%= link_to "Appointments", :controller => :doctors, :action => "appointment_list_for_doctor" %>
                                     </button>
                                 </div>
                             </div>

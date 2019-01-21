@@ -10,5 +10,5 @@ class Report < ActiveRecord::Base
 			@new_url = @url.split('?')
 			return @new_url[0]
 		end
-		
+
 end

@@ -1,5 +1,5 @@
 <div class="container border w-50" style="height: 50%; margin-top: 6%;">
-  	<% form_tag({:action => 'create_record', :id => params[:id]}, {:class => 'user_r'}) do -%>
+  	<% form_tag({ :action => 'create_record', :id => params[:id] }, { :class => 'user_r' }) do -%>
     <!--  -->
      	<div class="text-center">
       	<h3>Create Record</h3>
@@ -7,17 +7,18 @@
       <!--  -->
       <hr></br>
       <!--  -->
-      <%= hidden_field :patient_id, params[:patient_id], :value => @comment.appointment.patient.id%>
+      <%= hidden_field :patient_id, params[:patient_id], :value => @comment.appointment.patient.id %>
       <!--  -->
     	<div class="form-row">
       	<div class="form-group col-md-6">
         		<label >Department Name</label>
-        		<%= text_field_tag :department_name, params[:department_name], :value => @comment.appointment.slot.timeslot.doctor.department.department_name, :disabled => true, :class => "form-control"%>
+        		<%= text_field_tag :department_name, params[:department_name], :value => @comment.appointment.slot.timeslot.doctor.department.department_name, :disabled => true, :class => "form-control" %>
       	</div>
 
       	<div class="form-group col-md-6">
         		<label >Recommended Doctor</label>
-        		<%= text_field_tag :doctor, params[:doctor], :value => @comment.appointment.slot.timeslot.doctor.first_name+" "+@comment.appointment.slot.timeslot.doctor.middle_name+" "+@comment.appointment.slot.timeslot.doctor.last_name, :disabled => true, :class => "form-control" %>
+            <% @doctor = @comment.appointment.slot.timeslot.doctor%>
+        		<%= text_field_tag :doctor, params[:doctor], :value => @doctor.first_name + " " + @doctor.middle_name + " " + @doctor.last_name, :disabled => true, :class => "form-control" %>
       	</div>
       </div>
 
@@ -26,7 +27,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label >Room Id</label>
-          <%= collection_select(:room, :id, @comment.appointment.slot.timeslot.doctor.department.rooms, :id, :room_id, {:include_blank => 'SELECT ROOM'}, {:onchange => "list_bed(this.value);"})%>
+          <%= collection_select(:room, :id, @doctor.department.rooms, :id, :room_id, { :include_blank => 'SELECT ROOM' }, { :onchange => "list_bed(this.value);" }) %>
         </div>
       </div>
 

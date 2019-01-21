@@ -18,12 +18,12 @@
 
 
     <%= stylesheet_link_tag 'scaffold' %>
-    <%= javascript_include_tag "application"%>
+    <%= javascript_include_tag "application" %>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">Hospital Management</a>
+        <a class="navbar-brand" href="sessions">Hospital Management</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,10 +32,10 @@
             <ul class="navbar-nav ml-auto">
 
               <li class="nav-item">
-                <a class="nav-link" href="#"><%= link_to "Home", "/"%></a> &nbsp &nbsp
+                <a class="nav-link" href="#"><%= link_to "Home", "/" %></a> &nbsp &nbsp
               </li>
               <li class="nav-item ">
-                <a class="nav-link" href="#"><%= link_to "Logout", :controller => :sessions, :action => 'destroy'%></a>
+                <a class="nav-link" href="#"><%= link_to "Logout", :controller => :sessions, :action => 'destroy' %></a>
               </li>
             </ul>
           <% end %>
@@ -44,12 +44,12 @@
     </nav>
 
     <!-- Full Page Image Header with Vertically Centered Content -->
-    <div class="masthead" style="margin-top:3%;">
+    <div class="masthead" style="padding-top:5%;">
       <div class="container h-90">
         <div class="row h-100 align-items-center">
           <div class="col-12 text-center">
             <% if flash[:notice] %>
-              <p class="alert"><%= flash[:notice]%></p>
+              <p class="alert"><%= flash[:notice] %></p>
             <% end %>
             <%= yield %>
           </div>

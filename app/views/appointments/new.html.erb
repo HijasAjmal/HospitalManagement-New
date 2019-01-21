@@ -2,11 +2,11 @@
 <div class="container my-5" style="width:55%; border-radius:10px;">
   <div class="card-body bg-secondary rounded">
     <h3 class="card-title text-center">New appointment</h3><hr>
-    <% form_for @appointment, :url => {:id => @slot_id, :action => "create"} do |f| %>
+    <% form_for @appointment, :url => { :id => @slot_id, :action => "create" } do |f| %>
       <div class="text-center">
-        <%= f.hidden_field :date, :value => @appointment.find_slot_date(@slot_id)%>
-        <%= f.hidden_field :patient_id, :value => @patient.id%>
-        <%= f.hidden_field :doctor_id, :value => Slot.find(@slot_id).timeslot.doctor.id%>
+        <%= f.hidden_field :date, :value => @appointment.find_slot_date(@slot_id) %>
+        <%= f.hidden_field :patient_id, :value => @patient.id %>
+        <%= f.hidden_field :doctor_id, :value => Slot.find(@slot_id).timeslot.doctor.id %>
       </div>
       <!--  -->
       </br>
@@ -14,12 +14,12 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputEmail4">Name</label>
-          <%= text_field_tag :name, params[:name], :value => @patient.first_name+" "+@patient.middle_name+" "+@patient.last_name, :disabled => true, :class => "form-control"%>
+          <%= text_field_tag :name, params[:name], :value => @patient.first_name + " " + @patient.middle_name + " " + @patient.last_name, :disabled => true, :class => "form-control" %>
         </div>
 
         <div class="form-group col-md-6">
           <label for="inputPassword4">Email</label>
-          <%= text_field_tag :email, params[:email], :value => @patient.email, :disabled => true, :class => "form-control"%>
+          <%= text_field_tag :email, params[:email], :value => @patient.email, :disabled => true, :class => "form-control" %>
         </div>
       </div>
       <!--  -->
@@ -28,12 +28,12 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputEmail4">Contact Number</label>
-          <%= text_field_tag :contact_number, params[:contact_number], :value => @patient.contact_number, :disabled => true, :class => "form-control"%>
+          <%= text_field_tag :contact_number, params[:contact_number], :value => @patient.contact_number, :disabled => true, :class => "form-control" %>
         </div>
 
         <div class="form-group col-md-6">
           <label for="inputPassword4">Date Of Birth</label>
-          <%= text_field_tag :date_of_birth, params[:date_of_birth], :value => @patient.date_of_birth, :disabled => true, :class => "form-control"%>
+          <%= text_field_tag :date_of_birth, params[:date_of_birth], :value => @patient.date_of_birth, :disabled => true, :class => "form-control" %>
         </div>
       </div>
       <!--  -->
@@ -41,7 +41,7 @@
       <!--  -->
       <div class="form-group">
         <label for="inputAddress">Address</label>
-        <%= text_field_tag :address, params[:address], :value => @patient.address, :disabled => true, :class => "form-control"%>
+        <%= text_field_tag :address, params[:address], :value => @patient.address, :disabled => true, :class => "form-control" %>
       </div>
       <!--  -->
       </br>
@@ -56,12 +56,12 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputCity">Gender</label>
-          <%= text_field_tag :gender, params[:gender], :value => @patient.gender, :disabled => true, :class => "form-control"%>
+          <%= text_field_tag :gender, params[:gender], :value => @patient.gender, :disabled => true, :class => "form-control" %>
         </div>
 
         <div class="form-group col-md-6">
           <label for="inputState">Blood-Group</label>
-          <%= text_field_tag :blood_group, params[:blood_group], :value => @patient.blood_group, :disabled => true, :class => "form-control"%>
+          <%= text_field_tag :blood_group, params[:blood_group], :value => @patient.blood_group, :disabled => true, :class => "form-control" %>
         </div>
       </div>
       <!--  -->

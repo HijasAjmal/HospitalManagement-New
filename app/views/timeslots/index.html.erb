@@ -7,16 +7,16 @@
 <% if @timeslots.empty? %>
   <p class="alert">NO available time slots...<p>
 <% else %>
-  <% @index = 0%>
+  <% @index = 0 %>
   <% @timeslots.each do |timeslot| %>
   <p>
-    <div class="container border rounded shadow mb-4 border-secondary w-100 timeslotdvi" style="text-decoration: none;" data-toggle="collapse" href="#collapseExample<%=@index%>" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <div class="container border rounded shadow mb-4 border-secondary w-100 timeslotdvi" style="text-decoration: none;" data-toggle="collapse" href="#collapseExample<%= @index %>" role="button" aria-expanded="false" aria-controls="collapseExample">
       <%= label_tag "Department:" %>
       <%= timeslot.doctor.department.department_name %> &nbsp &nbsp &nbsp &nbsp
 
       <%=h timeslot.start_date_time %> &nbsp &nbsp
       <%=h timeslot.end_date_time %> &nbsp &nbsp
-      <% if @user.user_record_type == "Admin"%>
+      <% if @user.user_record_type == "Admin" %>
       <div class="adminctrl">
        <!--  <%= link_to 'Edit', edit_timeslot_path(timeslot) %> &nbsp &nbsp -->
         <%= link_to 'Destroy', timeslot, :confirm => 'Are you sure?', :method => :delete %>
@@ -26,19 +26,19 @@
       <%= timeslot.find_doctor(timeslot) %> &nbsp &nbsp
     </div>
   </p>
-  <div class="collapse" id="collapseExample<%=@index%>">
+  <div class="collapse" id="collapseExample<%= @index %>">
     <div class="container card-body w-100">
-      <% @slots = timeslot.slots%>
-      <% @slots.each do |i|%>
-      <% if i.status == 0%>
-        <% @color = "btn-success"%>
-        <% else%>
-        <% @color = "btn-secondary"%>
+      <% @slots = timeslot.slots %>
+      <% @slots.each do |slot| %>
+      <% if slot.status == 0 %>
+        <% @color = "btn-success" %>
+        <% else %>
+        <% @color = "btn-secondary" %>
       <% end %>
-      <button type="button" disabled class="btn <%= @color%>"><%=link_to_if @button_status == "enabled", i.time.strftime("%H:%M")%>&nbsp &nbsp</button>
-      <% end%>
+      <button type="button" disabled class="btn <%= @color %>"><%= link_to_if @button_status == "enabled", slot.time.strftime("%H:%M") %>&nbsp &nbsp</button>
+      <% end %>
     </div>
   </div>
-  <% @index = @index+1%>
+  <% @index = @index + 1 %>
   <% end %>
 <% end %>

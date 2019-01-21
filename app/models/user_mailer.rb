@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
     from          "hijasajmal@gmail.com"
     subject       "Welcome to My Awesome Site"
     sent_on       Time.now
-    body          :user => user, :users_p => users_p, :url => "http://localhost:3000/sessions/confirm/?id="+user.confirmation_token.to_s+"&uname="+user.password+"&pwd="+user.user_name
+    body          :user => user, :users_p => users_p, :url => "http://localhost:3000/sessions/confirm/?id=" + user.confirmation_token.to_s + "&uname=" + user.password + "&pwd=" + user.user_name
   end
 
   def admin_email(user)
@@ -20,7 +20,7 @@ class UserMailer < ActionMailer::Base
     from          "hijasajmal@gmail.com"
     subject       "Password Reset Request"
     sent_on       Time.now
-    body          :user => user, :url => "http://localhost:3000/sessions/change_pwd/?id="+user.remember_token.to_s
+    body          :user => user, :url => "http://localhost:3000/sessions/change_pwd/?id=" + user.remember_token.to_s
   end
 
 end
