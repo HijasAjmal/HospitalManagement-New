@@ -34,7 +34,7 @@ class TimeslotsController < ApplicationController
 
 
   # create new time slot
-  def create #callback
+  def create
     @doctor = Doctor.find(params[:doctor][:id])
     if @doctor.timeslots.create(params[:timeslot])
       flash[:notice] = "Timeslot Created successfully...."

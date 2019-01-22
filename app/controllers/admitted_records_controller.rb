@@ -9,7 +9,6 @@ class AdmittedRecordsController < ApplicationController
   # New record form creation
   def new_record
     if params[:room_id]
-      print params[:room_id]
       @beds = Bed.all(:conditions => {
                     :is_engaged => 0,
                     :room_id => params[:room_id] })

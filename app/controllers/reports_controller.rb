@@ -10,7 +10,8 @@ class ReportsController < ApplicationController
 
   # upload procedure
   def create
-    if @report = Report.create(params[:report])
+    @report = Report.new(params[:report])
+    if @report.save
       flash[:notice] = "Report uploaded successfully..."
     else
       flash[:notice] = "Failed to upload report..."

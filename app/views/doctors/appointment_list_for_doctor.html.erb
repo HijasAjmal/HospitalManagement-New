@@ -23,7 +23,7 @@
           <td><%=h appointment.id %></td>
           <td><%=h appointment.case %></td>
           <td><%=h appointment.date %></td>
-          <td><%= link_to @patient.first_name + " " + @patient.middle_name + " " + @patient.last_name, :controller => :patients, :action => "details_view_doctor", :user_id => appointment.find_user(appointment.patient_id) %></td>
+          <td><%= link_to @patient.first_name + " " + @patient.middle_name + " " + @patient.last_name, :controller => :patients, :action => "details_view_doctor", :user_id => @patient.first_name + "@U" + @patient.id.to_s %></td>
         </tr>
         <% end %>
       <% end %>

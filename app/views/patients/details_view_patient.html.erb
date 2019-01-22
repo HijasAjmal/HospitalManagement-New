@@ -53,7 +53,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-book"></i> Blood Group</td>
-                                                                <td><%= @patient.blood_group %></td>
+                                                                <td><%= @patient.blood_group.name %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-group"></i> Gender</td>
@@ -75,15 +75,16 @@
                                                     <% @index = 0 %>
                                                     <% @appointments.each do |appointment| %>
                                                         <p>
+                                                          <% doctor = appointment.slot.timeslot.doctor%>
                                                             <div class="container border rounded shadow mb-4 border-secondary w-100 fontsize" style="text-decoration: none; height: 10%" data-toggle="collapse" href="#collapseExample<%= @index %>" role="button" aria-expanded="false" aria-controls="collapseExample">
                                                                 <%= label_tag "Dept:" %>
-                                                                <%= appointment.dep_find_by_appointment(appointment) %> &nbsp &nbsp
+                                                                <%= appointment.slot.timeslot.doctor.department.department_name %> &nbsp &nbsp
                                                                 <%= label_tag "Dr:" %>
-                                                                <%= appointment.doc_find_by_appointment(appointment) %> &nbsp &nbsp
+                                                                <%= doctor.first_name + " " + doctor.middle_name + " " + doctor.last_name %> &nbsp &nbsp
                                                                 <%= label_tag "Date:" %>
-                                                                <%= appointment.date_find_by_appointment(appointment) %> &nbsp &nbsp</br>
+                                                                <%= appointment.date %> &nbsp &nbsp</br>
                                                                 <%= label_tag "Time:" %>
-                                                                <%= appointment.time_find_by_appointment(appointment) %> &nbsp &nbsp
+                                                                <%= appointment.slot.time %> &nbsp &nbsp
                                                                 <% if appointment.is_diogonised == 1 %>
                                                                     <% @status = "Diognised" %>
                                                                 <% else%>

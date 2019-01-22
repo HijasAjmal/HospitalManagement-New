@@ -23,7 +23,7 @@ class BedsController < ApplicationController
 
 
   # new bed
-  def new ## change to model
+  def new
     @room = Room.find(params[:room_id][:id])
     @no = params[:no_of_beds].to_i
     if @room.update_attributes(:no_of_beds => @room.no_of_beds.to_i + params[:no_of_beds].to_i)

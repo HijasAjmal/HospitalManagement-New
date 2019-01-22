@@ -59,7 +59,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-book"></i> Nationality</td>
-                                                                <td><%= @user.user_record.blood_group %></td>
+                                                                <td><%= @user.user_record.blood_group.name %></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-success"><i class="fa fa-group"></i> Gender</td>
@@ -85,52 +85,54 @@
                                         </div>
                                         <div id="Appointmentdetails" class="tab-pane fade">
                                             <div class="table-responsive panel">
-                                                <% if @flag == 1 %>
-                                                        <p class="control-form" style="color: red; margin-left: 30%; font-size: 19px; margin-top: 13px;">This Token is Expired...</p>
-                                                        <% else %>
-                                                        <% form_tag({ :controller => :comments, :action => "new", :id => @appointment.id }, { :class => 'signin_form' }) do -%>
-                                                                <table class="table">
-                                                                <tbody>
-                                                                        <tr>
-                                                                            <td class="text-success"><i class="fa fa-envelope-o"></i> Patient Id</td>
-                                                                            <td><%= text_field_tag :patient_id, params[:patient_id], :value => @user.user_record.id, :disabled => true %></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Slot Id</td>
-                                                                            <td><%= text_field_tag :slot_id, params[:slot_id], :value => @appointment.slot_id, :disabled => true %></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="text-success"><i class="fa fa-flag"></i> Case</td>
-                                                                            <td><%= text_area :case, params[:case], :value => @appointment.case, :disabled => true %></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="text-success"><i class="fa fa-user"></i> Diogonised</td>
-                                                                            <% if @appointment.is_diogonised == 0 %>
-                                                                                <% @is_diogonised = "Not Diogonised" %>
-                                                                            <% else %>
-                                                                                <% @is_diogonised = "Diogonised" %>
-                                                                            <% end %>
-                                                                            <td><%= text_field_tag :is_diogonised, params[:is_diogonised], :value => @is_diogonised, :disabled => true %></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="text-success"><i class="glyphicon glyphicon-phone"></i>Patient Condition </td>
-                                                                            <td><%= collection_select :patient_status, :id, PatientCondition.all, :id, :status, :class => "control-form" %></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="text-success"><i class="fa fa-user"></i>Medication</td>
-                                                                            <td><%= text_area_tag :medication, params[:medication], :class => "control-form" %></td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Recommendation To Admin</td>
-                                                                            <td><%= select_tag :option, options_for_select(Patient::OPTIONS.each{ |key, value| }, :class => "control-form") %></td>
-                                                                        </tr>
-                                                                </tbody>
-                                                                </table>
-                                                                <% if @flag == 0 %>
-                                                                <%= submit_tag "Create Record", :name => nil, :class => "btn btn-primary upbedbtn" %>
-                                                                <% end %>
-                                                                <% end %>
-                                                    <% end %>
+                                              <% if @appointment.nil? %>
+                                                <p class="control-form" style="color: red; margin-left: 30%; font-size: 19px; margin-top: 13px;">No Record found...</p>
+                                              <% elsif @appointment.slot.timeslot.doctor_id == @doctor.id %>
+                                                <% if @appointment.slot.date.strftime("%m:%d:%y") == Time.now.strftime("%m:%d:%y") && @appointment.slot.time.strftime("%H:%M") > Time.now.strftime("%H:%M") %>
+                                                  <p class="control-form" style="color: red; margin-left: 30%; font-size: 19px; margin-top: 13px;">This Token is Expired...</p>
+                                                <% else %>
+                                                  <% form_tag({ :controller => :comments, :action => "new", :id => @appointment.id }, { :class => 'signin_form' }) do -%>
+                                                        <table class="table">
+                                                        <tbody>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-envelope-o"></i> Patient Id</td>
+                                                                    <td><%= text_field_tag :patient_id, params[:patient_id], :value => @user.user_record.id, :disabled => true %></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Slot Id</td>
+                                                                    <td><%= text_field_tag :slot_id, params[:slot_id], :value => @appointment.slot_id, :disabled => true %></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-flag"></i> Case</td>
+                                                                    <td><%= text_area :case, params[:case], :value => @appointment.case, :disabled => true %></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-user"></i> Diogonised</td>
+                                                                    <% if @appointment.is_diogonised == 0 %>
+                                                                        <% @is_diogonised = "Not Diogonised" %>
+                                                                    <% else %>
+                                                                        <% @is_diogonised = "Diogonised" %>
+                                                                    <% end %>
+                                                                    <td><%= text_field_tag :is_diogonised, params[:is_diogonised], :value => @is_diogonised, :disabled => true %></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="glyphicon glyphicon-phone"></i>Patient Condition </td>
+                                                                    <td><%= collection_select :patient_status, :id, PatientCondition.all, :id, :status, :class => "control-form" %></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="fa fa-user"></i>Medication</td>
+                                                                    <td><%= text_area_tag :medication, params[:medication], :class => "control-form" %></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text-success"><i class="glyphicon glyphicon-phone"></i> Recommendation To Admin</td>
+                                                                    <td><%= select_tag :option, options_for_select(Patient::OPTIONS.each{ |key, value| }, :class => "control-form") %></td>
+                                                                </tr>
+                                                        </tbody>
+                                                        </table>
+                                                        <%= submit_tag "Create Record", :name => nil, :class => "btn btn-primary upbedbtn" %>
+                                                  <% end %>
+                                                <% end %>
+                                                <% end %>
                                             </div>
                                         </div>
                                     </div>

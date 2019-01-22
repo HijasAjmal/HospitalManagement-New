@@ -22,7 +22,7 @@
           <% @comments.each do |comment| %>
           <tr>
             <td><%=h comment.id %></td>
-            <td><%= PatientCondition.find_patient_condition(comment.patient_condition) %></td>
+            <td><%= comment.patient_condition.status %></td>
             <td><%=h comment.medication %></td>
             <td><%= comment.find_option(comment.is_recommended) %></td>
             <% if comment.is_recommended == 1 %>

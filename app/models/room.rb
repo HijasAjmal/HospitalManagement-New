@@ -9,11 +9,11 @@ class Room < ActiveRecord::Base
   after_save :create_bed_new
 
   def self.to_csv
-    @rooms = all
+    rooms = all
     FasterCSV.generate do |csv|
       csv << ["id", "total_no_of_beds", "department_id", "Engaged", "Available"]
-      @rooms.each do |r|
-        csv << [r.id, r.no_of_beds,r.department_id, Bed.count(:id, :conditions => { :is_engaged => 1, :room_id => r.id }), Bed.count(:id, :conditions => { :is_engaged => 0, :room_id => r.id })]
+      rooms.each do |room|
+        csv << [room.id, room.no_of_beds,room.department_id, Bed.count(:id, :conditions => { :is_engaged => 1, :room_id => room.id }), Bed.count(:id, :conditions => { :is_engaged => 0, :room_id => room.id })]
       end
     end
    end
@@ -27,9 +27,9 @@ class Room < ActiveRecord::Base
    # end
 
    def create_bed_new
-     count = self.no_of_beds.to_i
+     count = no_of_beds.to_i
      count.times do
-       self.beds.create()
+       beds.create()
      end
    end
 end

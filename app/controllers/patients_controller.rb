@@ -39,33 +39,23 @@ class PatientsController < ApplicationController
     else
       @doctor = current_user.user_record
       @appointment = Appointment.first(:conditions => { :patient_id => @user.user_record.id, :date => Time.now.strftime("%Y-%m-%d") })
-      if @appointment.nil?
-        @flag = 1
-      elsif @appointment.slot.timeslot.doctor_id == @doctor.id
-        if @appointment.slot.date.strftime("%m:%d:%y") == Time.now.strftime("%m:%d:%y") && @appointment.slot.time.strftime("%H:%M") > Time.now.strftime("%H:%M")
-          @flag = 1
-        else
-          @flag = 0
-        end
-      end
     end
   end
 
   # create patient profile form
   def patient_profile_form
-    @user = User.find(session[:current_user_id])
+    @user = current_user
     @patient = @user.user_record
   end
 
 
   # update patient frofile form
-  def update_profile #TODO##
-    @blood_group = BloodGroup.find(params[:blood][:id])
+  def update_profile
     @date = Date.civil(*params[:event].sort.map(&:last).map(&:to_i))
     if current_user.user_record.update_attributes(
                   :contact_number => params[:contact_number],
                   :date_of_birth => @date,
-                  :blood_group => @blood_group.name,
+                  :blood_group => params[:blood][:id],
                   :gender => params[:gender],
                   :address => params[:address])
       flash[:notice] = "Profile updated successfully..."
@@ -92,7 +82,7 @@ class PatientsController < ApplicationController
   end
 
   # search slots
-  def search_slots#TODO###
+  def search_slots
     @doctor = Doctor.find(params[:id])
     @date = Date.civil(*params[:date].sort.map(&:last).map(&:to_i)).strftime("%Y-%m-%d")
     @time = params[:start_time][:hour] + ":" + params[:start_time][:minute] + ":00"
@@ -101,7 +91,7 @@ class PatientsController < ApplicationController
   end
 
   # delete patient by admin
-  def delete#TODO###
+  def delete
     @user = User.first(:conditions => { :user_record_id => params[:id], :user_record_type => "Patient" })
     if @user.destroy
       flash[:notice] = "Deleted Patient record successfully..."
@@ -112,7 +102,7 @@ class PatientsController < ApplicationController
   end
 
   # find documents Uploaded by user id
-  def find_reports(user)#TODO###
+  def find_reports(user)
     @reports = Report.all(:conditions => { :user_id => user })
   end
 

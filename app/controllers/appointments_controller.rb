@@ -22,7 +22,7 @@ class AppointmentsController < ApplicationController
   def new
     @appointment = Appointment.new
     @patient = current_user.user_record
-    @slot_id = params[:id]
+    @slot = Slot.find(params[:id])
   end
 
   # edit appointment
@@ -31,7 +31,7 @@ class AppointmentsController < ApplicationController
   end
 
   # create new appointment
-  def create ### if condition##
+  def create
     @slot_id = Slot.find(params[:id])
     if @slot_id.appointment.create(params[:appointment])
       flash[:notice] = "Appointment created successfully......."
@@ -43,7 +43,7 @@ class AppointmentsController < ApplicationController
   end
 
   # destroy appointment
-  def destroy### if condition###
+  def destroy
     if @appointment.destroy
       flash[:notice] = "Appointment deleted successfully......."
     else

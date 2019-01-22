@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(:version => 20190110193331) do
     t.string   "date_of_birth"
     t.string   "address"
     t.string   "gender"
-    t.string   "blood_group"
+    t.integer  "blood_group_id"
     t.integer  "is_admitted",    :default => 0
     t.integer  "is_discharged",  :default => 0
     t.integer  "appointment_id"

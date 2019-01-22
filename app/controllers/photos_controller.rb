@@ -9,7 +9,7 @@ class PhotosController < ApplicationController
 
 
   # create photo document
-  def create#callback
+  def create
     @user = current_user
     if @user.photos.destroy_all
       if @user.photos.create(params[:photo])

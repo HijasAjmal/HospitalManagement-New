@@ -17,7 +17,7 @@
       <% @recommendations.each do |recommendation| %>
       <tr>
         <td><%=h recommendation.id %></td>
-        <td><%= PatientCondition.find_patient_condition(recommendation.patient_condition) %></td>
+        <td><%= recommendation.patient_condition.status %></td>
         <td><%=h recommendation.medication %></td>
         <td><%= recommendation.find_option(recommendation.is_recommended) %></td>
         <td><%= link_to 'Alot the Room', :controller => :admitted_records, :action => "new_record", :id => recommendation.id %></td>

@@ -6,9 +6,9 @@ class Report < ActiveRecord::Base
     validates_attachment_content_type :file, :content_type => ["application/pdf", "image/jpeg", "image/png"]
 
 		def find_file(url)
-			@url = url.to_s
-			@new_url = @url.split('?')
-			return @new_url[0]
+			url = url.to_s
+			new_url = url.split('?')
+			return new_url[0]
 		end
 
 end

@@ -9,7 +9,7 @@ class CreatePatients < ActiveRecord::Migration
       t.string :date_of_birth
       t.string :address
       t.string :gender
-      t.string :blood_group
+      t.belongs_to :blood_group, :index => true
       t.integer :is_admitted, :default => 0
       t.integer :is_discharged, :default => 0
       t.belongs_to :appointment, :index => true

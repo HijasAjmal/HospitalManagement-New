@@ -1,8 +1,3 @@
 class PatientCondition < ActiveRecord::Base
-
-
-  def self.find_patient_condition(data)
-    @patient_condition = find(data)
-    return @patient_condition.status
-  end
+  has_many :comments
 end

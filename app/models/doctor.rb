@@ -19,8 +19,8 @@ class Doctor < ActiveRecord::Base
   GENDER = { 1 => "Male", 2 => "Female", 3 => "Other" }
 
   def set_profile
-    @user = User.first(:conditions => { :user_record_id => self.id, :user_record_type => "Doctor" })
-    @user.update_attributes(:profile_status => 1)
+    user = User.first(:conditions => { :user_record_id => id, :user_record_type => "Doctor" })
+    user.update_attributes(:profile_status => 1)
   end
 
   def set_doctor_credentials

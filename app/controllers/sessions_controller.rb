@@ -30,9 +30,10 @@ class SessionsController < ApplicationController
     if current_user
       @user = current_user
     else
+      encrypt_password = Digest::SHA1.hexdigest(params[:password])
       @user = User.first(:conditions => {
                     :user_name => params[:user_name],
-                    :password => params[:password] })
+                    :password => encrypt_password })
     end
 
 

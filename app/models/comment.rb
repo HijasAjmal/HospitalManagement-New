@@ -1,6 +1,7 @@
 class Comment < ActiveRecord::Base
 	belongs_to :appointment
 	after_create :set_appointment_status
+	belongs_to :patient_condition
 
 
 	OPTIONS = { "No" => 0, "Yes" => 1 }
@@ -11,7 +12,6 @@ class Comment < ActiveRecord::Base
   end
 
 	def set_appointment_status
-		@appointment = Appointment.find(self.appointment_id)
-		@appointment.update_attributes(:is_diogonised => 1)
+		appointment.update_attributes(:is_diogonised => 1)
 	end
 end

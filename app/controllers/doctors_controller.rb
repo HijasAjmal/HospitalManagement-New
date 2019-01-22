@@ -13,17 +13,17 @@ filter_access_to :all
   end
 
   # create doctor profile
-  def doctor_profile_form## user##
+  def doctor_profile_form
     @doctor = current_user.user_record
   end
 
   # view of current doctor
-  def profile_view_doctor ## user##
+  def profile_view_doctor
     @doctor = current_user.user_record
   end
 
   # update doctor profile with full details
-  def update_profile## condition##
+  def update_profile
     if current_user.user_record.update_attributes(
                 :contact_number => params[:contact_number],
                 :photo => params[:photo],

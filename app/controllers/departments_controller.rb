@@ -26,7 +26,7 @@ class DepartmentsController < ApplicationController
   end
 
   # delete department
-  def delete###
+  def delete
     @department = Department.find(params[:id])
     if @department.destroy
       flash[:notice] = "Department deleted successfully...."

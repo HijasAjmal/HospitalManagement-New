@@ -4,7 +4,8 @@ class Patient < ActiveRecord::Base
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   validates_uniqueness_of :email
   has_many :users, :as => :user_record
-  has_many :admittedrecords
+  has_many :admitted_records
+  belongs_to :blood_group
   has_many :doctors, :through => :appointments
   after_update :set_profile_status
   after_create :set_patient_credentials
@@ -15,8 +16,8 @@ class Patient < ActiveRecord::Base
 
 
   def set_profile_status
-    @patient = User.first(:conditions => { :user_record_id => self.id, :user_record_type => "Patient" })
-    @patient.update_attributes(:profile_status => 1)
+    patient = User.first(:conditions => { :user_record_id => id, :user_record_type => "Patient" })
+    patient.update_attributes(:profile_status => 1)
   end
 
   def set_patient_credentials

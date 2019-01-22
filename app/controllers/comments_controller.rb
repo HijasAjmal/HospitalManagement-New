@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
 
 
   # list all comments
-  def index ## change condition###
+  def index
     if find_user_type == "Admin"
       @recommendations = Comment.all(:conditions => { :is_recommended => 1, :recommendation_status => 0 })
     else
@@ -25,11 +25,11 @@ class CommentsController < ApplicationController
   end
 
   # add new comment to appointment
-  def new ## change condition####
+  def new
     @appointment = Appointment.find(params[:id])
     @user = User.first(:conditions => { :user_record_id => @appointment.patient_id, :user_record_type => "Patient" })
     if @appointment.comments.create(
-                :patient_condition => params[:patient_status][:id],
+                :patient_condition_id => params[:patient_status][:id],
                 :medication => params[:medication],
                 :is_recommended => params[:option])
       flash[:notice] = "Record created successfully............"
@@ -41,8 +41,9 @@ class CommentsController < ApplicationController
 
 
   # delete comment
-  def delete_comment## condition ##
-    if Comment.destroy(params[:id])
+  def delete_comment
+    @comment = Comment.find(params[:id])
+    if @comment.destroy
       flash[:notice] = "Deleted successfully...."
     else
       flash[:notice] = "Failed to Delete record...."

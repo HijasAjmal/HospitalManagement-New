@@ -44,7 +44,7 @@ CREATE TABLE `admitted_records` (
 
 LOCK TABLES `admitted_records` WRITE;
 /*!40000 ALTER TABLE `admitted_records` DISABLE KEYS */;
-INSERT INTO `admitted_records` VALUES (1,39,'2019-01-21 00:00:00','2019-01-20 01:50:00',1,'2019-01-21 00:00:00','2019-01-20 01:51:00',1,'2019-01-20 20:20:03','2019-01-20 20:21:29',1),(2,39,'2019-01-21 00:00:00','2019-01-20 01:51:00',0,NULL,NULL,1,'2019-01-20 20:21:02','2019-01-20 20:21:02',1);
+INSERT INTO `admitted_records` VALUES (1,39,'2019-01-21 00:00:00','2019-01-20 01:50:00',1,'2019-01-21 00:00:00','2019-01-20 01:51:00',1,'2019-01-20 20:20:03','2019-01-20 20:21:29',1),(2,39,'2019-01-21 00:00:00','2019-01-20 01:51:00',1,'2019-01-22 00:00:00','2019-01-22 12:23:00',1,'2019-01-20 20:21:02','2019-01-22 06:53:42',1);
 /*!40000 ALTER TABLE `admitted_records` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,7 +76,7 @@ CREATE TABLE `appointments` (
 
 LOCK TABLES `appointments` WRITE;
 /*!40000 ALTER TABLE `appointments` DISABLE KEYS */;
-INSERT INTO `appointments` VALUES (1,'fever','2019-01-21',1,0,1,1,1,'2019-01-20 20:03:16','2019-01-20 20:10:38');
+INSERT INTO `appointments` VALUES (1,'fever','2019-01-22',1,0,1,1,1,'2019-01-20 20:03:16','2019-01-22 07:11:21');
 /*!40000 ALTER TABLE `appointments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -103,7 +103,7 @@ CREATE TABLE `beds` (
 
 LOCK TABLES `beds` WRITE;
 /*!40000 ALTER TABLE `beds` DISABLE KEYS */;
-INSERT INTO `beds` VALUES (37,0,13,'2019-01-20 19:30:16','2019-01-21 06:37:36'),(38,0,13,'2019-01-20 19:30:16','2019-01-20 19:30:16'),(39,1,13,'2019-01-20 19:30:16','2019-01-20 20:18:25');
+INSERT INTO `beds` VALUES (37,0,13,'2019-01-20 19:30:16','2019-01-21 06:37:36'),(38,0,13,'2019-01-20 19:30:16','2019-01-20 19:30:16'),(39,0,13,'2019-01-20 19:30:16','2019-01-22 06:53:42');
 /*!40000 ALTER TABLE `beds` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,16 +142,16 @@ DROP TABLE IF EXISTS `comments`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `patient_condition` int(11) DEFAULT NULL,
   `medication` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `doctor_id` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `is_recommended` int(11) DEFAULT '0',
   `recommendation_status` int(11) DEFAULT '0',
   `appointment_id` int(11) DEFAULT NULL,
+  `patient_condition_id` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -160,7 +160,7 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,1,'something..........>!',NULL,1,0,1,'2019-01-20 20:10:38','2019-01-20 20:17:00');
+INSERT INTO `comments` VALUES (1,'something..........>!',NULL,1,0,1,2,'2019-01-20 20:10:38','2019-01-20 20:17:00'),(3,'serwser',NULL,1,0,1,5,'2019-01-22 07:11:21','2019-01-22 07:11:21');
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,7 +204,7 @@ CREATE TABLE `departments` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,7 +240,7 @@ CREATE TABLE `doctors` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -249,7 +249,7 @@ CREATE TABLE `doctors` (
 
 LOCK TABLES `doctors` WRITE;
 /*!40000 ALTER TABLE `doctors` DISABLE KEYS */;
-INSERT INTO `doctors` VALUES (1,'Python','2','6','7807018654','python@gmail.com','05/08/1956','Male',74,'MBBS','2-years',1,'2019-01-20 18:24:18','2019-01-20 18:52:13'),(2,'Java','1','8','8907652656','java@gmail.com','05/08/1995','Male',84,'abc','3-years',2,'2019-01-20 18:24:48','2019-01-21 04:53:09'),(3,'Ruby','2','5','5634561234','ruby@gmail.com','05/08/1998','Female',10,'qwerty','1-years',3,'2019-01-20 18:25:07','2019-01-21 04:54:14'),(4,'perl','1','5','7894561235','perl@gmail.com','05/08/1984','Female',9,'zxcv','6-years',4,'2019-01-20 18:25:27','2019-01-21 04:55:32');
+INSERT INTO `doctors` VALUES (1,'Python','2','6','2307018654','python@gmail.com','05/08/1995','Male',76,'MBBS','2-years',1,'2019-01-20 18:24:18','2019-01-22 07:15:48'),(2,'Java','1','8','8907652656','java@gmail.com','05/08/1995','Male',84,'abc','3-years',2,'2019-01-20 18:24:48','2019-01-21 04:53:09'),(3,'Ruby','2','5','5634561234','ruby@gmail.com','05/08/1998','Female',10,'qwerty','1-years',3,'2019-01-20 18:25:07','2019-01-21 04:54:14'),(4,'perl','1','5','7894561235','perl@gmail.com','05/08/1984','Female',9,'zxcv','6-years',4,'2019-01-20 18:25:27','2019-01-21 04:55:32'),(7,'Numpy','3','4',NULL,'numpy@gmail.com',NULL,NULL,NULL,NULL,NULL,3,'2019-01-22 07:28:02','2019-01-22 07:28:02'),(8,'asdf','asdf','asdf',NULL,'asfds@gmail.com',NULL,NULL,NULL,NULL,NULL,5,'2019-01-22 07:29:13','2019-01-22 07:29:13'),(9,'fortran','2','3',NULL,'fortran@gmail.com',NULL,NULL,NULL,NULL,NULL,2,'2019-01-22 07:45:59','2019-01-22 07:45:59');
 /*!40000 ALTER TABLE `doctors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,7 +296,7 @@ CREATE TABLE `patients` (
   `date_of_birth` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `gender` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `blood_group` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `blood_group_id` int(11) DEFAULT NULL,
   `is_admitted` int(11) DEFAULT '0',
   `is_discharged` int(11) DEFAULT '0',
   `appointment_id` int(11) DEFAULT NULL,
@@ -312,7 +312,7 @@ CREATE TABLE `patients` (
 
 LOCK TABLES `patients` WRITE;
 /*!40000 ALTER TABLE `patients` DISABLE KEYS */;
-INSERT INTO `patients` VALUES (1,'html','5','0','8907018654','html@gmail.com','2017-02-19','Pevungattil (h), Akkaparamba (po), Puliyacode, Malappuram (dt), kerala 673641','Male','B+',0,0,NULL,'2019-01-20 18:26:39','2019-01-20 19:37:12'),(2,'css','2','7','6907018654','css@gmail.com','2018-12-27','Pevungattil (h), Akkaparamba (po), Puliyacode, Malappuram (dt), kerala 673641','Male','O+',0,0,NULL,'2019-01-20 18:28:04','2019-01-21 04:56:21'),(3,'bootstrap','4','0','5827018654','bootstrap@gmail.com','2018-10-19','Pevungattil (h), Akkaparamba (po), Puliyacode, Malappuram (dt), kerala 673641','Male','A-',0,0,NULL,'2019-01-20 18:29:15','2019-01-21 04:57:11'),(4,'django','5','2','8907015435','django@gmail.com','2015-09-14','Pevungattil (h), Akkaparamba (po), Puliyacode, Malappuram (dt), kerala 673641','Male','O-',0,0,NULL,'2019-01-20 18:30:49','2019-01-21 04:57:52'),(5,'aqwe','b','cwd','890705455','abc@gmail.com','2018-05-18','Pevungattil (h), Akkaparamba (po), Puliyacode, Malappuram (dt), kerala 673641','Male','B+',0,0,NULL,'2019-01-20 18:33:13','2019-01-21 04:58:30'),(6,'php','1','3',NULL,'php@gmail.com',NULL,NULL,NULL,NULL,0,0,NULL,'2019-01-21 12:11:24','2019-01-21 12:11:24');
+INSERT INTO `patients` VALUES (1,'html','5','0','8907018654','html@gmail.com','2017-02-19','Pevungattil (h), Akkaparamba (po), Puliyacode, Malappuram (dt), kerala 673641','Male',2,0,0,NULL,'2019-01-20 18:26:39','2019-01-20 19:37:12'),(2,'css','2','7','6907018654','css@gmail.com','2018-12-27','Pevungattil (h), Akkaparamba (po), Puliyacode, Malappuram (dt), kerala 673641','Male',5,0,0,NULL,'2019-01-20 18:28:04','2019-01-21 04:56:21'),(3,'bootstrap','4','0','5827018654','bootstrap@gmail.com','2018-10-19','Pevungattil (h), Akkaparamba (po), Puliyacode, Malappuram (dt), kerala 673641','Male',4,0,0,NULL,'2019-01-20 18:29:15','2019-01-21 04:57:11'),(4,'django','5','2','8907015435','django@gmail.com','2015-09-14','Pevungattil (h), Akkaparamba (po), Puliyacode, Malappuram (dt), kerala 673641','Male',6,0,0,NULL,'2019-01-20 18:30:49','2019-01-21 04:57:52'),(5,'aqwe','b','cwd','890705455','abc@gmail.com','2018-05-18','Pevungattil (h), Akkaparamba (po), Puliyacode, Malappuram (dt), kerala 673641','Male',7,0,0,NULL,'2019-01-20 18:33:13','2019-01-21 04:58:30'),(6,'php','1','3',NULL,'php@gmail.com',NULL,NULL,NULL,4,0,0,NULL,'2019-01-21 12:11:24','2019-01-21 12:11:24');
 /*!40000 ALTER TABLE `patients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -444,7 +444,7 @@ CREATE TABLE `slots` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -453,7 +453,7 @@ CREATE TABLE `slots` (
 
 LOCK TABLES `slots` WRITE;
 /*!40000 ALTER TABLE `slots` DISABLE KEYS */;
-INSERT INTO `slots` VALUES (1,'2019-01-20','08:35:00',1,1,'2019-01-20 19:35:41','2019-01-20 20:03:16'),(2,'2019-01-20','09:10:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(3,'2019-01-20','09:45:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(4,'2019-01-20','10:20:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(5,'2019-01-20','10:55:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(6,'2019-01-20','11:30:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(7,'2019-01-20','12:05:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(8,'2019-01-20','12:40:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(9,'2019-01-20','13:15:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(10,'2019-01-20','13:50:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(11,'2019-01-20','14:25:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(12,'2019-01-20','15:00:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(13,'2019-01-20','15:35:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(14,'2019-01-20','16:10:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(15,'2019-01-20','16:45:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(16,'2019-01-20','17:20:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41');
+INSERT INTO `slots` VALUES (1,'2019-01-20','08:35:00',1,1,'2019-01-20 19:35:41','2019-01-20 20:03:16'),(2,'2019-01-20','09:10:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(3,'2019-01-20','09:45:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(4,'2019-01-20','10:20:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(5,'2019-01-20','10:55:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(6,'2019-01-20','11:30:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(7,'2019-01-20','12:05:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(8,'2019-01-20','12:40:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(9,'2019-01-20','13:15:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(10,'2019-01-20','13:50:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(11,'2019-01-20','14:25:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(12,'2019-01-20','15:00:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(13,'2019-01-20','15:35:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(14,'2019-01-20','16:10:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(15,'2019-01-20','16:45:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(16,'2019-01-20','17:20:00',0,1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(17,'2019-01-22','07:30:00',0,2,'2019-01-22 07:31:21','2019-01-22 07:31:21'),(18,'2019-01-22','08:00:00',0,2,'2019-01-22 07:31:21','2019-01-22 07:31:21'),(19,'2019-01-22','08:30:00',0,2,'2019-01-22 07:31:21','2019-01-22 07:31:21'),(20,'2019-01-22','09:00:00',0,2,'2019-01-22 07:31:21','2019-01-22 07:31:21'),(21,'2019-01-22','09:30:00',0,2,'2019-01-22 07:31:21','2019-01-22 07:31:21'),(22,'2019-01-22','10:00:00',0,2,'2019-01-22 07:31:21','2019-01-22 07:31:21'),(23,'2019-01-22','10:30:00',0,2,'2019-01-22 07:31:22','2019-01-22 07:31:22'),(24,'2019-01-22','11:00:00',0,2,'2019-01-22 07:31:22','2019-01-22 07:31:22'),(25,'2019-01-22','11:30:00',0,2,'2019-01-22 07:31:22','2019-01-22 07:31:22'),(26,'2019-01-22','12:00:00',0,2,'2019-01-22 07:31:22','2019-01-22 07:31:22'),(27,'2019-01-22','12:30:00',0,2,'2019-01-22 07:31:22','2019-01-22 07:31:22'),(28,'2019-01-22','13:00:00',0,2,'2019-01-22 07:31:22','2019-01-22 07:31:22'),(29,'2019-01-22','13:30:00',0,2,'2019-01-22 07:31:22','2019-01-22 07:31:22'),(30,'2019-01-22','14:00:00',0,2,'2019-01-22 07:31:22','2019-01-22 07:31:22'),(31,'2019-01-22','14:30:00',0,2,'2019-01-22 07:31:22','2019-01-22 07:31:22');
 /*!40000 ALTER TABLE `slots` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -473,7 +473,7 @@ CREATE TABLE `timeslots` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -482,7 +482,7 @@ CREATE TABLE `timeslots` (
 
 LOCK TABLES `timeslots` WRITE;
 /*!40000 ALTER TABLE `timeslots` DISABLE KEYS */;
-INSERT INTO `timeslots` VALUES (1,'2019-01-20 08:35:00','2019-01-20 17:35:00','00:35:00',1,'2019-01-20 19:35:41','2019-01-20 19:35:41');
+INSERT INTO `timeslots` VALUES (1,'2019-01-20 08:35:00','2019-01-20 17:35:00','00:35:00',1,'2019-01-20 19:35:41','2019-01-20 19:35:41'),(2,'2019-01-22 07:30:00','2019-01-22 14:30:00','00:30:00',2,'2019-01-22 07:31:21','2019-01-22 07:31:21');
 /*!40000 ALTER TABLE `timeslots` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -511,7 +511,7 @@ CREATE TABLE `users` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -520,7 +520,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Hijas',' ','Ajmal','8907018654','Hijasajmal@gmail.com','Hijas@A1','A001',NULL,1,NULL,1,NULL,'Admin','2019-01-20 18:21:53','2019-01-20 18:21:53'),(2,'Python','2','6',NULL,'python@gmail.com','1123','Python@U1','',1,NULL,1,1,'Doctor','2019-01-20 18:24:18','2019-01-20 18:52:13'),(3,'Java','1','8',NULL,'java@gmail.com','2123','Java@U2','',1,NULL,1,2,'Doctor','2019-01-20 18:24:48','2019-01-21 04:53:09'),(4,'Ruby','2','5',NULL,'ruby@gmail.com','3123','Ruby@U3','',1,NULL,1,3,'Doctor','2019-01-20 18:25:07','2019-01-21 04:54:14'),(5,'perl','1','5',NULL,'perl@gmail.com','4123','perl@U4','',1,NULL,1,4,'Doctor','2019-01-20 18:25:27','2019-01-21 04:55:32'),(6,'html','5','0',NULL,'html@gmail.com','1123','html@U1','',1,NULL,1,1,'Patient','2019-01-20 18:26:39','2019-01-20 19:37:12'),(7,'css','2','7',NULL,'css@gmail.com','2123','css@U2','',1,NULL,1,2,'Patient','2019-01-20 18:28:04','2019-01-21 04:56:21'),(8,'bootstrap','4','0',NULL,'bootstrap@gmail.com','3123','bootstrap@U3','',1,NULL,1,3,'Patient','2019-01-20 18:29:15','2019-01-21 04:57:11'),(9,'django','5','2',NULL,'django@gmail.com','4123','django@U4','',1,NULL,1,4,'Patient','2019-01-20 18:30:49','2019-01-21 04:57:52'),(10,'aqwe','b','cwd',NULL,'abc@gmail.com','5123','aqwe@U5','',1,NULL,1,5,'Patient','2019-01-20 18:33:13','2019-01-21 04:58:30'),(11,'php','1','3',NULL,'php@gmail.com','6123','php@U6','',1,NULL,0,6,'Patient','2019-01-21 12:11:24','2019-01-21 12:11:24');
+INSERT INTO `users` VALUES (1,'Hijas',' ','Ajmal','8907018654','Hijasajmal@gmail.com','Hijas@A1','A001',NULL,1,NULL,1,NULL,'Admin','2019-01-20 18:21:53','2019-01-20 18:21:53'),(2,'Python','2','6',NULL,'python@gmail.com','1123','Python@U1','',1,NULL,1,1,'Doctor','2019-01-20 18:24:18','2019-01-22 07:15:48'),(3,'Java','1','8',NULL,'java@gmail.com','2123','Java@U2','',1,NULL,1,2,'Doctor','2019-01-20 18:24:48','2019-01-21 04:53:09'),(4,'Ruby','2','5',NULL,'ruby@gmail.com','3123','Ruby@U3','',1,NULL,1,3,'Doctor','2019-01-20 18:25:07','2019-01-21 04:54:14'),(5,'perl','1','5',NULL,'perl@gmail.com','4123','perl@U4','',1,NULL,1,4,'Doctor','2019-01-20 18:25:27','2019-01-21 04:55:32'),(6,'html','5','0',NULL,'html@gmail.com','1123','html@U1','',1,NULL,1,1,'Patient','2019-01-20 18:26:39','2019-01-20 19:37:12'),(7,'css','2','7',NULL,'css@gmail.com','2123','css@U2','',1,NULL,1,2,'Patient','2019-01-20 18:28:04','2019-01-21 04:56:21'),(8,'bootstrap','4','0',NULL,'bootstrap@gmail.com','3123','bootstrap@U3','',1,NULL,1,3,'Patient','2019-01-20 18:29:15','2019-01-21 04:57:11'),(9,'django','5','2',NULL,'django@gmail.com','4123','django@U4','',1,NULL,1,4,'Patient','2019-01-20 18:30:49','2019-01-21 04:57:52'),(10,'aqwe','b','cwd',NULL,'abc@gmail.com','5123','aqwe@U5','',1,NULL,1,5,'Patient','2019-01-20 18:33:13','2019-01-21 04:58:30'),(11,'php','1','3',NULL,'php@gmail.com','6123','php@U6','',1,NULL,0,6,'Patient','2019-01-21 12:11:24','2019-01-21 12:11:24'),(12,'Numpy','3','4',NULL,'numpy@gmail.com','7123','Numpy@U7','56f8790079d83a7a0fef',0,NULL,0,7,'Doctor','2019-01-22 07:28:02','2019-01-22 07:28:02'),(13,'asdf','asdf','asdf',NULL,'asfds@gmail.com','8123','asdf@U8','d9222976ec90b386f3d8',0,NULL,0,8,'Doctor','2019-01-22 07:29:13','2019-01-22 07:29:13'),(14,'fortran','2','3',NULL,'fortran@gmail.com','9123','fortran@U9','331a000da4757a0be555',0,NULL,0,9,'Doctor','2019-01-22 07:45:59','2019-01-22 07:45:59');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -533,4 +533,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-21 18:14:45
+-- Dump completed on 2019-01-22 13:17:29

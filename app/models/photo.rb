@@ -5,11 +5,11 @@ class Photo < ActiveRecord::Base
     validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\z/
 
     def self.findImage(user)
-  			@photo = find(:first, :conditions => { :user_id => user })
-  			if @photo.nil?
+  			photo = find(:first, :conditions => { :user_id => user })
+  			if photo.nil?
   				return "/images/contact.png"
   			else
-  				return @photo.photo.url(:small)
+  				return photo.photo.url(:small)
   			end
   	end
 end

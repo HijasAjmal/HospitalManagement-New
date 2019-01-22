@@ -21,7 +21,7 @@
         <% @admitted_records.each do |record| %>
         <tr>
           <td><%= h record.id %></td>
-          <td><%= record.find_patient(record.patient_id) %></td>
+          <td><%= record.find_patient %></td>
           <td><%= h record.date%></td>
           <td><%= h record.time%></td>
           <td><%= record.find_option(record.is_discharged) %></td>

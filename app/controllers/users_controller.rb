@@ -27,22 +27,22 @@ class UsersController < ApplicationController
 
 
   # signup method
-  def signup #callbacks
-    if params[:id] == "3"
+  def signup
+    if params[:id] == "3" # patinet
       @patient = Patient.new(params[:patient])
       unless @patient.save
         render :action => "patient_registration_form"
       else
         redirect_to("/")
        end
-    elsif params[:id] == "2"
+    elsif params[:id] == "2" # doctor
       @doctor = Doctor.new(params[:doctor])
       unless @doctor.save
         render :action => "doctor_registration_form"
       else
         redirect_to("/doctors/index")
       end
-    elsif params[:id] == "1"
+    elsif params[:id] == "1" # admin
       @admin = User.new(params[:admin])
       unless @admin.save
         render :action => "admin_registration_form"
