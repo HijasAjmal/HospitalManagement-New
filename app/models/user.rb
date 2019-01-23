@@ -13,17 +13,17 @@ class User < ActiveRecord::Base
 
 
   def self.update_user_credential(record)
-    user = new()
+    encrypt_password = Digest::SHA1.hexdigest(record.id.to_s + "123")
+    user = new(
+        :first_name => record.first_name,
+        :middle_name => record.middle_name, :last_name => record.last_name,
+        :email => record.email, :user_name => record.first_name + "@U" + record.id.to_s,
+        :password => encrypt_password,
+        :confirmation_token => SecureRandom.hex(10)
+    )
     user.user_record = record
-    user_type = user.user_record
     user.save
-    encrypt_password = Digest::SHA1.hexdigest(user_type.id.to_s + "123")
-    user.update_attributes(:first_name => user_type.first_name,
-      :middle_name => user_type.middle_name, :last_name => user_type.last_name,
-      :email => user_type.email, :user_name => user_type.first_name + "@U" + user_type.id.to_s,
-      :password => encrypt_password,
-      :confirmation_token => SecureRandom.hex(10) )
-    UserMailer.deliver_welcome_email(user_type, user)
+    UserMailer.deliver_welcome_email(record, user)
   end
 
   def set_admin_credential

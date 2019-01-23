@@ -63,6 +63,7 @@ class AdmittedRecordsController < ApplicationController
   def discharge_record
     @record = AdmittedRecord.find(params[:id])
     if @record.update_attributes(
+                  :is_discharged => 1,
                   :discharged_date => Time.now.strftime("%Y-%m-%d"),
                   :discharged_time => Time.now.strftime("%H:%M %p"))
       flash[:notice] = "Record Updated successfully......"

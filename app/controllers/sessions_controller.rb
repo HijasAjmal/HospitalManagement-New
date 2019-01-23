@@ -1,4 +1,5 @@
 require 'securerandom'
+require 'bcrypt'
 class SessionsController < ApplicationController
 
 
@@ -90,13 +91,12 @@ class SessionsController < ApplicationController
     @user = User.first(:conditions => { :email => params[:email] })
     if @user.nil?
       flash[:notice] = 'This email is not exist in our database..!'
-      redirect_to("/")
     else
       @user.update_attributes(:remember_token => SecureRandom.hex)
       UserMailer.deliver_password_email(@user)
       flash[:notice] = 'Password reset link is in your email..!'
-      redirect_to("/")
     end
+    redirect_to("/")
   end
 
   # method to change the password
@@ -104,11 +104,10 @@ class SessionsController < ApplicationController
     @user = User.first(:conditions => { :remember_token => params[:id] })
     if @user.nil?
       flash[:notice] = 'This link is not valid..!'
-      redirect_to("/")
     else
       @user.update_attributes(:password => params[:password], :remember_token => nil)
       flash[:notice] = 'successfully updated your account password..!'
-      redirect_to("/")
     end
+    redirect_to("/")
   end
 end

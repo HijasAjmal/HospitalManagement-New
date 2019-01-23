@@ -16,8 +16,6 @@ class AdmittedRecord < ActiveRecord::Base
   end
 
   def set_discharge_status
-    @record = AdmittedRecord.find(id)
     bed.update_attributes(:is_engaged => 0)
-    @record.update_attributes(:is_discharged => 1)
   end
 end
