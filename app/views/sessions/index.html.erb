@@ -19,7 +19,7 @@
               <%= submit_tag "Sign In", :name => nil, :class => "btn btn-lg btn-primary btn-block text-uppercase", :style=>"margin-left: 25%; height: 11%; width: 50%; margin-top: -9px; font-size: 15px; padding: 0;" %>
               <hr class="my-4">
               <button type="button" name="button" class="btn btn-primary text-uppercase" style="margin-left: 63%; height: 85%; width: 50%; margin-top: -9px; font-size: 9px;">
-                <%= link_to 'Patient Registration', :controller => :users, :action => "patient_registration_form", :style => "color:white; text-decoration:none;" %>
+                <%= link_to 'Patient Registration', patient_registration_form_users_path,:style => "color:white; text-decoration:none;" %>
               </button>
             <% end %>
           </div>

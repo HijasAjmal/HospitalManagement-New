@@ -54,7 +54,7 @@ filter_access_to :all
     else
       flash[:notice] = "Failed to Delete..........."
     end
-    redirect_to :controller => :doctors, :action => "index"
+    redirect_to doctors_path
   end
 
   # create doctor details as pdf (Pdf generate using wkhtmltopdf)

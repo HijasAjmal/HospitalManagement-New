@@ -15,6 +15,13 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :rooms
 
+  map.resources :users, :collection => {:admin_registration_form => :get, :doctor_registration_form => :get, :patient_registration_form => :get}
+
+  map.resources :doctors, :collection => {:doctor_list => :get}
+
+  map.resources :patients, :collection => {:patient_list => :get}
+
+
 
   # map.resources :doctors
   # The priority is based upon order of creation: first created -> highest priority.
